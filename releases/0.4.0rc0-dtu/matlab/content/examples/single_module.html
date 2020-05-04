@@ -1,0 +1,365 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Single Module &mdash; ARRUS (matlab) 0.3.0rc1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> ARRUS (matlab)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../introduction/index.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">ARRUS API</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/acknowledgments.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/release_notes.html">Release notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ARRUS (matlab)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Single Module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="single-module">
+<h1>Single Module<a class="headerlink" href="#single-module" title="Permalink to this headline">¶</a></h1>
+<p>In the following example we show:</p>
+<ol class="arabic simple">
+<li><p>how to configure TX and RX subsystems in order to generate a plane wave,</p></li>
+<li><p>how to trigger a pulse generation and acquire a complete RF frame.</p></li>
+</ol>
+<p>A complete source code is available in a <code class="docutils literal notranslate"><span class="pre">matlab/examples/basics</span></code> directory and is divided into two parts:</p>
+<ol class="arabic simple">
+<li><p>script <code class="docutils literal notranslate"><span class="pre">init_x1.m</span></code>, which initializes system base configuration,</p></li>
+<li><p>script <code class="docutils literal notranslate"><span class="pre">us4oem_x1.m</span></code>, which configures TX/RX scheme, and then in a loop: acquires current RF data frame and displays it.</p></li>
+</ol>
+<p>To run example, you need to execute <code class="docutils literal notranslate"><span class="pre">us4oem_x1.m</span></code> only. This script calls <code class="docutils literal notranslate"><span class="pre">init_x1.m</span></code> before performing any
+further processing.</p>
+<div class="section" id="initialization">
+<h2>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h2>
+<p>A base configuration is set using <code class="docutils literal notranslate"><span class="pre">init_x1.m</span></code> script.</p>
+<p>First, a path to <code class="docutils literal notranslate"><span class="pre">Us4MEX.mexw64</span></code> file must be set. Assuming you are running the example from the directory, in which the script is originally located, following should work:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">path</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s">&#39;..\..\&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Then indicate the number of available us4OEM modules:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">nUs4OEM</span> <span class="p">=</span> <span class="mi">1</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>We need to take into account a probe adapter that is currently installed on our board, thus an appropriate
+RX and TX channels mapping must be set (using <a class="reference internal" href="../low_level_api.html#mex-setrxchannelmapping"><span class="std std-ref">SetRxChannelMapping</span></a> and <a class="reference internal" href="../low_level_api.html#mex-settxchannelmapping"><span class="std std-ref">SetTxChannelMapping</span></a>):</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">probe</span> <span class="p">=</span> <span class="s">&quot;AL2442&quot;</span><span class="p">;</span>
+<span class="c">% Channel mapping for specific probe.</span>
+<span class="k">if</span> <span class="n">probe</span> <span class="o">==</span> <span class="s">&quot;AL2442&quot;</span>
+    <span class="n">rxChannelMap</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">nUs4OEM</span><span class="p">,</span> <span class="mi">32</span><span class="p">);</span>
+    <span class="n">rxChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span> <span class="p">=</span> <span class="mi">32</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">rxChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span> <span class="p">=</span> <span class="mi">16</span><span class="p">;</span>
+    <span class="n">rxChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">17</span><span class="p">)</span> <span class="p">=</span> <span class="mi">17</span><span class="p">;</span>
+    <span class="n">txChannelMap</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">nUs4OEM</span><span class="p">,</span> <span class="mi">128</span><span class="p">);</span>
+    <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">:</span><span class="mi">32</span><span class="p">)</span> <span class="p">=</span> <span class="mi">32</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">;</span>
+    <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">16</span><span class="p">)</span> <span class="p">=</span> <span class="mi">16</span><span class="p">;</span>
+    <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">17</span><span class="p">)</span> <span class="p">=</span> <span class="mi">17</span><span class="p">;</span>
+    <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">33</span><span class="p">:</span><span class="mi">64</span><span class="p">)</span> <span class="p">=</span> <span class="mi">64</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">33</span><span class="p">;</span>
+    <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">48</span><span class="p">)</span> <span class="p">=</span> <span class="mi">48</span><span class="p">;</span>
+    <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">49</span><span class="p">)</span> <span class="p">=</span> <span class="mi">49</span><span class="p">;</span>
+    <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">65</span><span class="p">:</span><span class="mi">96</span><span class="p">)</span> <span class="p">=</span> <span class="mi">96</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">65</span><span class="p">;</span>
+    <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">80</span><span class="p">)</span> <span class="p">=</span> <span class="mi">80</span><span class="p">;</span>
+    <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">81</span><span class="p">)</span> <span class="p">=</span> <span class="mi">81</span><span class="p">;</span>
+    <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">97</span><span class="p">:</span><span class="mi">128</span><span class="p">)</span> <span class="p">=</span> <span class="mi">128</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">97</span><span class="p">;</span>
+    <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">112</span><span class="p">)</span> <span class="p">=</span> <span class="mi">112</span><span class="p">;</span>
+    <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">113</span><span class="p">)</span> <span class="p">=</span> <span class="mi">113</span><span class="p">;</span>
+    <span class="n">for</span> <span class="s">ch=1:32</span>
+        <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetRxChannelMapping&quot;</span><span class="p">,</span> <span class="n">rxChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ch</span><span class="p">),</span> <span class="n">ch</span><span class="p">);</span>
+    <span class="n">end</span>
+    <span class="s">for</span> <span class="s">ch=1:128</span>
+        <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetTxChannelMapping&quot;</span><span class="p">,</span> <span class="n">txChannelMap</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">ch</span><span class="p">),</span> <span class="n">ch</span><span class="p">);</span>
+    <span class="n">end</span>
+<span class="s">end</span>
+</pre></div>
+</div>
+<p>In this place we also set all RX parameters that we will not change later in the example:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% init RX</span>
+<span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetPGAGain&quot;</span><span class="p">,</span><span class="s">&quot;30dB&quot;</span><span class="p">);</span>
+<span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetLPFCutoff&quot;</span><span class="p">,</span><span class="s">&quot;15MHz&quot;</span><span class="p">);</span>
+<span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetActiveTermination&quot;</span><span class="p">,</span><span class="s">&quot;EN&quot;</span><span class="p">,</span> <span class="s">&quot;200&quot;</span><span class="p">);</span>
+<span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetLNAGain&quot;</span><span class="p">,</span><span class="s">&quot;24dB&quot;</span><span class="p">);</span>
+<span class="c">% digital TGC</span>
+<span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetDTGC&quot;</span><span class="p">,</span><span class="s">&quot;EN&quot;</span><span class="p">,</span> <span class="s">&quot;0dB&quot;</span><span class="p">);</span>
+<span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s">&quot;TGCSetSamples&quot;</span><span class="p">,</span> <span class="n">uint16</span><span class="p">([</span><span class="n">hex2dec</span><span class="p">(</span><span class="s">&#39;9001&#39;</span><span class="p">),</span> <span class="n">hex2dec</span><span class="p">(</span><span class="s">&#39;4000&#39;</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="mi">3000</span><span class="p">:</span><span class="o">-</span><span class="mi">75</span><span class="p">:</span><span class="mi">0</span><span class="p">),</span> <span class="n">hex2dec</span><span class="p">(</span><span class="s">&#39;4000&#39;</span><span class="p">)</span><span class="o">+</span><span class="mi">3000</span><span class="p">]));</span>
+<span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;TGCEnable&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>That is:</p>
+<ol class="arabic simple">
+<li><p>we set amplifier gain using <a class="reference internal" href="../low_level_api.html#mex-setpgagain"><span class="std std-ref">SetPGAGain</span></a>,</p></li>
+<li><p>set low-pass frequency cutoff using <a class="reference internal" href="../low_level_api.html#mex-setlpfcutoff"><span class="std std-ref">SetLPFCutoff</span></a>,</p></li>
+<li><p>we enable active termination using <a class="reference internal" href="../low_level_api.html#mex-setactivetermination"><span class="std std-ref">SetActiveTermination</span></a>,</p></li>
+<li><p>we set low-noise amplifier gain using <a class="reference internal" href="../low_level_api.html#mex-setlnagain"><span class="std std-ref">SetLNAGain</span></a>,</p></li>
+<li><p>enable digital time gain compensation using <a class="reference internal" href="../low_level_api.html#mex-setdtgc"><span class="std std-ref">SetDTGC</span></a>,</p></li>
+<li><p>turn on and set TGC samples using <a class="reference internal" href="../low_level_api.html#mex-tgcenable"><span class="std std-ref">TGCEnable</span></a>, <a class="reference internal" href="../low_level_api.html#mex-tgcsetsamples"><span class="std std-ref">TGCSetSamples</span></a>.</p></li>
+</ol>
+</div>
+<div class="section" id="defining-tx-rx-acquisitions">
+<h2>Defining TX/RX acquisitions<a class="headerlink" href="#defining-tx-rx-acquisitions" title="Permalink to this headline">¶</a></h2>
+<p>In this example we want to transmit and capture a signal using 128 channels. In us4OEM module there are 32 receive channels in total,
+but each receive channel is connected to 4 different transducers through the T/R switches.
+This architecture enables handling 128 element probes with low-cost hardware. Full 128-channel data capture can be done
+with a sequence of 4 transmit/receive acquisitions.</p>
+<p>Definition of a TX/RX sequence is located in <code class="docutils literal notranslate"><span class="pre">us4oem_x1.m</span></code> file. We want to perform 4 TX/RX acquisition to complete one RF frame;
+in order to do that, we need to define TX/RX parameters first, for each firing/acquisition (an <em>event</em>) separately.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% ...</span>
+<span class="n">NEVENTS</span> <span class="p">=</span> <span class="mi">4</span><span class="p">;</span>
+<span class="n">NSAMPLES</span> <span class="p">=</span> <span class="mi">8192</span><span class="p">;</span>
+<span class="n">txDelays</span> <span class="p">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">127</span><span class="p">)</span><span class="o">*</span><span class="mf">0e-6</span><span class="o">/</span><span class="mi">128</span><span class="p">;</span>
+<span class="c">% ...</span>
+
+<span class="c">% Define TX/RX scheme details to be executed on a Us4OEM module.</span>
+
+<span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;ClearScheduledReceive&quot;</span><span class="p">)</span>
+<span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetNTriggers&quot;</span><span class="p">,</span> <span class="n">NEVENTS</span><span class="p">);</span>
+<span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetNumberOfFirings&quot;</span><span class="p">,</span> <span class="n">NEVENTS</span><span class="p">);</span>
+<span class="n">for</span> <span class="s">i=0:NEVENTS-1</span>
+    <span class="c">% TX</span>
+    <span class="n">txDelaysSet</span> <span class="p">=</span> <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetTxDelays&quot;</span><span class="p">,</span> <span class="n">txDelays</span><span class="p">,</span> <span class="nb">i</span><span class="p">);</span>
+    <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetTxFrequency&quot;</span><span class="p">,</span> <span class="mf">5e6</span><span class="p">,</span> <span class="nb">i</span><span class="p">);</span>
+    <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetTxHalfPeriods&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">i</span><span class="p">);</span>
+    <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetTxAperture&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="nb">i</span><span class="p">);</span>
+    <span class="c">% RX</span>
+    <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetRxTime&quot;</span><span class="p">,</span> <span class="mf">200e-6</span><span class="p">,</span> <span class="nb">i</span><span class="p">);</span>
+    <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetRxDelay&quot;</span><span class="p">,</span> <span class="mf">20e-6</span><span class="p">,</span> <span class="nb">i</span><span class="p">);</span>
+    <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetRxAperture&quot;</span><span class="p">,</span> <span class="nb">i</span><span class="o">*</span><span class="mi">32</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="nb">i</span><span class="p">);</span>
+    <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;ScheduleReceive&quot;</span><span class="p">,</span> <span class="nb">i</span><span class="o">*</span><span class="n">NSAMPLES</span><span class="p">,</span> <span class="n">NSAMPLES</span><span class="p">);</span>
+    <span class="c">% Trigger</span>
+    <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetTrigger&quot;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="nb">i</span><span class="p">);</span>
+<span class="n">end</span>
+
+<span class="s">Us4MEX(0,</span> <span class="s">&quot;EnableTransmit&quot;)</span><span class="p">;</span>
+<span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;SetTrigger&quot;</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">NEVENTS</span><span class="o">-</span><span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Please note:</p>
+<blockquote>
+<div><ul class="simple">
+<li><dl class="simple">
+<dt>before defining TX/RX scheme you need to:</dt><dd><ul>
+<li><p>clear RX task queue using <a class="reference internal" href="../low_level_api.html#mex-clearscheduledreceive"><span class="std std-ref">ClearScheduledReceive</span></a>,</p></li>
+<li><p>set number of firings and triggers to perform on the device using <a class="reference internal" href="../low_level_api.html#mex-setnumberoffirings"><span class="std std-ref">SetNumberOfFirings</span></a>
+and <a class="reference internal" href="../low_level_api.html#mex-setntriggers"><span class="std std-ref">SetNTriggers</span></a>,</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>functions: <a class="reference internal" href="../low_level_api.html#mex-settxdelay"><span class="std std-ref">SetTxDelay</span></a>, <a class="reference internal" href="../low_level_api.html#mex-settxfrequency"><span class="std std-ref">SetTxFrequency</span></a>, <a class="reference internal" href="../low_level_api.html#mex-settxhalfperiods"><span class="std std-ref">SetTxHalfPeriods</span></a>, <a class="reference internal" href="../low_level_api.html#mex-settxaperture"><span class="std std-ref">SetTxAperture</span></a>,
+<a class="reference internal" href="../low_level_api.html#mex-setrxaperture"><span class="std std-ref">SetRxAperture</span></a>, <a class="reference internal" href="../low_level_api.html#mex-setrxtime"><span class="std std-ref">SetRxTime</span></a>, <a class="reference internal" href="../low_level_api.html#mex-setrxdelay"><span class="std std-ref">SetRxDelay</span></a> and <a class="reference internal" href="../low_level_api.html#mex-settrigger"><span class="std std-ref">SetTrigger</span></a>
+take an event number as a last parameter; for example, to set TX
+delay on the fifth channel in the fourth event you need to call: <code class="docutils literal notranslate"><span class="pre">Us4MEX(0,</span> <span class="pre">&quot;SetTxDelay&quot;,</span> <span class="pre">5,</span> <span class="pre">delay,</span> <span class="pre">3)</span></code>,</p></li>
+<li><p>schedule new transfer from an ADC to us4OEM module’s internal memory using <a class="reference internal" href="../low_level_api.html#mex-schedulereceive"><span class="std std-ref">ScheduleReceive</span></a>,</p></li>
+<li><p>you have to set a maximum event number; use <code class="docutils literal notranslate"><span class="pre">Us4MEX(0,</span> <span class="pre">&quot;SetNumberOfFirings&quot;,</span> <span class="pre">NEVENTS)</span></code>,</p></li>
+<li><p>you have to set a number of triggers to perform to acquire a single RF frame; use <code class="docutils literal notranslate"><span class="pre">Us4MEX(0,</span> <span class="pre">&quot;SetNTriggers&quot;,</span> <span class="pre">NEVENTS)</span></code>,</p></li>
+<li><p>you have to enable TX before starting trigger pulse generation; use <code class="docutils literal notranslate"><span class="pre">Us4MEX(0,</span> <span class="pre">&quot;EnableTransmit&quot;)</span></code>,</p></li>
+<li><p>to stop trigger generation after the last event set <code class="docutils literal notranslate"><span class="pre">syncReq</span></code> parameter of the <code class="docutils literal notranslate"><span class="pre">SetTrigger</span></code> function to <code class="docutils literal notranslate"><span class="pre">1</span></code>,
+e.g. <code class="docutils literal notranslate"><span class="pre">Us4MEX(0,</span> <span class="pre">&quot;SetTrigger&quot;,</span> <span class="pre">1000,</span> <span class="pre">0,</span> <span class="pre">1,</span> <span class="pre">NEVENTS-1)</span></code></p></li>
+</ul>
+</div></blockquote>
+</div>
+<div class="section" id="acquiring-data">
+<h2>Acquiring data<a class="headerlink" href="#acquiring-data" title="Permalink to this headline">¶</a></h2>
+<p>To start TX signal generation, call <a class="reference internal" href="../low_level_api.html#mex-triggerstart"><span class="std std-ref">TriggerStart</span></a>.</p>
+<p>Before performing the data capture, we need to enable data reception with <a class="reference internal" href="../low_level_api.html#mex-enablereceive"><span class="std std-ref">EnableReceive</span></a> function.
+Then <a class="reference internal" href="../low_level_api.html#mex-triggersync"><span class="std std-ref">TriggerSync</span></a> should be called in order to wait for all the signal data to be collected.
+After that a complete RF frame should be placed in the us4OEM module’s internal memory.</p>
+<p>In order to transfer it to the host computer’s memory you can use function <a class="reference internal" href="../low_level_api.html#mex-transferrxbuffertohost"><span class="std std-ref">TransferRXBufferToHost</span></a>.</p>
+<p>A complete data capture procedure is presented below:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;TriggerStart&quot;</span><span class="p">);</span>
+<span class="n">pause</span><span class="p">(</span><span class="mf">0.1</span><span class="p">);</span>
+<span class="k">while</span><span class="p">(</span><span class="n">ishghandle</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
+    <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;EnableReceive&quot;</span><span class="p">);</span>
+    <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;TriggerSync&quot;</span><span class="p">);</span>
+    <span class="n">pause</span><span class="p">(</span><span class="mf">0.005</span><span class="p">);</span>
+
+    <span class="n">rf0</span> <span class="p">=</span> <span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;TransferRXBufferToHost&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">NSAMPLES</span> <span class="o">*</span> <span class="n">NEVENTS</span><span class="p">);</span>
+    <span class="n">rf</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">32</span><span class="p">,:)</span>      <span class="p">=</span> <span class="n">rf0</span><span class="p">(:,</span><span class="mi">1</span><span class="p">:</span><span class="n">NSAMPLES</span><span class="p">);</span>
+    <span class="n">rf</span><span class="p">(</span><span class="mi">33</span><span class="p">:</span><span class="mi">64</span><span class="p">,:)</span>     <span class="p">=</span> <span class="n">rf0</span><span class="p">(:,</span><span class="n">NSAMPLES</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">NSAMPLES</span><span class="p">);</span>
+    <span class="n">rf</span><span class="p">(</span><span class="mi">65</span><span class="p">:</span><span class="mi">96</span><span class="p">,:)</span>     <span class="p">=</span> <span class="n">rf0</span><span class="p">(:,</span><span class="mi">2</span><span class="o">*</span><span class="n">NSAMPLES</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">NSAMPLES</span><span class="p">);</span>
+    <span class="n">rf</span><span class="p">(</span><span class="mi">97</span><span class="p">:</span><span class="mi">128</span><span class="p">,:)</span>    <span class="p">=</span> <span class="n">rf0</span><span class="p">(:,</span><span class="mi">3</span><span class="o">*</span><span class="n">NSAMPLES</span><span class="o">+</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">NSAMPLES</span><span class="p">);</span>
+
+    <span class="c">% display rf variable...</span>
+<span class="k">end</span>
+<span class="n">Us4MEX</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&quot;TriggerStop&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Variable <code class="docutils literal notranslate"><span class="pre">rf</span></code> should now contain all the collected samples. To stop trigger generation, call <a class="reference internal" href="../low_level_api.html#mex-triggerstop"><span class="std std-ref">TriggerStop</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, us4us Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
