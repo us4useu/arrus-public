@@ -1,0 +1,326 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>B-mode Imaging &mdash; ARRUS (matlab) 0.4.0rc1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="API Reference" href="../api.html" />
+    <link rel="prev" title="Introduction" href="../introduction.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> ARRUS (matlab)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">B-mode Imaging</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#coordinate-system">Coordinate system</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operations">Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tx-rx-sequence">TX/RX sequence</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#reconstruction">Reconstruction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#running-operations-in-the-system">Running operations in the system</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../misc/acknowledgments.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../misc/release_notes.html">Release notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">ARRUS (matlab)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>B-mode Imaging</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="b-mode-imaging">
+<h1>B-mode Imaging<a class="headerlink" href="#b-mode-imaging" title="Permalink to this headline">¶</a></h1>
+<p>In the following parts of this chapter we show how you can communicate with
+the system in order to acquire RF data for B-mode image reconstruction using
+ARRUS software. The source code of the ready to run examples is in
+matlab/examples directory.</p>
+<p>For more information on the parameters of individual functions please refer
+to the section <a class="reference internal" href="../api.html#arrus-api-main"><span class="std std-ref">API Reference</span></a>.</p>
+<div class="section" id="coordinate-system">
+<h2>Coordinate system<a class="headerlink" href="#coordinate-system" title="Permalink to this headline">¶</a></h2>
+<p>The adopted coordinate system is shown in <a class="reference internal" href="#fig-coordinate-system"><span class="std std-numref">Fig. 1</span></a>.</p>
+<div class="figure align-default" id="id1">
+<span id="fig-coordinate-system"></span><img alt="../../_images/coordinate_system.jpeg" src="../../_images/coordinate_system.jpeg" />
+<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Adopted coordinate system in the imaging plane (left) and taking into
+account 3rd dimension (right).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
+<p>Important notes:</p>
+<ul class="simple">
+<li><p>point coordinates are written in (z,x) or (z,x,y) format</p></li>
+<li><p>point (0,0,0) is at the center of the probe’s surface,</p></li>
+<li><p>orientation of coordinates axes are shown in <a class="reference internal" href="#fig-coordinate-system"><span class="std std-numref">Fig. 1</span></a> ,</p></li>
+<li><p>angle <span class="math notranslate nohighlight">\(\phi=0\)</span>  covers with the z-axis direction and positive
+<span class="math notranslate nohighlight">\(\phi\)</span> direction is counter-clockwise.</p></li>
+</ul>
+</div>
+<div class="section" id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
+<p>In ARRUS users can define and run <strong>operations</strong>  available for the
+supported hardware. Transmission/reception (TX/RX) sequences and B-mode image
+reconstruction are examples of such operations.</p>
+<div class="section" id="tx-rx-sequence">
+<h3>TX/RX sequence<a class="headerlink" href="#tx-rx-sequence" title="Permalink to this headline">¶</a></h3>
+<p>The following sequences are currently available:</p>
+<ul class="simple">
+<li><p>Synthetic Transmit Aperture (STA),</p></li>
+<li><p>Plane Wave Imaging (PWI).</p></li>
+</ul>
+<p>To define an operation, user should create an instance of an appropriate
+class.</p>
+<p>For example, to create a TX/RX sequence for Synthetic Transmit Aperture Imaging:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">seqSTA</span> <span class="p">=</span> <span class="n">STASequence</span><span class="p">(</span><span class="s">&#39;txApertureCenter&#39;</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">:</span><span class="mi">3</span><span class="p">:</span><span class="mi">15</span><span class="p">)</span><span class="o">*</span><span class="mf">1e-3</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txApertureSize&#39;</span><span class="p">,</span>   <span class="mi">32</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txFocus&#39;</span><span class="p">,</span>          <span class="o">-</span><span class="mi">6</span><span class="o">*</span><span class="mf">1e-3</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txAngle&#39;</span><span class="p">,</span>          <span class="mi">0</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;speedOfSound&#39;</span><span class="p">,</span>     <span class="mi">1450</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txFrequency&#39;</span><span class="p">,</span>      <span class="n">txFrequency</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txNPeriods&#39;</span><span class="p">,</span>       <span class="mi">2</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;rxNSamples&#39;</span><span class="p">,</span>       <span class="mi">8</span><span class="o">*</span><span class="mi">1024</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txPri&#39;</span><span class="p">,</span>            <span class="mi">200</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;tgcStart&#39;</span><span class="p">,</span>         <span class="mi">14</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;tgcSlope&#39;</span><span class="p">,</span>         <span class="mf">2e2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To create a TX/RX sequence for Plane Wave Imaging:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">seqPWI</span> <span class="p">=</span> <span class="n">PWISequence</span><span class="p">(</span><span class="s">&#39;txApertureCenter&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="o">*</span><span class="mf">1e-3</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txApertureSize&#39;</span><span class="p">,</span>   <span class="mi">192</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txAngle&#39;</span><span class="p">,</span>          <span class="p">[</span><span class="o">-</span><span class="mi">10</span> <span class="mi">0</span> <span class="mi">10</span><span class="p">]</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;speedOfSound&#39;</span><span class="p">,</span>     <span class="mi">1450</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txFrequency&#39;</span><span class="p">,</span>      <span class="n">txFrequency</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txNPeriods&#39;</span><span class="p">,</span>       <span class="mi">2</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;rxNSamples&#39;</span><span class="p">,</span>       <span class="mi">8</span><span class="o">*</span><span class="mi">1024</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txPri&#39;</span><span class="p">,</span>            <span class="mi">200</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;tgcStart&#39;</span><span class="p">,</span>         <span class="mi">14</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;tgcSlope&#39;</span><span class="p">,</span>         <span class="mf">2e2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>For more information check the documentation of available <a class="reference internal" href="../api.html#arrus-api-sequences"><span class="std std-ref">TX/RX sequences</span></a>.</p>
+</div>
+<div class="section" id="reconstruction">
+<h3>Reconstruction<a class="headerlink" href="#reconstruction" title="Permalink to this headline">¶</a></h3>
+<p>To perform B-mode image reconstruction, create an instance of
+<a class="reference internal" href="../api.html#arrus-reconstruction"><span class="std std-ref">B-mode Image Reconstruction</span></a> class.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">rec</span> <span class="p">=</span> <span class="n">Reconstruction</span><span class="p">(</span><span class="s">&#39;filterEnable&#39;</span><span class="p">,</span>     <span class="n">true</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;filterACoeff&#39;</span><span class="p">,</span>     <span class="n">filtA</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;filterBCoeff&#39;</span><span class="p">,</span>     <span class="n">filtB</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;iqEnable&#39;</span><span class="p">,</span>         <span class="n">true</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;cicOrder&#39;</span><span class="p">,</span>         <span class="mi">2</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;decimation&#39;</span><span class="p">,</span>       <span class="mi">4</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;xGrid&#39;</span><span class="p">,</span>            <span class="p">(</span><span class="o">-</span><span class="mi">20</span><span class="p">:</span><span class="mf">0.10</span><span class="p">:</span><span class="mi">20</span><span class="p">)</span><span class="o">*</span><span class="mf">1e-3</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;zGrid&#39;</span><span class="p">,</span>            <span class="p">(</span>  <span class="mi">0</span><span class="p">:</span><span class="mf">0.10</span><span class="p">:</span><span class="mi">50</span><span class="p">)</span><span class="o">*</span><span class="mf">1e-3</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="running-operations-in-the-system">
+<h2>Running operations in the system<a class="headerlink" href="#running-operations-in-the-system" title="Permalink to this headline">¶</a></h2>
+<p>First, you should create a handle to the system on which you want to perform
+operations. For example, to communicate with Us4R system, create an instance of
+Us4R class.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="c">% Create a handle to Us4R system with two modules and set voltage to 50</span>
+<span class="n">us</span>  <span class="s">=</span> <span class="s">Us4R(2,</span> <span class="s">&#39;AL2442&#39;,</span> <span class="s">50)</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Before running a specific operation, upload it on the system:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">us</span><span class="p">.</span><span class="n">upload</span><span class="p">(</span><span class="n">seqPWI</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>If you want to run the uploaded operation only once (for example, to acquire
+single RF frame), use the <code class="docutils literal notranslate"><span class="pre">run</span></code> function.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">rf</span><span class="p">,</span><span class="n">img</span><span class="p">]</span> <span class="p">=</span> <span class="n">us</span><span class="p">.</span><span class="n">run</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>If you want to run the uploaded operation in a loop (for example, to display
+B-mode image interactively), use the <code class="docutils literal notranslate"><span class="pre">runLoop</span></code> function.</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">displayWindow</span> <span class="p">=</span> <span class="n">BModeDisplay</span><span class="p">((</span><span class="o">-</span><span class="mi">20</span><span class="p">:</span><span class="mf">0.10</span><span class="p">:</span><span class="mi">20</span><span class="p">)</span><span class="o">*</span><span class="mf">1e-3</span><span class="p">,</span> <span class="p">(</span>  <span class="mi">0</span><span class="p">:</span><span class="mf">0.10</span><span class="p">:</span><span class="mi">50</span><span class="p">)</span><span class="o">*</span><span class="mf">1e-3</span><span class="p">);</span>
+<span class="n">us</span><span class="p">.</span><span class="n">runLoop</span><span class="p">(@</span><span class="n">displayWindow</span><span class="p">.</span><span class="n">isOpen</span><span class="p">,</span> <span class="p">@</span><span class="n">displayWindow</span><span class="p">.</span><span class="n">updateImg</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Check the <a class="reference internal" href="../api.html#arrus-us4r"><span class="std std-ref">Us4R handle</span></a> docs for more information.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, us4us Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

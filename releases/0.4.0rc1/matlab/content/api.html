@@ -1,0 +1,429 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>API Reference &mdash; ARRUS (matlab) 0.4.0rc1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Acknowledgments" href="misc/acknowledgments.html" />
+    <link rel="prev" title="B-mode Imaging" href="examples/bmode_imaging.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ARRUS (matlab)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/bmode_imaging.html">B-mode Imaging</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#us4r-handle">Us4R handle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operations">Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tx-rx-sequences">TX/RX sequences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#b-mode-image-reconstruction">B-mode Image Reconstruction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#utilities">Utilities</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="misc/acknowledgments.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/release_notes.html">Release notes</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ARRUS (matlab)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>API Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api-reference">
+<span id="arrus-api-main"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>We will do our best to maintain backward compatibility, but please note
+that ARRUS is under development and its API may be modified
+in the future.</p>
+</div>
+<div class="section" id="us4r-handle">
+<span id="arrus-us4r"></span><h2>Us4R handle<a class="headerlink" href="#us4r-handle" title="Permalink to this headline">¶</a></h2>
+<dl class="mat class">
+<dt id="arrus.Us4R">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Us4R</code><span class="sig-paren">(</span><em class="sig-param">nArius</em>, <em class="sig-param">probeName</em>, <em class="sig-param">voltage</em>, <em class="sig-param">logTime</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">handle</span></code></p>
+<p>A handle to the Us4R system.</p>
+<p>This class provides functions to configure the system and perform
+data acquisition using the Us4R.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>nArius</strong> – number of arius modules available in the us4R system</p></li>
+<li><p><strong>probeName</strong> – name of the probe to use, available: ‘AL2442’, ‘SL1543’</p></li>
+<li><p><strong>voltage</strong> – a voltage to set, should be in range 0-90 [Vpp]</p></li>
+<li><p><strong>logTime</strong> – set to true if you want to display acquisition and reconstruction time (optional)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="mat method">
+<dt id="arrus.Us4R.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs uploaded operations in the us4R system.</p>
+<p>Currently, only supports <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTxRxSequence</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstruction</span></code>
+implementations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>RF frame and reconstructed image (if <code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstruction</span></code> operation was uploaded)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt id="arrus.Us4R.runLoop">
+<code class="sig-name descname">runLoop</code><span class="sig-paren">(</span><em class="sig-param">isContinue</em>, <em class="sig-param">callback</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R.runLoop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the uploaded operations in a loop.</p>
+<p>Currently, only supports <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTxRxSequence</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstruction</span></code> implementations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>isContinue</strong> – should the system continue executing the op? Takes no parameters and returns a boolean value.</p></li>
+<li><p><strong>callback</strong> – a function to call after executing the operation. Should take one parameter, which will be feed with the output of the executed op.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt id="arrus.Us4R.upload">
+<code class="sig-name descname">upload</code><span class="sig-paren">(</span><em class="sig-param">sequenceOperation</em>, <em class="sig-param">reconstructOperation</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R.upload" title="Permalink to this definition">¶</a></dt>
+<dd><p>Uploads operations to the us4R system.</p>
+<p>Currently, only supports <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTxRxSequence</span></code>
+and <code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstruction</span></code> implementations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sequenceOperation</strong> – TX/RX sequence to perform on the us4R system</p></li>
+<li><p><strong>reconstructOperation</strong> – reconstruction to perform with the collected data</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>updated Us4R object</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
+<p>Each operation derives from the Operation class.</p>
+<span class="target" id="arrus-operation"></span><dl class="mat class">
+<dt id="arrus.Operation">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Operation</code><a class="headerlink" href="#arrus.Operation" title="Permalink to this definition">¶</a></dt>
+<dd><p>An operation to perform.</p>
+</dd></dl>
+
+<div class="section" id="tx-rx-sequences">
+<span id="arrus-api-sequences"></span><h3>TX/RX sequences<a class="headerlink" href="#tx-rx-sequences" title="Permalink to this headline">¶</a></h3>
+<p>All TX/RX sequence derives parameters from <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTxRxSequence</span></code> class.</p>
+<span class="target" id="arrus-simpletxrxsequence"></span><dl class="mat class">
+<dt id="arrus.SimpleTxRxSequence">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">SimpleTxRxSequence</code><span class="sig-paren">(</span><em class="sig-param">varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.SimpleTxRxSequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.Operation</span></code></p>
+<p>A sequence of Tx/Rx operations to perform on a device.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>txApertureCenter</strong> – vector of tx aperture center positions [m]</p></li>
+<li><p><strong>txApertureSize</strong> – size of the tx aperture [element]</p></li>
+<li><p><strong>txFocus</strong> – tx focal length [m]</p></li>
+<li><p><strong>txAngle</strong> – tx angle [rad]</p></li>
+<li><p><strong>speedOfSound</strong> – speed of sound for [m/s]</p></li>
+<li><p><strong>txFrequency</strong> – tx frequency [Hz]</p></li>
+<li><p><strong>txNPeriods</strong> – number of sine periods in the tx burst (can be 0.5, 1, 1.5, etc.)</p></li>
+<li><p><strong>rxNSamples</strong> – number of recorded samples per channel [sample]</p></li>
+<li><p><strong>txPri</strong> – tx pulse repetition interval [ms] <strong>NOTE: in 0.4.0 (after release candidates stage) the value will be in [s]</strong> We will inform you when a change occurs.</p></li>
+<li><p><strong>txPri</strong> – tx pulse repetition interval [s]</p></li>
+<li><p><strong>tgcStart</strong> – TGC starting gain [dB]</p></li>
+<li><p><strong>tgcSlope</strong> – TGC gain slope [dB/m]</p></li>
+</ul>
+</dd>
+</dl>
+<p>TGC gain = tgcStart + tgcSlope * propagation distance
+TGC gain is limited to 14-54 dB, any values out of that range
+will be set to 54 dB (if &gt; 54 dB) or 14 dB (if &lt;14 dB)</p>
+</dd></dl>
+
+<p>Following specific sequences are currently available in the system:</p>
+<span class="target" id="arrus-pwisequence"></span><dl class="mat class">
+<dt id="arrus.PWISequence">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">PWISequence</code><span class="sig-paren">(</span><em class="sig-param">varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.PWISequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.SimpleTxRxSequence</span></code></p>
+<p>Plane Wave Imaging Tx/Rx Sequence.</p>
+<p>The length of the PWI sequence is determined by the length of txAngle.
+The txFocus and txApertureCenter must be scalars or be the same length as txAngle.
+The PWI sequence has txFocus set to inf by defualt.</p>
+</dd></dl>
+
+<span class="target" id="arrus-stasequence"></span><dl class="mat class">
+<dt id="arrus.STASequence">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">STASequence</code><span class="sig-paren">(</span><em class="sig-param">varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.STASequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.SimpleTxRxSequence</span></code></p>
+<p>Synthetic Transmit Aperture Tx/Rx Sequence.</p>
+<p>The length of the STA sequence is determined by the length of txApertureCenter.
+The txFocus and txAngle must be scalars or be the same length as txApertureCenter.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="b-mode-image-reconstruction">
+<span id="arrus-reconstruction"></span><h3>B-mode Image Reconstruction<a class="headerlink" href="#b-mode-image-reconstruction" title="Permalink to this headline">¶</a></h3>
+<dl class="mat class">
+<dt id="arrus.Reconstruction">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Reconstruction</code><span class="sig-paren">(</span><em class="sig-param">varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Reconstruction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.Operation</span></code></p>
+<p>A reconstruction operation to perform in the system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filterEnable</strong> – boolean, enable filtering the input signal</p></li>
+<li><p><strong>filterACoeff</strong> – 1-D filter denominator coefficient</p></li>
+<li><p><strong>filterBCoeff</strong> – 1-D filter numerator coefficient</p></li>
+<li><p><strong>filterDelay</strong> – delay introduced by the filter [samples] (not implemented yet)</p></li>
+<li><p><strong>iqEnable</strong> – boolean, enable iq signal reconstruction instead of raw RF</p></li>
+<li><p><strong>cicOrder</strong> – order of the Cascaded-Integrator-Comb anti-aliasing filter</p></li>
+<li><p><strong>decimation</strong> – decimation factor</p></li>
+<li><p><strong>xGrid</strong> – (1, width) vector, x-coordinates of the image pixels [m]</p></li>
+<li><p><strong>zGrid</strong> – (1, depth) vector z-coordinates of the image pixels [m]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="utilities">
+<h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
+<span class="target" id="arrus-bmodedisplay"></span><dl class="mat class">
+<dt id="arrus.BModeDisplay">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">BModeDisplay</code><span class="sig-paren">(</span><em class="sig-param">xGrid</em>, <em class="sig-param">zGrid</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.BModeDisplay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">handle</span></code></p>
+<p>A B-mode image display.</p>
+<p>Currently is implemented as a simple MATLAB figure with dynamically
+updated content.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>xGrid</strong> – (1, width) vector, x-coordinates of the image pixels [m]</p></li>
+<li><p><strong>zGrid</strong> – (1, depth) vector z-coordinates of the image pixels [m]</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="mat method">
+<dt id="arrus.BModeDisplay.BModeDisplay">
+<code class="sig-name descname">BModeDisplay</code><span class="sig-paren">(</span><em class="sig-param">xGrid</em>, <em class="sig-param">zGrid</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.BModeDisplay.BModeDisplay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create figure.</p>
+</dd></dl>
+
+<dl class="mat method">
+<dt id="arrus.BModeDisplay.isOpen">
+<code class="sig-name descname">isOpen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.BModeDisplay.isOpen" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if the window was not already closed.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>true when the windows with b-mode image was not closed,
+false otherwise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt id="arrus.BModeDisplay.updateImg">
+<code class="sig-name descname">updateImg</code><span class="sig-paren">(</span><em class="sig-param">img</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.BModeDisplay.updateImg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updates currently displayed image.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>img</strong> – an image to display</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="misc/acknowledgments.html" class="btn btn-neutral float-right" title="Acknowledgments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="examples/bmode_imaging.html" class="btn btn-neutral float-left" title="B-mode Imaging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, us4us Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
