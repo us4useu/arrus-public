@@ -247,7 +247,7 @@ SetActiveChannelGroup
     Channel is active when it is TX/RX/CLAMP state. Channel is inactive when in HIZ state.
     Single group has 8 channels (single pulser).
 
-    The user has to provide a string bitmask; value 1 in the bitmask activates given group of channels.
+    The user has to provide a string bitmask (MSB order); value 1 in the bitmask activates given group of channels.
 
     | [0]  - channels 0-7
     | [4]  - channels 8-15
