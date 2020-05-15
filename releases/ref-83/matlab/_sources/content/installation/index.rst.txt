@@ -17,8 +17,8 @@ Installation
 Drivers
 -------
 
-Make sure, that your us4R-lite device is properly connected via Thunderbolt 3
-and is enabled in your Thunderbolt software, e.g.:
+Make sure, that your us4R-lite device is properly connected via Thunderbolt-3
+cable and is enabled in your Thunderbolt software, e.g.:
 
 .. figure:: img/thunderbolt.png
     :scale: 80%
@@ -64,11 +64,10 @@ Startup
 
     If you use **MSI GS65 laptop**, follow this extended startup procedure:
 
-    1. Turn off the computer and the us4R-lite device, plug off Thunderbolt-3 cable.
+    1. Turn off the notebook and the us4R-lite device, plug off Thunderbolt-3 cable.
     2. Turn on the us4R-lite, then connect it to the notebook using the provided Thunderbolt-3 cable.
     3. Turn on the notebook.
     4. After Windows 10 loads, restart the notebook.
-    5. After Windows 10 loads, run the MATLAB example.
 
 Firmware update
 ---------------
@@ -76,7 +75,8 @@ Firmware update
 Before running example scripts you need to perform firmware update:
 
 1. Open command prompt or power shell.
-2. Change current directory to the ``bin`` folder of the extracted zip file.
+2. Change current directory to the ``bin`` folder of the extracted
+   ``us4R-lite.zip`` file.
 3. Run ``update.bat`` script.
 
 You should see the progress bar of the firmware update process. The whole
@@ -88,7 +88,7 @@ Running example script
 
 MATLAB 2018b is required.
 
-You can find all MATLAB related files in `matlab\` subdirectory:
+You can find all MATLAB related files in ``matlab`` subdirectory:
 
 - ``matlab\Us4MEX.mexw64`` is a MEX file, which provides interface to communicate with a hardware; add this file to your MATLAB paths,
 - ``matlab\us4Rlite_planewave_ultrasonix.m`` contains an example script to run.

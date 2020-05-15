@@ -174,8 +174,8 @@
 <h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="drivers">
 <h3>Drivers<a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h3>
-<p>Make sure, that your us4R-lite device is properly connected via Thunderbolt 3
-and is enabled in your Thunderbolt software, e.g.:</p>
+<p>Make sure, that your us4R-lite device is properly connected via Thunderbolt-3
+cable and is enabled in your Thunderbolt software, e.g.:</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/thunderbolt.png"><img alt="../../_images/thunderbolt.png" src="../../_images/thunderbolt.png" style="width: 392.0px; height: 468.8px;" /></a>
 </div>
@@ -223,11 +223,10 @@ using <code class="docutils literal notranslate"><span class="pre">C:\local\ariu
 <p class="admonition-title">Caution</p>
 <p>If you use <strong>MSI GS65 laptop</strong>, follow this extended startup procedure:</p>
 <ol class="arabic simple">
-<li><p>Turn off the computer and the us4R-lite device, plug off Thunderbolt-3 cable.</p></li>
+<li><p>Turn off the notebook and the us4R-lite device, plug off Thunderbolt-3 cable.</p></li>
 <li><p>Turn on the us4R-lite, then connect it to the notebook using the provided Thunderbolt-3 cable.</p></li>
 <li><p>Turn on the notebook.</p></li>
 <li><p>After Windows 10 loads, restart the notebook.</p></li>
-<li><p>After Windows 10 loads, run the MATLAB example.</p></li>
 </ol>
 </div>
 <div class="section" id="firmware-update">
@@ -235,7 +234,8 @@ using <code class="docutils literal notranslate"><span class="pre">C:\local\ariu
 <p>Before running example scripts you need to perform firmware update:</p>
 <ol class="arabic simple">
 <li><p>Open command prompt or power shell.</p></li>
-<li><p>Change current directory to the <code class="docutils literal notranslate"><span class="pre">bin</span></code> folder of the extracted zip file.</p></li>
+<li><p>Change current directory to the <code class="docutils literal notranslate"><span class="pre">bin</span></code> folder of the extracted
+<code class="docutils literal notranslate"><span class="pre">us4R-lite.zip</span></code> file.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">update.bat</span></code> script.</p></li>
 </ol>
 <p>You should see the progress bar of the firmware update process. The whole
@@ -245,7 +245,7 @@ and PC and power on again.</p>
 <div class="section" id="running-example-script">
 <h3>Running example script<a class="headerlink" href="#running-example-script" title="Permalink to this headline">¶</a></h3>
 <p>MATLAB 2018b is required.</p>
-<p>You can find all MATLAB related files in <a href="#id1"><span class="problematic" id="id2">`</span></a>matlab` subdirectory:</p>
+<p>You can find all MATLAB related files in <code class="docutils literal notranslate"><span class="pre">matlab</span></code> subdirectory:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">matlab\Us4MEX.mexw64</span></code> is a MEX file, which provides interface to communicate with a hardware; add this file to your MATLAB paths,</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">matlab\us4Rlite_planewave_ultrasonix.m</span></code> contains an example script to run.</p></li>
