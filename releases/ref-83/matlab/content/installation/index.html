@@ -1,0 +1,311 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Installation and startup &mdash; Us4R (matlab) 0.4.0rc1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Us4MEX API" href="../api.html" />
+    <link rel="prev" title="Welcome to US4MEX documentation!" href="../../index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Us4R (matlab)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation and startup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#drivers">Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#matlab-api">Matlab API</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#startup">Startup</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#firmware-update">Firmware update</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-example-script">Running example script</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">Us4MEX API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Us4R (matlab)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Installation and startup</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="installation-and-startup">
+<h1>Installation and startup<a class="headerlink" href="#installation-and-startup" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>Microsoft® Windows 10 x64 operating system is supported.</p>
+<p>Make sure that you have installed following dependencies:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://aka.ms/vs/16/release/vc_redist.x64.exe">Microsoft Visual C++ Redistributable for Visual Studio 2017</a></p></li>
+</ul>
+</div>
+<div class="section" id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="drivers">
+<h3>Drivers<a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h3>
+<p>Make sure, that your us4R-lite device is properly connected via Thunderbolt 3
+and is enabled in your Thunderbolt software, e.g.:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/thunderbolt.png"><img alt="../../_images/thunderbolt.png" src="../../_images/thunderbolt.png" style="width: 392.0px; height: 468.8px;" /></a>
+</div>
+<p>The <cite>Connection status</cite> should be <cite>Connected</cite> (or something similar).</p>
+<p>Then perform the following driver installation procedure:</p>
+<ol class="arabic">
+<li><p>Download and extract <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/arius-drivers-1290/arius-drivers-1290.zip">arius-drivers-1290.zip</a> file, for example into <code class="docutils literal notranslate"><span class="pre">C:\local\arius-drivers-1290\</span></code> directory.</p></li>
+<li><p>Disable driver signature enforcement on Windows 10:</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>Click “start menu → Settings → Update and Security → Recovery →
+Restart now” under Advanced startup</p></li>
+<li><p>Press “Troubleshoot → Advanced options → Startup settings →
+Restart”</p></li>
+<li><p>After the computer restart a list of options should be presented.
+Press F7 to choose “Disable driver signature enforcement”.</p></li>
+</ol>
+</div></blockquote>
+</li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">C:\local\arius-drivers-1290\install.bat</span></code> with <strong>administrative
+privileges</strong>. Confirm driver installation if necessary.</p></li>
+<li><p>If your hardware is properly connected to the computer, a new <code class="docutils literal notranslate"><span class="pre">PCI</span> <span class="pre">device</span></code>
+node should be visible in Windows Device Manager. Install drivers for the <code class="docutils literal notranslate"><span class="pre">PCI</span> <span class="pre">Device</span></code>
+using <code class="docutils literal notranslate"><span class="pre">C:\local\arius-drivers-1290\drivers\arius.inf</span></code> file.</p></li>
+</ol>
+<p>As a result, two <code class="docutils literal notranslate"><span class="pre">ARIUS</span></code> nodes should be visible in the Device Manager.</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/dev_manager.png"><img alt="../../_images/dev_manager.png" src="../../_images/dev_manager.png" style="width: 150.0px; height: 94.0px;" /></a>
+</div>
+</div>
+<div class="section" id="matlab-api">
+<h3>Matlab API<a class="headerlink" href="#matlab-api" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Download and extract: <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/us4r-legacy/us4R-lite.zip">us4R-lite.zip</a></p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">lib64</span></code> directory to your system’ Path environment variable.</p></li>
+</ol>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/paths.png"><img alt="../../_images/paths.png" src="../../_images/paths.png" style="width: 518.4px; height: 487.20000000000005px;" /></a>
+</div>
+</div>
+</div>
+<div class="section" id="startup">
+<h2>Startup<a class="headerlink" href="#startup" title="Permalink to this headline">¶</a></h2>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>If you use <strong>MSI GS65 laptop</strong>, follow this extended startup procedure:</p>
+<ol class="arabic simple">
+<li><p>Turn off the computer and the us4R-lite device, plug off Thunderbolt-3 cable.</p></li>
+<li><p>Turn on the us4R-lite, then connect it to the notebook using the provided Thunderbolt-3 cable.</p></li>
+<li><p>Turn on the notebook.</p></li>
+<li><p>After Windows 10 loads, restart the notebook.</p></li>
+<li><p>After Windows 10 loads, run the MATLAB example.</p></li>
+</ol>
+</div>
+<div class="section" id="firmware-update">
+<h3>Firmware update<a class="headerlink" href="#firmware-update" title="Permalink to this headline">¶</a></h3>
+<p>Before running example scripts you need to perform firmware update:</p>
+<ol class="arabic simple">
+<li><p>Open command prompt or power shell.</p></li>
+<li><p>Change current directory to the <code class="docutils literal notranslate"><span class="pre">bin</span></code> folder of the extracted zip file.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">update.bat</span></code> script.</p></li>
+</ol>
+<p>You should see the progress bar of the firmware update process. The whole
+operation takes several minutes. After the update finishes shutdown the system
+and PC and power on again.</p>
+</div>
+<div class="section" id="running-example-script">
+<h3>Running example script<a class="headerlink" href="#running-example-script" title="Permalink to this headline">¶</a></h3>
+<p>MATLAB 2018b is required.</p>
+<p>You can find all MATLAB related files in <a href="#id1"><span class="problematic" id="id2">`</span></a>matlab` subdirectory:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">matlab\Us4MEX.mexw64</span></code> is a MEX file, which provides interface to communicate with a hardware; add this file to your MATLAB paths,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">matlab\us4Rlite_planewave_ultrasonix.m</span></code> contains an example script to run.</p></li>
+</ul>
+<p>Just to check if everything is ok run script <code class="docutils literal notranslate"><span class="pre">matlab\us4Rlite_planewave_ultrasonix.m</span></code>.
+You should expect the following window with raw RF data:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/result.png"><img alt="../../_images/result.png" src="../../_images/result.png" style="width: 567.6px; height: 303.59999999999997px;" /></a>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../api.html" class="btn btn-neutral float-right" title="Us4MEX API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../../index.html" class="btn btn-neutral float-left" title="Welcome to US4MEX documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, us4us Ltd.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
