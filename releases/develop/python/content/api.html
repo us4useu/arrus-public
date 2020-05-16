@@ -4,7 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>API Reference &#8212; ARRUS (python) 0.4.0rc2 documentation</title>
+    <title>API Reference &#8212; ARRUS (python) 0.4.0 documentation</title>
     <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
@@ -250,6 +250,39 @@ Data transfer starts with the next “SWTrigger” operation call.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="arrus.devices.us4oem.Us4OEM.set_active_channel_group">
+<code class="sig-name descname">set_active_channel_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">active_groups_mask</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_active_channel_group" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets active channel groups.
+Channel is active when it is TX/RX/CLAMP state. Channel is inactive
+when in HIZ state.
+Single group has 8 channels (single pulser).
+| [0]  - channels 0-7
+| [4]  - channels 8-15
+| [8]  - channels 16-23
+| [12] - channels 24-31
+| [1]  - channels 64-71
+| [5]  - channels 72-79
+| [9]  - channels 80-87
+| [13] - channels 88-95
+| [2]  - channels 32-39
+| [6]  - channels 40-47
+| [10] - channels 48-55
+| [14] - channels 56-63
+| [3]  - channels 96-103
+| [7]  - channels 104-111
+| [11] - channels 112-119
+| [15] - channels 120-127</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>active_groups_mask</strong> – list of boolean values, True means             a group of channels at given position should be active</p></li>
+<li><p><strong>firing</strong> – a firing, in which the parameter value should apply</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt id="arrus.devices.us4oem.Us4OEM.set_active_termination">
 <code class="sig-name descname">set_active_termination</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">active_termination</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_active_termination" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets active termination for this card. When active termination is None,
@@ -409,7 +442,7 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 <dd><p>Sets TGC samples.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>samples</strong> – TGC samples to set</p>
+<dd class="field-odd"><p><strong>samples</strong> – TGC samples to set, values from range [0, 1] are             available, 0 means minimum gain (maximum attenuation), 1 means             maximum gain.</p>
 </dd>
 </dl>
 </dd></dl>

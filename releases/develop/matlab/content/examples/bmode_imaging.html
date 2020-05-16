@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>B-mode Imaging &mdash; ARRUS (matlab) 0.4.0rc2 documentation</title>
+  <title>B-mode Imaging &mdash; ARRUS (matlab) 0.4.0 documentation</title>
   
 
   
@@ -197,7 +197,8 @@ reconstruction are examples of such operations.</p>
 <p>The following sequences are currently available:</p>
 <ul class="simple">
 <li><p>Synthetic Transmit Aperture (STA),</p></li>
-<li><p>Plane Wave Imaging (PWI).</p></li>
+<li><p>Plane Wave Imaging (PWI),</p></li>
+<li><p>classical beamforming (LIN).</p></li>
 </ul>
 <p>To define an operation, user should create an instance of an appropriate
 class.</p>
@@ -226,6 +227,20 @@ class.</p>
                      <span class="s">&#39;txPri&#39;</span><span class="p">,</span>            <span class="mi">200</span><span class="p">,</span> <span class="c">...</span>
                      <span class="s">&#39;tgcStart&#39;</span><span class="p">,</span>         <span class="mi">14</span><span class="p">,</span> <span class="c">...</span>
                      <span class="s">&#39;tgcSlope&#39;</span><span class="p">,</span>         <span class="mf">2e2</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To create a TX/RX sequence for classical beamforming:</p>
+<div class="highlight-matlab notranslate"><div class="highlight"><pre><span></span><span class="n">seqLIN</span> <span class="p">=</span> <span class="n">LINSequence</span><span class="p">(</span><span class="s">&#39;txCenterElement&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">:</span><span class="mi">128</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txApertureSize&#39;</span><span class="p">,</span>  <span class="mi">32</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txFocus&#39;</span><span class="p">,</span>         <span class="mi">20</span><span class="o">*</span><span class="mf">1e-3</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txAngle&#39;</span><span class="p">,</span>         <span class="mi">0</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;speedOfSound&#39;</span><span class="p">,</span>    <span class="mi">1450</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txFrequency&#39;</span><span class="p">,</span>     <span class="n">txFrequency</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txNPeriods&#39;</span><span class="p">,</span>      <span class="mi">2</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;rxNSamples&#39;</span><span class="p">,</span>      <span class="mi">8</span><span class="o">*</span><span class="mi">1024</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;txPri&#39;</span><span class="p">,</span>           <span class="mi">200</span><span class="o">*</span><span class="mf">1e-6</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;tgcStart&#39;</span><span class="p">,</span>        <span class="mi">14</span><span class="p">,</span> <span class="c">...</span>
+                     <span class="s">&#39;tgcSlope&#39;</span><span class="p">,</span>        <span class="mf">2e2</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>For more information check the documentation of available <a class="reference internal" href="../api.html#arrus-api-sequences"><span class="std std-ref">TX/RX sequences</span></a>.</p>
@@ -270,7 +285,7 @@ B-mode image interactively), use the <code class="docutils literal notranslate">
 <span class="n">us</span><span class="p">.</span><span class="n">runLoop</span><span class="p">(@</span><span class="n">displayWindow</span><span class="p">.</span><span class="n">isOpen</span><span class="p">,</span> <span class="p">@</span><span class="n">displayWindow</span><span class="p">.</span><span class="n">updateImg</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Check the <a class="reference internal" href="../api.html#arrus-us4r"><span class="std std-ref">Us4R handle</span></a> docs for more information.</p>
+<p>Check the <a class="reference internal" href="../api.html#arrus-us4r"><span class="std std-ref">Handle to Us4R System</span></a> docs for more information.</p>
 </div>
 </div>
 

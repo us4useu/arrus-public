@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Release notes &mdash; ARRUS (matlab) 0.4.0rc2 documentation</title>
+  <title>Release notes &mdash; ARRUS (matlab) 0.4.0 documentation</title>
   
 
   
@@ -163,10 +163,17 @@
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="version-0-4-0">
 <h2>Version 0.4.0<a class="headerlink" href="#version-0-4-0" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p>Created new version of the Matlab API.</p></li>
+<ul>
+<li><p>MATLAB API:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Created new version of the Matlab API (with STA and PWI sequences, for Esaote and Ultrasonix probes).</p></li>
 <li><p>Added simplified TGC control through tgcStart and tgcSlope parameters.</p></li>
-<li><p>Added classical linear scanning example.</p></li>
+<li><p>Added classical linear scanning example (check <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.LINSequence</span></code>).</p></li>
+<li><p>From now on txPri takes values in seconds (previously was in [us]).</p></li>
+</ul>
+</div></blockquote>
+</li>
 </ul>
 </div>
 <div class="section" id="version-0-3-0">
