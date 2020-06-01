@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; ARRUS (matlab) 0.4.0 documentation</title>
+  <title>API Reference &mdash; ARRUS (matlab) 0.4.1-dev documentation</title>
   
 
   
@@ -84,6 +84,7 @@
               <p class="caption"><span class="caption-text">User Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/bmode_imaging.html">B-mode Imaging</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#handle-to-us4r-system">Handle to Us4R System</a></li>
@@ -172,63 +173,54 @@ in the future.</p>
 </div>
 <div class="section" id="handle-to-us4r-system">
 <span id="arrus-us4r"></span><h2>Handle to Us4R System<a class="headerlink" href="#handle-to-us4r-system" title="Permalink to this headline">¶</a></h2>
-<dl class="mat function">
+<dl class="mat class">
 <dt id="arrus.Us4R">
-<code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Us4R</code><span class="sig-paren">(</span><em class="sig-param">nModules</em>, <em class="sig-param">probeName</em>, <em class="sig-param">voltage</em>, <em class="sig-param">logTime</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a handle to the Us4R system configured according to the
-provided parameters.</p>
-<p>The returned object is of type <a class="reference internal" href="#arrus.Us4RSystem" title="arrus.Us4RSystem"><code class="xref mat mat-class docutils literal notranslate"><span class="pre">arrus.Us4RSystem</span></code></a>.</p>
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Us4R</code><span class="sig-paren">(</span><em class="sig-param">nArius</em>, <em class="sig-param">probeName</em>, <em class="sig-param">voltage</em>, <em class="sig-param">logTime</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">handle</span></code></p>
+<p>A handle to the Us4R system.</p>
+<p>This class provides functions to configure the system and perform
+data acquisition using the Us4R.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nModules</strong> – number of Us4OEM modules available in the us4R system</p></li>
+<li><p><strong>nArius</strong> – number of Us4OEM modules available in the us4R system</p></li>
 <li><p><strong>probeName</strong> – name of the probe to use, available: Esaote: ‘AL2442’, ‘SL1543’, Ultrasonix: ‘L14-5/38’</p></li>
 <li><p><strong>voltage</strong> – a voltage to set, should be in range 0-90 [0.5*Vpp]</p></li>
 <li><p><strong>logTime</strong> – set to true if you want to display acquisition and reconstruction time (optional)</p></li>
 </ul>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="mat class">
-<dt id="arrus.Us4RSystem">
-<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Us4RSystem</code><a class="headerlink" href="#arrus.Us4RSystem" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">handle</span></code></p>
-<p>A handle to the Us4R system.</p>
-<p>This class provides functions to configure the system and perform
-data acquisition using the Us4R.</p>
 <dl class="mat method">
-<dt id="arrus.Us4RSystem.run">
-<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4RSystem.run" title="Permalink to this definition">¶</a></dt>
+<dt id="arrus.Us4R.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs uploaded operations in the us4R system.</p>
 <p>Currently, only supports <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTxRxSequence</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstruction</span></code>
 implementations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>RF frame and reconstructed image 
-(if <code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstruction</span></code> operation was uploaded), sizes of each dimension of RF frame: (number of samples, number of channels, number of emissions), b-mode image dimensions: (height, width).</p>
+<dd class="field-odd"><p>RF frame and reconstructed image (if <code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstruction</span></code> operation was uploaded)</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="mat method">
-<dt id="arrus.Us4RSystem.runLoop">
-<code class="sig-name descname">runLoop</code><span class="sig-paren">(</span><em class="sig-param">isContinue</em>, <em class="sig-param">callback</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4RSystem.runLoop" title="Permalink to this definition">¶</a></dt>
+<dt id="arrus.Us4R.runLoop">
+<code class="sig-name descname">runLoop</code><span class="sig-paren">(</span><em class="sig-param">isContinue</em>, <em class="sig-param">callback</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R.runLoop" title="Permalink to this definition">¶</a></dt>
 <dd><p>Runs the uploaded operations in a loop.</p>
 <p>Currently, only supports <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTxRxSequence</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstruction</span></code> implementations.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>isContinue</strong> – should the system continue executing the op? A function that takes no parameters and returns a boolean value.</p></li>
-<li><p><strong>callback</strong> – a function to call after executing the operation. Should take one parameter - the output of the executed operation, e.g. raw RF data array (dimensions:  (number of samples, number of channels, number of emissions)) or b-mode image (height, width).</p></li>
+<li><p><strong>isContinue</strong> – should the system continue executing the op? Takes no parameters and returns a boolean value.</p></li>
+<li><p><strong>callback</strong> – a function to call after executing the operation. Should take one parameter, which will be feed with the output of the executed op.</p></li>
 </ul>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="mat method">
-<dt id="arrus.Us4RSystem.upload">
-<code class="sig-name descname">upload</code><span class="sig-paren">(</span><em class="sig-param">sequenceOperation</em>, <em class="sig-param">reconstructOperation</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4RSystem.upload" title="Permalink to this definition">¶</a></dt>
+<dt id="arrus.Us4R.upload">
+<code class="sig-name descname">upload</code><span class="sig-paren">(</span><em class="sig-param">sequenceOperation</em>, <em class="sig-param">reconstructOperation</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R.upload" title="Permalink to this definition">¶</a></dt>
 <dd><p>Uploads operations to the us4R system.</p>
 <p>Currently, only supports <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTxRxSequence</span></code>
 and <code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstruction</span></code> implementations.</p>
@@ -275,7 +267,13 @@ and <code class="xref py py-class docutils literal notranslate"><span class="pre
 <li><p><strong>speedOfSound</strong> – speed of sound for [m/s]</p></li>
 <li><p><strong>txFrequency</strong> – tx frequency [Hz]</p></li>
 <li><p><strong>txNPeriods</strong> – number of sine periods in the tx burst (can be 0.5, 1, 1.5, etc.)</p></li>
-<li><p><strong>rxNSamples</strong> – number of recorded samples per channel [sample]</p></li>
+<li><p><strong>rxDepthRange</strong> – defines the end (if scalar) or
+the begining and the end (if two-element vector)
+of the acquisition expressed by depth range [m]</p></li>
+<li><p><strong>rxNSamples</strong> – number of samples (if scalar) or 
+starting and ending sample numbers (if 2-element vector) 
+of recorded signal [sample]</p></li>
+<li><p><strong>nRepetitions</strong> – number of repetitions of the sequence (positive integer)</p></li>
 <li><p><strong>txPri</strong> – tx pulse repetition interval [s]</p></li>
 <li><p><strong>tgcStart</strong> – TGC starting gain [dB]</p></li>
 <li><p><strong>tgcSlope</strong> – TGC gain slope [dB/m]</p></li>
@@ -309,9 +307,11 @@ The txFocus and txAngle must be scalars or be the same length as txApertureCente
 
 <span class="target" id="arrus-linsequence"></span><dl class="mat class">
 <dt id="arrus.LINSequence">
-<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">LINSequence</code><a class="headerlink" href="#arrus.LINSequence" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">LINSequence</code><span class="sig-paren">(</span><em class="sig-param">varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.LINSequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.SimpleTxRxSequence</span></code></p>
-<p>Classical imaging tx/rx sequence.</p>
+<p>Classical imaging Tx/Rx Sequence.</p>
+<p>The length of the LIN sequence is determined by the length of txCenterElement.
+The txFocus and txAngle must be scalars or be the same length as txCenterElement.</p>
 </dd></dl>
 
 </div>
