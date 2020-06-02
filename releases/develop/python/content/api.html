@@ -86,8 +86,11 @@
 <li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/single_module.html">Single Module</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#legacy-api-deprecated">Legacy API (deprecated)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#logging">Logging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interface">Interface</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#session">Session</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#devices">Devices</a></li>
 </ul>
@@ -161,16 +164,25 @@
             
   <div class="section" id="api-reference">
 <span id="api-main"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="configuration">
-<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-</div>
-<div class="section" id="legacy-api-deprecated">
-<h2>Legacy API (deprecated)<a class="headerlink" href="#legacy-api-deprecated" title="Permalink to this headline">¶</a></h2>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>ARRUS is currently under development and its API will be modified in
 the future. Please expect breaking changes.</p>
 </div>
+<div class="section" id="configuration">
+<h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="logging">
+<h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h3>
+<dl class="py function">
+<dt id="arrus.set_log_level">
+<code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">set_log_level</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.set_log_level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sets logger level.</p>
+<p>Available levels ERROR, WARNING, INFO, DEBUG</p>
+</dd></dl>
+
+</div>
+<div class="section" id="interface">
+<h3>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h3>
 <p>An interface contains all information required to configure probe’s adapter
 which is provided with us4OEM module. Use following function to obtain an
 appropriate interface.</p>
@@ -224,13 +236,16 @@ appropriate interface.</p>
 </dd></dl>
 
 </div>
+</div>
 <div class="section" id="session">
 <h2>Session<a class="headerlink" href="#session" title="Permalink to this headline">¶</a></h2>
 <p>A session object allows you to obtain an appropriate device handler.</p>
 <dl class="py class">
 <dt id="arrus.session.InteractiveSession">
 <em class="property">class </em><code class="sig-prename descclassname">arrus.session.</code><code class="sig-name descname">InteractiveSession</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg_path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.session.InteractiveSession" title="Permalink to this definition">¶</a></dt>
-<dd><p>An user interactive session with available devices.</p>
+<dd><p><strong>THIS CLASS IS DEPRECATED AND WILL BE REMOVED IN THE NEAR FUTURE. Please
+use :class:`arrus.session.Session`</strong>.</p>
+<p>An user interactive session with available devices.</p>
 <p>If cfg_path is None, session looks for a file <code class="docutils literal notranslate"><span class="pre">$ARRUS_PATH/default.yaml</span></code>,
 where ARRUS_PATH is an user-defined environment variable.</p>
 <dl class="field-list simple">
@@ -238,31 +253,6 @@ where ARRUS_PATH is an user-defined environment variable.</p>
 <dd class="field-odd"><p><strong>cfg_path</strong> – path to the configuration file, can be None</p>
 </dd>
 </dl>
-<dl class="py method">
-<dt id="arrus.session.InteractiveSession.get_device">
-<code class="sig-name descname">get_device</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">id</span><span class="p">:</span> <span class="n">str</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.session.InteractiveSession.get_device" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a device located at given path.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>id</strong> – a path to a device, for example ‘/Us4OEM:0’</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a device located in given path.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="arrus.session.InteractiveSession.get_devices">
-<code class="sig-name descname">get_devices</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.session.InteractiveSession.get_devices" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a list of all devices available in this session.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>a list of available devices</p>
-</dd>
-</dl>
-</dd></dl>
-
 </dd></dl>
 
 </div>
@@ -271,7 +261,7 @@ where ARRUS_PATH is an user-defined environment variable.</p>
 <p>Currently only the Us4OEM device handler is provided.</p>
 <dl class="py class">
 <dt id="arrus.devices.us4oem.Us4OEM">
-<em class="property">class </em><code class="sig-prename descclassname">arrus.devices.us4oem.</code><code class="sig-name descname">Us4OEM</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">card_handle</span><span class="p">:</span> <span class="n">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">arrus.devices.us4oem.</code><code class="sig-name descname">Us4OEM</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">card_handle</span><span class="p">:</span> <span class="n">None</span></em>, <em class="sig-param"><span class="n">cfg</span><span class="p">:</span> <span class="n">arrus.devices.us4oem.Us4OEMCfg</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM" title="Permalink to this definition">¶</a></dt>
 <dd><p>A single Us4OEM.</p>
 <dl class="py method">
 <dt id="arrus.devices.us4oem.Us4OEM.clear_scheduled_receive">
@@ -350,6 +340,12 @@ When test patterns are enabled, sawtooth signal is generated.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt id="arrus.devices.us4oem.Us4OEM.get_sampling_frequency">
+<code class="sig-name descname">get_sampling_frequency</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.get_sampling_frequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns sampling Us4OEM’s sampling frequency.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="arrus.devices.us4oem.Us4OEM.is_powered_down">
 <code class="sig-name descname">is_powered_down</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.is_powered_down" title="Permalink to this definition">¶</a></dt>
 <dd><p>Returns true, when module is turned off, false otherwise.</p>
@@ -362,7 +358,7 @@ When test patterns are enabled, sawtooth signal is generated.</p>
 
 <dl class="py method">
 <dt id="arrus.devices.us4oem.Us4OEM.schedule_receive">
-<code class="sig-name descname">schedule_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">address</span></em>, <em class="sig-param"><span class="n">length</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.schedule_receive" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">schedule_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">address</span></em>, <em class="sig-param"><span class="n">length</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">decimation</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.schedule_receive" title="Permalink to this definition">¶</a></dt>
 <dd><p>Schedules a new data transmission from the probe’s adapter to the module’s internal memory.
 This function queues a new data transmission from all available RX channels to the device’s internal memory.
 Data transfer starts with the next “SWTrigger” operation call.</p>
@@ -373,7 +369,11 @@ Data transfer starts with the next “SWTrigger” operation call.</p>
 <li><p><strong>length</strong> – number of samples from each channel to acquire</p></li>
 </ul>
 </dd>
+<dt class="field-even">Param</dt>
+<dd class="field-even"><p>callback: a callback function to call when data become available.</p>
+</dd>
 </dl>
+<p>The callback function should take one parameter of type DataAcquiredEvent.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -733,6 +733,18 @@ should be equal to the number of module’s TX channels</p></li>
 </dd></dl>
 
 <dl class="py method">
+<dt id="arrus.devices.us4oem.Us4OEM.start_trigger">
+<code class="sig-name descname">start_trigger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.start_trigger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Starts generation of the hardware trigger.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="arrus.devices.us4oem.Us4OEM.stop_trigger">
+<code class="sig-name descname">stop_trigger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.stop_trigger" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops generation of the hardware trigger.</p>
+</dd></dl>
+
+<dl class="py method">
 <dt id="arrus.devices.us4oem.Us4OEM.sw_next_tx">
 <code class="sig-name descname">sw_next_tx</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.sw_next_tx" title="Permalink to this definition">¶</a></dt>
 <dd><p>Sets all TX and RX parameters for the next firing/acquisition.</p>
@@ -773,15 +785,20 @@ Please copy buffer’s data to your own array before proceeding with the acquisi
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.trigger_start">
-<code class="sig-name descname">trigger_start</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.trigger_start" title="Permalink to this definition">¶</a></dt>
-<dd><p>Starts generation of the hardware trigger.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.trigger_stop">
-<code class="sig-name descname">trigger_stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.trigger_stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stops generation of the hardware trigger.</p>
+<dt id="arrus.devices.us4oem.Us4OEM.transfer_rx_buffer_to_host_buffer">
+<code class="sig-name descname">transfer_rx_buffer_to_host_buffer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src_addr</span></em>, <em class="sig-param"><span class="n">dst_buffer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.transfer_rx_buffer_to_host_buffer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Transfers data from the given module’s memory address to the provided
+host’s buffer memory.</p>
+<p>The buffer’s address should be aligned to 4096</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_addr</strong> – module’s memory address, where the RX data was stored.</p></li>
+<li><p><strong>length</strong> – how much data to transfer from each module’s channel.</p></li>
+<li><p><strong>dst_buffer</strong> – a buffer (numpy.darray) of shape (length, n_rx_channels), data type: np.int16</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
