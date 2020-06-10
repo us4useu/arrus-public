@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; ARRUS (matlab) 0.4.1-dev documentation</title>
+  <title>API Reference &mdash; ARRUS (matlab) 0.4.2-dev documentation</title>
   
 
   
@@ -25,7 +25,7 @@
         <script src="../_static/underscore.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/language_data.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -260,26 +260,30 @@ and <code class="xref py py-class docutils literal notranslate"><span class="pre
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>txCenterElement</strong> – vector of tx aperture center elements [element]</p></li>
 <li><p><strong>txApertureCenter</strong> – vector of tx aperture center positions [m]</p></li>
 <li><p><strong>txApertureSize</strong> – size of the tx aperture [element]</p></li>
+<li><p><strong>rxCenterElement</strong> – vector of rx aperture center elements [element]</p></li>
+<li><p><strong>rxApertureCenter</strong> – vector of rx aperture center positions [m].</p></li>
+<li><p><strong>rxApertureSize</strong> – size of the rx aperture [element]</p></li>
 <li><p><strong>txFocus</strong> – tx focal length [m]</p></li>
 <li><p><strong>txAngle</strong> – tx angle [rad]</p></li>
 <li><p><strong>speedOfSound</strong> – speed of sound for [m/s]</p></li>
 <li><p><strong>txFrequency</strong> – tx frequency [Hz]</p></li>
 <li><p><strong>txNPeriods</strong> – number of sine periods in the tx burst (can be 0.5, 1, 1.5, etc.)</p></li>
 <li><p><strong>rxDepthRange</strong> – defines the end (if scalar) or
-the begining and the end (if two-element vector)
+the begining and the end (if two-element vector) 
 of the acquisition expressed by depth range [m]</p></li>
 <li><p><strong>rxNSamples</strong> – number of samples (if scalar) or 
 starting and ending sample numbers (if 2-element vector) 
 of recorded signal [sample]</p></li>
-<li><p><strong>nRepetitions</strong> – number of repetitions of the sequence (positive integer)</p></li>
+<li><p><strong>nRepetitions</strong> – number of repetitions of the sequence (positive integer). Can be a string “max” – in this case, the maximum number of repetitions that can be performed on the system (taking into 
+account the size of RAM, etc.) will be used.</p></li>
 <li><p><strong>txPri</strong> – tx pulse repetition interval [s]</p></li>
 <li><p><strong>tgcStart</strong> – TGC starting gain [dB]</p></li>
 <li><p><strong>tgcSlope</strong> – TGC gain slope [dB/m]</p></li>
 <li><p><strong>fsDivider</strong> – sampling frequency divider. Should be positive int. 
-Default value is equal to 1, which means sampling with 
-the highest possible frequency (no decimation).</p></li>
+Default value is equal to 1, which means sampling with the highest possible frequency (no decimation).</p></li>
 </ul>
 </dd>
 </dl>
@@ -294,9 +298,16 @@ will be set to 54 dB (if &gt; 54 dB) or 14 dB (if &lt;14 dB)</p>
 <em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">PWISequence</code><span class="sig-paren">(</span><em class="sig-param">varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.PWISequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.SimpleTxRxSequence</span></code></p>
 <p>Plane Wave Imaging Tx/Rx Sequence.</p>
-<p>The length of the PWI sequence is determined by the length of txAngle.
-The txFocus and txApertureCenter must be scalars or be the same length as txAngle.
-The PWI sequence has txFocus set to inf by defualt.</p>
+<p>The PWI sequence has txFocus set to inf by default.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rxCenterElement</strong> – vector of rx aperture center elements [element]. When empty, rx aperture center will be set to the first element.</p></li>
+<li><p><strong>rxApertureCenter</strong> – vector of rx aperture center positions [m]. When empty, rx aperture center will be set to the first (0) element.</p></li>
+<li><p><strong>rxApertureSize</strong> – size of the rx aperture [element]. When 0 and rxCenterElement and rxApertureCenter are empty all  RX elements will be active.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <span class="target" id="arrus-stasequence"></span><dl class="mat class">
@@ -304,8 +315,15 @@ The PWI sequence has txFocus set to inf by defualt.</p>
 <em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">STASequence</code><span class="sig-paren">(</span><em class="sig-param">varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.STASequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.SimpleTxRxSequence</span></code></p>
 <p>Synthetic Transmit Aperture Tx/Rx Sequence.</p>
-<p>The length of the STA sequence is determined by the length of txApertureCenter.
-The txFocus and txAngle must be scalars or be the same length as txApertureCenter.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rxCenterElement</strong> – vector of rx aperture center elements [element]. When empty, rx aperture center will be set to the first element.</p></li>
+<li><p><strong>rxApertureCenter</strong> – vector of rx aperture center positions [m]. When empty, rx aperture center will be set to the first (0) element.</p></li>
+<li><p><strong>rxApertureSize</strong> – size of the rx aperture [element]. When 0 and rxCenterElement and rxApertureCenter are empty, all  RX elements will be active.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 <span class="target" id="arrus-linsequence"></span><dl class="mat class">
@@ -313,8 +331,15 @@ The txFocus and txAngle must be scalars or be the same length as txApertureCente
 <em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">LINSequence</code><span class="sig-paren">(</span><em class="sig-param">varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.LINSequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.SimpleTxRxSequence</span></code></p>
 <p>Classical imaging Tx/Rx Sequence.</p>
-<p>The length of the LIN sequence is determined by the length of txCenterElement.
-The txFocus and txAngle must be scalars or be the same length as txCenterElement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rxCenterElement</strong> – vector of rx aperture center elements [element]. When empty, will be the same as txCenterElement.</p></li>
+<li><p><strong>rxApertureCenter</strong> – vector of rx aperture center positions [m]. When empty, will be the same as txApertureCenter.</p></li>
+<li><p><strong>rxApertureSize</strong> – size of the rx aperture [element]. When empty, will be the same as txApertureSize.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </div>

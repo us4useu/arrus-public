@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Release notes &mdash; ARRUS (python) 0.4.1-dev documentation</title>
+  <title>Release notes &mdash; ARRUS (python) 0.4.2-dev documentation</title>
   
 
   
@@ -83,13 +83,14 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../examples/single_module.html">Single Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/single_module.html">Communicating with Us4OEM</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="acknowledgments.html">Acknowledgments</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#version-0-4-2">Version 0.4.2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-4-1">Version 0.4.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-4-0">Version 0.4.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-3-0">Version 0.3.0</a></li>
@@ -162,6 +163,20 @@
             
   <div class="section" id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="version-0-4-2">
+<h2>Version 0.4.2<a class="headerlink" href="#version-0-4-2" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>MATLAB API:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rxApertureCenter</span></code>, <code class="docutils literal notranslate"><span class="pre">rxCenterElement</span></code>, and <code class="docutils literal notranslate"><span class="pre">rxApertureSize</span></code> parameters added to control the rx aperture. Use them the same way as parameters for tx aperture control. Now the rx aperture is fully defined by those parameters and sequence type no longer affects it.</p></li>
+<li><p>rx delay is set to zero to allow for shallow region imaging.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">nRepetitions</span></code>: set it to “max” to acquire maximum number of repetitions allowable.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
 <div class="section" id="version-0-4-1">
 <h2>Version 0.4.1<a class="headerlink" href="#version-0-4-1" title="Permalink to this headline">¶</a></h2>
 <ul>
@@ -170,11 +185,17 @@
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">nRepetitions</span></code> parameter added to control the number of rf-data frames to be recorded.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">rxDepthRange</span></code> parameter added to control the starting &amp; ending depth of recorded data.</p></li>
-<li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">rxNSamples</span></code> parameter, if it is 2-elements vector, allows for setting starting &amp; ending </dt><dd><p>sample number of the recorded data. 1-element option is still valid.</p>
-</dd>
-</dl>
+<li><p><code class="docutils literal notranslate"><span class="pre">rxNSamples</span></code> parameter, if it is 2-elements vector, allows for setting starting &amp; ending sample number of the recorded data. 1-element option is still valid.</p></li>
+</ul>
+</div></blockquote>
 </li>
+<li><p>python API:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Created new API with a model of <code class="docutils literal notranslate"><span class="pre">operations</span></code> executed on available devices.</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">fs_divider</span></code> parameter to <code class="docutils literal notranslate"><span class="pre">arrus.ops.Rx</span></code> operation, that allows to reduce sampling frequency of the module.</p></li>
+<li><p>Added asynchronous communication with the device using <code class="docutils literal notranslate"><span class="pre">arrus.ops.Loop</span></code> operation.</p></li>
+<li><p>Added <code class="docutils literal notranslate"><span class="pre">arrus.Us4OEMCfg</span></code> parameter that turns on data transfer loggging time.</p></li>
 </ul>
 </div></blockquote>
 </li>

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; ARRUS (python) 0.4.1-dev documentation</title>
+  <title>API Reference &mdash; ARRUS (python) 0.4.2-dev documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Acknowledgments" href="misc/acknowledgments.html" />
-    <link rel="prev" title="Single Module" href="examples/single_module.html" /> 
+    <link rel="prev" title="Communicating with Us4OEM" href="examples/single_module.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,15 +84,29 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/single_module.html">Single Module</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/single_module.html">Communicating with Us4OEM</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#logging">Logging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#interface">Interface</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#devices">Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operations">Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#parameters">Parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#excitation">Excitation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#aperture">Aperture</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#session">Session</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#devices">Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#utility-functions">Utility functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#logging">Logging</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#legacy-api-reference">Legacy API Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#interface">Interface</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#interactive-session">Interactive session</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Devices</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -166,20 +180,359 @@
 <span id="api-main"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<p>ARRUS is currently under development and its API will be modified in
-the future. Please expect breaking changes.</p>
+<p>We will do our best to maintain backward compatibility, but please note
+that ARRUS is under development and its API may be modified in the future.</p>
+</div>
+<div class="section" id="devices">
+<h2>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h2>
+<p><strong>Do not create instances of the below classes directly</strong>. Use
+<code class="docutils literal notranslate"><span class="pre">session.get_device</span></code> to acquire appropriate device, for example:
+<code class="docutils literal notranslate"><span class="pre">session.get_device('Us4OEM:0')</span></code>.</p>
+<dl class="py class">
+<dt id="arrus.devices.us4oem.Us4OEM">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.devices.us4oem.</code><code class="sig-name descname">Us4OEM</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">card_handle</span><span class="p">:</span> <span class="n">None</span></em>, <em class="sig-param"><span class="n">cfg</span><span class="p">:</span> <span class="n">arrus.devices.us4oem.Us4OEMCfg</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.devices.device.Device</span></code></p>
+<p>A single Us4OEM.</p>
+<dl class="py method">
+<dt id="arrus.devices.us4oem.Us4OEM.get_n_rx_channels">
+<code class="sig-name descname">get_n_rx_channels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.get_n_rx_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns number of RX channels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>number of RX channels.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="arrus.devices.us4oem.Us4OEM.get_n_tx_channels">
+<code class="sig-name descname">get_n_tx_channels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.get_n_tx_channels" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns number of TX channels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>number of TX channels</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="arrus.devices.us4oem.Us4OEM.get_sampling_frequency">
+<code class="sig-name descname">get_sampling_frequency</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.get_sampling_frequency" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns Us4OEM’s sampling frequency.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="arrus.devices.hv256.HV256">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.devices.hv256.</code><code class="sig-name descname">HV256</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">hv256_handle</span><span class="p">:</span> <span class="n">arrus.devices.ihv256.IHV256</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.hv256.HV256" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.devices.device.Device</span></code></p>
+</dd></dl>
+
+</div>
+<div class="section" id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="arrus.ops.TxRx">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.ops.</code><code class="sig-name descname">TxRx</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tx</span><span class="p">:</span> <span class="n">arrus.ops.operations.Tx</span></em>, <em class="sig-param"><span class="n">rx</span><span class="p">:</span> <span class="n">arrus.ops.operations.Rx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.ops.TxRx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.operations.Operation</span></code></p>
+<p>Single atomic operation of pulse transmit and signal data reception.
+Returns acquired signal data – a numpy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> of shape
+<code class="docutils literal notranslate"><span class="pre">(number_of_samples,</span> <span class="pre">number_of_rx_channels)</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tx</strong> – signal transmit to perform</p></li>
+<li><p><strong>rx</strong> – signal reception to perform</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="arrus.ops.Tx">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.ops.</code><code class="sig-name descname">Tx</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">excitation</span><span class="p">:</span> <span class="n">arrus.params.Excitation</span></em>, <em class="sig-param"><span class="n">aperture</span><span class="p">:</span> <span class="n">arrus.params.Aperture</span></em>, <em class="sig-param"><span class="n">pri</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">delays</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>numpy.ndarray<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.ops.Tx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.operations.Operation</span></code></p>
+<p>Single atomic operation of signal transmit.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>delays</strong> – an array of delays to set to active elements. Should have the         shape (n_a,), where n_a is a number of active elements determined by         tx aperture. When None, firings are performed with no delay (delays=0) [s].</p></li>
+<li><p><strong>excitation</strong> – an excitation to perform</p></li>
+<li><p><strong>aperture</strong> – a set of TX channels that should be enabled</p></li>
+<li><p><strong>pri</strong> – pulse repetition interval [s]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="arrus.ops.Rx">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.ops.</code><code class="sig-name descname">Rx</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_samples</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">aperture</span><span class="p">:</span> <span class="n">arrus.params.Aperture</span></em>, <em class="sig-param"><span class="n">fs_divider</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em>, <em class="sig-param"><span class="n">rx_time</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.00016</span></em>, <em class="sig-param"><span class="n">rx_delay</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">5e-06</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.ops.Rx" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.operations.Operation</span></code></p>
+<p>Single atomic operation of signal data reception.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>samples</strong> – number of samples to acquire</p></li>
+<li><p><strong>fs_divider</strong> – a sampling frequency divider. For example, if         nominal sampling frequency (fs) is equal to 65e6 Hz, <code class="docutils literal notranslate"><span class="pre">fs_divider=1</span></code>,        means to use the nominal fs, <code class="docutils literal notranslate"><span class="pre">fs_divider=2</span></code> means to use 32.5e6 Hz,         etc.</p></li>
+<li><p><strong>aperture</strong> – a set of RX channels that should be enabled</p></li>
+<li><p><strong>rx_time</strong> – the total acquisition time [s]</p></li>
+<li><p><strong>rx_delay</strong> – initial rx delay [s]</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="arrus.ops.Sequence">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.ops.</code><code class="sig-name descname">Sequence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">operations</span><span class="p">:</span> <span class="n">List<span class="p">[</span>arrus.ops.operations.TxRx<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.ops.Sequence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.operations.Operation</span></code></p>
+<p>A sequence of operations to perform.
+Returns acquired signal data – a numpy <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> of shape
+<code class="docutils literal notranslate"><span class="pre">(number_of_samples*number_of_operations,</span> <span class="pre">number_of_rx_channels)</span></code></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>operations</strong> – sequence of TX/RX operations to perform</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="arrus.ops.Loop">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.ops.</code><code class="sig-name descname">Loop</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">operation</span><span class="p">:</span> <span class="n">arrus.ops.operations.Operation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.ops.Loop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.operations.Operation</span></code></p>
+<p>Performs given operation in a loop.</p>
+<p>This operation returns no value. Requires <code class="docutils literal notranslate"><span class="pre">callback</span></code> function
+as a session parameter. The callback function should take one parameter
+<code class="docutils literal notranslate"><span class="pre">rf</span></code> that will be filled with acquired signal data. The callback
+function should return a boolean value: <code class="docutils literal notranslate"><span class="pre">True</span></code>, if the loop should
+continue, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>operation</strong> – an operation to perform in a loop, accepted: <code class="docutils literal notranslate"><span class="pre">Sequence</span></code>.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="section" id="parameters">
+<h3>Parameters<a class="headerlink" href="#parameters" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="excitation">
+<h4>Excitation<a class="headerlink" href="#excitation" title="Permalink to this headline">¶</a></h4>
+<dl class="py class">
+<dt id="arrus.Excitation">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Excitation</code><a class="headerlink" href="#arrus.Excitation" title="Permalink to this definition">¶</a></dt>
+<dd><p>An excitation (a signal pulse) to transmit.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt id="arrus.SineWave">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">SineWave</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">n_periods</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">inverse</span><span class="p">:</span> <span class="n">bool</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.SineWave" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.params.Excitation</span></code></p>
+<p>Sine wave excitation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>frequency</strong> – transmitted carrier/nominal/center frequency [Hz]</p></li>
+<li><p><strong>n_periods</strong> – number of sine periods in the transmitted burst, can be fractional</p></li>
+<li><p><strong>inverse</strong> – whether the resulting wave should be inverted</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="aperture">
+<h4>Aperture<a class="headerlink" href="#aperture" title="Permalink to this headline">¶</a></h4>
+<dl class="py class">
+<dt id="arrus.MaskAperture">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">MaskAperture</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">mask</span><span class="p">:</span> <span class="n">numpy.ndarray</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.MaskAperture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.params.Aperture</span></code></p>
+<p>A mask-based aperture.</p>
+<p>This aperture can represent a (possibly non-contiguous) set of channels,
+for example: <code class="docutils literal notranslate"><span class="pre">[1,1,0,0,1,1]</span></code> represents channels 0, 1, 4, 5</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mask</strong> – a mask to set, one dimensional numpy array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="arrus.RegionBasedAperture">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">RegionBasedAperture</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">origin</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">size</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.RegionBasedAperture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.params.Aperture</span></code></p>
+<p>A region-based aperture.</p>
+<p>The aperture represents a single, contiguous range of channels.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>origin</strong> – an origin channel of the aperture</p></li>
+<li><p><strong>size</strong> – a length of the aperture</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="arrus.SingleElementAperture">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">SingleElementAperture</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element</span><span class="p">:</span> <span class="n">int</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.SingleElementAperture" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.params.Aperture</span></code></p>
+<p>Represents an aperture consisting of a single element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>mask</strong> – an element of the aperture</p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+</div>
+<div class="section" id="session">
+<h2>Session<a class="headerlink" href="#session" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="arrus.Session">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Session</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg</span><span class="p">:</span> <span class="n">arrus.session.SessionCfg</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Session" title="Permalink to this definition">¶</a></dt>
+<dd><p>A communication session with the available devices.</p>
+<dl class="py method">
+<dt id="arrus.Session.run">
+<code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">operation</span><span class="p">:</span> <span class="n">arrus.ops.operations.Operation</span></em>, <em class="sig-param"><span class="n">feed_dict</span><span class="p">:</span> <span class="n">dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Session.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs a given operation in the system. Returns the result of operation
+(if any).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>operation</strong> – operation to run</p></li>
+<li><p><strong>feed_dict</strong> – values to pass to the operation. All operations
+requires <cite>device</cite>; check documentation of a particular documentation
+if it requires any additional session values.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="arrus.Session.stop_device">
+<code class="sig-name descname">stop_device</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">device</span><span class="p">:</span> <span class="n">arrus.devices.device.Device</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Session.stop_device" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stops executing any operations that run on a specific device.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
+<p>Configuration to apply to each of the arrus components.</p>
+<dl class="py class">
+<dt id="arrus.CustomUs4RCfg">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">CustomUs4RCfg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_us4oems</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">is_hv256</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">master_us4oem</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.CustomUs4RCfg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.system.SystemCfg</span></code></p>
+<p>Description of the custom Us4R system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_us4oems</strong> – number of us4oem modules a user wants to use</p></li>
+<li><p><strong>is_hv256</strong> – is the hv256 voltage supplier available?</p></li>
+<li><p><strong>master_us4oem</strong> – index of the master Us4OEM module. A master module         triggers TxRx execution and should be connected with the voltage         supplier (if available). By default equal to 0.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="arrus.Us4OEMCfg">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Us4OEMCfg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel_mapping</span><span class="p">:</span> <span class="n">Union<span class="p">[</span>arrus.devices.us4oem.ChannelMapping<span class="p">, </span>str<span class="p">]</span></span></em>, <em class="sig-param"><span class="n">active_channel_groups</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">dtgc</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>float<span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">pga_gain</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">30</span></em>, <em class="sig-param"><span class="n">lna_gain</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">24</span></em>, <em class="sig-param"><span class="n">lpf_cutoff</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">10000000.0</span></em>, <em class="sig-param"><span class="n">active_termination</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">tgc_samples</span><span class="p">:</span> <span class="n">Optional<span class="p">[</span>Union<span class="p">[</span>list<span class="p">, </span>numpy.ndarray<span class="p">]</span><span class="p">]</span></span> <span class="o">=</span> <span class="default_value">None</span></em>, <em class="sig-param"><span class="n">log_transfer_time</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4OEMCfg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.devices.device.DeviceCfg</span></code></p>
+<p>Us4OEM module configuration.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>channel_mapping</strong> – channel mapping to set. If str, <code class="docutils literal notranslate"><span class="pre">esaote</span></code> or         <code class="docutils literal notranslate"><span class="pre">ultrasonix</span></code> should be provided.</p></li>
+<li><p><strong>active_channel_groups</strong> – a list of True/False values (or non-zero         and zero values), which indicate which groups of channels should be         active during the whole session with the device.</p></li>
+<li><p><strong>dtgc</strong> – Digital time gain compensation. Actually this is an attenuation to         apply, e.g. <code class="docutils literal notranslate"><span class="pre">0</span></code> gives the highest gain, <code class="docutils literal notranslate"><span class="pre">42</span></code> the lowest.          When is None, DTGC is set to disabled. Available values: 0, 6, 12,         18, 24, 30, 36, 42 [dB]; can be None</p></li>
+<li><p><strong>pga_gain</strong> – Configures programmable-gain amplifier (PGA). Gain to set,        available values: 24, 30 [dB]</p></li>
+<li><p><strong>lna_gain</strong> – Configures low-noise amplifier (LNA) gain. Gain to set;         available values: 12, 18, 24 [dB]</p></li>
+<li><p><strong>lpf_cutoff</strong> – Low-pass filter (LPF) cutoff frequency to set,         available values: 10e6, 15e6, 20e6, 30e6, 35e6, 50e6 [Hz]</p></li>
+<li><p><strong>active_termination</strong> – Active termination to set,         available values: 50, 100, 200, 400; can be None (disabled)</p></li>
+<li><p><strong>tgc_samples</strong> – a list of TGC curve samples to set [dB]. The values         should be in range 14-54 dB, maximum number of samples to set: 1022.         TGC curve sampling rate is equal 1MHz. Set to None if you want to         disable TGC. Currently if you want to use this parameter, pga_gain and         lna_gain must be set to 30 and 24 respectively.</p></li>
+<li><p><strong>log_data_transfer_time</strong> – set to True if you want to log data         transfer time (from Us4OEM to the PC)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="arrus.SessionCfg">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">SessionCfg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">system</span><span class="p">:</span> <span class="n">arrus.system.SystemCfg</span></em>, <em class="sig-param"><span class="n">devices</span><span class="p">:</span> <span class="n">Mapping<span class="p">[</span>str<span class="p">, </span>arrus.devices.device.DeviceCfg<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.SessionCfg" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Configuration of the communication session with devices.</p>
+<p>This configuration allows to specify parameters that has to
+applied when user starts a new session.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>system</strong> – description of a system with which the user wants to
+communicate</p></li>
+<li><p><strong>devices</strong> – configuration of the devices with which the user wants
+communicate; a map: device id → device configuration</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="arrus.ChannelMapping">
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">ChannelMapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tx</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">rx</span><span class="p">:</span> <span class="n">list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.ChannelMapping" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tx/Rx channel mapping for Us4OEM module.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>tx</strong> – a list: tx[output channel number] = input channel number</p></li>
+<li><p><strong>rx</strong> – a list: rx[output channel number] = input channel number</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="section" id="utility-functions">
+<h2>Utility functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="logging">
 <h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt id="arrus.set_log_level">
 <code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">set_log_level</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">level</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.set_log_level" title="Permalink to this definition">¶</a></dt>
-<dd><p>Sets logger level.</p>
-<p>Available levels ERROR, WARNING, INFO, DEBUG</p>
+<dd><p>Sets logging level.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>level</strong> – logging level to set, available levels <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>,         <code class="docutils literal notranslate"><span class="pre">WARNING</span></code>, <code class="docutils literal notranslate"><span class="pre">INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code></p>
+</dd>
+</dl>
 </dd></dl>
 
+<dl class="py function">
+<dt id="arrus.add_log_file">
+<code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">add_log_file</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">filename</span><span class="p">:</span> <span class="n">str</span></em>, <em class="sig-param"><span class="n">level</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.add_log_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add file, where logging information should appear.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – a path to the output file</p></li>
+<li><p><strong>level</strong> – level to set, available levels: <code class="docutils literal notranslate"><span class="pre">ERROR</span></code>,         <code class="docutils literal notranslate"><span class="pre">WARNING</span></code>, <code class="docutils literal notranslate"><span class="pre">INFO</span></code>, <code class="docutils literal notranslate"><span class="pre">DEBUG</span></code></p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="legacy-api-reference">
+<h2>Legacy API Reference<a class="headerlink" href="#legacy-api-reference" title="Permalink to this headline">¶</a></h2>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>Below API is deprecated and it is discouraged to use it. Legacy API
+will be removed in near future.</p>
 </div>
 <div class="section" id="interface">
 <h3>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h3>
@@ -200,7 +553,7 @@ appropriate interface.</p>
 </dl>
 </dd></dl>
 
-<p>Currently, only an <code class="docutils literal notranslate"><span class="pre">esaote</span></code> interface is implemented.</p>
+<p>Currently, an <code class="docutils literal notranslate"><span class="pre">esaote</span></code> and <code class="docutils literal notranslate"><span class="pre">ultrasonix</span></code> interface are implemented.</p>
 <dl class="py class">
 <dt id="arrus.interface.UltrasoundInterface">
 <em class="property">class </em><code class="sig-prename descclassname">arrus.interface.</code><code class="sig-name descname">UltrasoundInterface</code><a class="headerlink" href="#arrus.interface.UltrasoundInterface" title="Permalink to this definition">¶</a></dt>
@@ -236,15 +589,14 @@ appropriate interface.</p>
 </dd></dl>
 
 </div>
-</div>
-<div class="section" id="session">
-<h2>Session<a class="headerlink" href="#session" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="interactive-session">
+<h3>Interactive session<a class="headerlink" href="#interactive-session" title="Permalink to this headline">¶</a></h3>
 <p>A session object allows you to obtain an appropriate device handler.</p>
 <dl class="py class">
 <dt id="arrus.session.InteractiveSession">
 <em class="property">class </em><code class="sig-prename descclassname">arrus.session.</code><code class="sig-name descname">InteractiveSession</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg_path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.session.InteractiveSession" title="Permalink to this definition">¶</a></dt>
 <dd><p><strong>THIS CLASS IS DEPRECATED AND WILL BE REMOVED IN THE NEAR FUTURE. Please
-use :class:`arrus.session.Session`</strong>.</p>
+use</strong> <code class="docutils literal notranslate"><span class="pre">arrus.Session</span></code>.</p>
 <p>An user interactive session with available devices.</p>
 <p>If cfg_path is None, session looks for a file <code class="docutils literal notranslate"><span class="pre">$ARRUS_PATH/default.yaml</span></code>,
 where ARRUS_PATH is an user-defined environment variable.</p>
@@ -256,59 +608,59 @@ where ARRUS_PATH is an user-defined environment variable.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="devices">
-<h2>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h2>
-<p>Currently only the Us4OEM device handler is provided.</p>
+<div class="section" id="id1">
+<h3>Devices<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Only the Us4OEM device handler is provided.</p>
 <dl class="py class">
-<dt id="arrus.devices.us4oem.Us4OEM">
-<em class="property">class </em><code class="sig-prename descclassname">arrus.devices.us4oem.</code><code class="sig-name descname">Us4OEM</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">card_handle</span><span class="p">:</span> <span class="n">None</span></em>, <em class="sig-param"><span class="n">cfg</span><span class="p">:</span> <span class="n">arrus.devices.us4oem.Us4OEMCfg</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM" title="Permalink to this definition">¶</a></dt>
+<dt>
+<em class="property">class </em><code class="sig-prename descclassname">arrus.devices.us4oem.</code><code class="sig-name descname">Us4OEM</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">index</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">card_handle</span><span class="p">:</span> <span class="n">None</span></em>, <em class="sig-param"><span class="n">cfg</span><span class="p">:</span> <span class="n">arrus.devices.us4oem.Us4OEMCfg</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span></dt>
 <dd><p>A single Us4OEM.</p>
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.clear_scheduled_receive">
-<code class="sig-name descname">clear_scheduled_receive</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.clear_scheduled_receive" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">clear_scheduled_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Clears scheduled receive queue.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.disable_test_patterns">
-<code class="sig-name descname">disable_test_patterns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.disable_test_patterns" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">disable_test_patterns</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Turns off test patterns generation and turns on probe’s RX data acquisition.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.disable_tgc">
-<code class="sig-name descname">disable_tgc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.disable_tgc" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">disable_tgc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Disables Time Gain Compensation (TGC).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.enable_receive">
-<code class="sig-name descname">enable_receive</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.enable_receive" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">enable_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Enables RX data transfer from the probe’s adapter to the module’s internal memory.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.enable_test_patterns">
-<code class="sig-name descname">enable_test_patterns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.enable_test_patterns" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">enable_test_patterns</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Turns off probe’s RX data acquisition and turns on test patterns generation.
 When test patterns are enabled, sawtooth signal is generated.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.enable_tgc">
-<code class="sig-name descname">enable_tgc</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.enable_tgc" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">enable_tgc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Enables Time Gain Compensation (TGC).</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.enable_transmit">
-<code class="sig-name descname">enable_transmit</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.enable_transmit" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">enable_transmit</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Enables TX pulse generation.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.get_n_channels">
-<code class="sig-name descname">get_n_channels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.get_n_channels" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">get_n_channels</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Returns number of channels available for this module.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -318,8 +670,8 @@ When test patterns are enabled, sawtooth signal is generated.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.get_n_rx_channels">
-<code class="sig-name descname">get_n_rx_channels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.get_n_rx_channels" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">get_n_rx_channels</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Returns number of RX channels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -329,8 +681,8 @@ When test patterns are enabled, sawtooth signal is generated.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.get_n_tx_channels">
-<code class="sig-name descname">get_n_tx_channels</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.get_n_tx_channels" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">get_n_tx_channels</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Returns number of TX channels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -340,14 +692,14 @@ When test patterns are enabled, sawtooth signal is generated.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.get_sampling_frequency">
-<code class="sig-name descname">get_sampling_frequency</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.get_sampling_frequency" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns sampling Us4OEM’s sampling frequency.</p>
+<dt>
+<code class="sig-name descname">get_sampling_frequency</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Returns Us4OEM’s sampling frequency.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.is_powered_down">
-<code class="sig-name descname">is_powered_down</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.is_powered_down" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">is_powered_down</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Returns true, when module is turned off, false otherwise.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
@@ -357,8 +709,8 @@ When test patterns are enabled, sawtooth signal is generated.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.schedule_receive">
-<code class="sig-name descname">schedule_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">address</span></em>, <em class="sig-param"><span class="n">length</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">decimation</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.schedule_receive" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">schedule_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Schedules a new data transmission from the probe’s adapter to the module’s internal memory.
 This function queues a new data transmission from all available RX channels to the device’s internal memory.
 Data transfer starts with the next “SWTrigger” operation call.</p>
@@ -367,38 +719,40 @@ Data transfer starts with the next “SWTrigger” operation call.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>address</strong> – module’s internal memory address, counted in number of samples</p></li>
 <li><p><strong>length</strong> – number of samples from each channel to acquire</p></li>
+<li><p><strong>callback</strong> – a callback function to call when data become available.</p></li>
+<li><p><strong>start</strong> – acquisition start sample</p></li>
+<li><p><strong>decimation</strong> – decimation to apply</p></li>
+<li><p><strong>callback</strong> – a callback function to apply</p></li>
 </ul>
 </dd>
-<dt class="field-even">Param</dt>
-<dd class="field-even"><p>callback: a callback function to call when data become available.</p>
-</dd>
 </dl>
-<p>The callback function should take one parameter of type DataAcquiredEvent.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_active_channel_group">
-<code class="sig-name descname">set_active_channel_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">active_groups_mask</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_active_channel_group" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_active_channel_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets active channel groups.
 Channel is active when it is TX/RX/CLAMP state. Channel is inactive
 when in HIZ state.
-Single group has 8 channels (single pulser).
-| [0]  - channels 0-7
-| [4]  - channels 8-15
-| [8]  - channels 16-23
-| [12] - channels 24-31
-| [1]  - channels 64-71
-| [5]  - channels 72-79
-| [9]  - channels 80-87
-| [13] - channels 88-95
-| [2]  - channels 32-39
-| [6]  - channels 40-47
-| [10] - channels 48-55
-| [14] - channels 56-63
-| [3]  - channels 96-103
-| [7]  - channels 104-111
-| [11] - channels 112-119
-| [15] - channels 120-127</p>
+Single group has 8 channels (single pulser).</p>
+<ul class="simple">
+<li><p>[0]  - channels 0-7</p></li>
+<li><p>[4]  - channels 8-15</p></li>
+<li><p>[8]  - channels 16-23</p></li>
+<li><p>[12] - channels 24-31</p></li>
+<li><p>[1]  - channels 64-71</p></li>
+<li><p>[5]  - channels 72-79</p></li>
+<li><p>[9]  - channels 80-87</p></li>
+<li><p>[13] - channels 88-95</p></li>
+<li><p>[2]  - channels 32-39</p></li>
+<li><p>[6]  - channels 40-47</p></li>
+<li><p>[10] - channels 48-55</p></li>
+<li><p>[14] - channels 56-63</p></li>
+<li><p>[3]  - channels 96-103</p></li>
+<li><p>[7]  - channels 104-111</p></li>
+<li><p>[11] - channels 112-119</p></li>
+<li><p>[15] - channels 120-127</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
@@ -410,8 +764,8 @@ Single group has 8 channels (single pulser).
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_active_termination">
-<code class="sig-name descname">set_active_termination</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">active_termination</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_active_termination" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_active_termination</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets active termination for this card. When active termination is None,
 the property is disabled.</p>
 <dl class="field-list simple">
@@ -423,8 +777,8 @@ the property is disabled.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_dtgc">
-<code class="sig-name descname">set_dtgc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attenuation</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_dtgc" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_dtgc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Configures time gain compensation (TGC).  When attenuation is None,
 DTGC is set to disabled.</p>
 <dl class="field-list simple">
@@ -436,8 +790,8 @@ DTGC is set to disabled.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_lna_gain">
-<code class="sig-name descname">set_lna_gain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gain</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_lna_gain" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_lna_gain</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Configures low-noise amplifier (LNA) gain.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -447,8 +801,8 @@ DTGC is set to disabled.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_lpf_cutoff">
-<code class="sig-name descname">set_lpf_cutoff</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cutoff</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_lpf_cutoff" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_lpf_cutoff</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets low-pass filter (LPF) cutoff frequency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -459,8 +813,8 @@ DTGC is set to disabled.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_n_triggers">
-<code class="sig-name descname">set_n_triggers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_triggers</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_n_triggers" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_n_triggers</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets the number of trigger to be generated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -470,8 +824,8 @@ DTGC is set to disabled.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_number_of_firings">
-<code class="sig-name descname">set_number_of_firings</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_firings</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_number_of_firings" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_number_of_firings</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets number firings/acquisitions for new TX/RX sequence.
 For each firing/acquisition a different TX/RX parameters can be applied.</p>
 <dl class="field-list simple">
@@ -482,8 +836,8 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_pga_gain">
-<code class="sig-name descname">set_pga_gain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gain</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_pga_gain" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_pga_gain</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Configures programmable-gain amplifier (PGA).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -496,8 +850,8 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_rx_aperture">
-<code class="sig-name descname">set_rx_aperture</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">origin</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">size</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_rx_aperture" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_rx_aperture</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets RX aperture’s origin and size.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -511,8 +865,8 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_rx_aperture_mask">
-<code class="sig-name descname">set_rx_aperture_mask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">aperture</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_rx_aperture_mask" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_rx_aperture_mask</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets position of an active RX aperture.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -525,8 +879,8 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_rx_channel_mapping">
-<code class="sig-name descname">set_rx_channel_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rx_channel_mapping</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_rx_channel_mapping" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_rx_channel_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets card’s RX channel mapping.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -536,8 +890,8 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_rx_delay">
-<code class="sig-name descname">set_rx_delay</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">delay</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_rx_delay" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_rx_delay</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets the starting point of the acquisition time [s]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -550,8 +904,8 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_rx_time">
-<code class="sig-name descname">set_rx_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_rx_time" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_rx_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets length of acquisition time.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -564,8 +918,8 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_tgc_samples">
-<code class="sig-name descname">set_tgc_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samples</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_tgc_samples" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_tgc_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets TGC samples.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -575,8 +929,8 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_trigger">
-<code class="sig-name descname">set_trigger</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_to_next_trigger</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">time_to_next_tx</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">is_sync_required</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">idx</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_trigger" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_trigger</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets parameters of the trigger event.
 Each trigger event will generate a trigger signal for the current
 firing/acquisition and set next firing parameters.</p>
@@ -593,8 +947,8 @@ firing/acquisition and set next firing parameters.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_tx_aperture">
-<code class="sig-name descname">set_tx_aperture</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">origin</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">size</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_tx_aperture" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_tx_aperture</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets position of an active TX aperture.
 :param origin: an origin channel of the aperture, <strong>starts from 0</strong>
 :param size: a length of the aperture
@@ -602,8 +956,8 @@ firing/acquisition and set next firing parameters.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_tx_aperture_mask">
-<code class="sig-name descname">set_tx_aperture_mask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">aperture</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_tx_aperture_mask" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_tx_aperture_mask</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets mask of active TX aperture channels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -616,8 +970,8 @@ firing/acquisition and set next firing parameters.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_tx_channel_mapping">
-<code class="sig-name descname">set_tx_channel_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tx_channel_mapping</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_tx_channel_mapping" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_tx_channel_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets card’s TX channel mapping.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -627,8 +981,8 @@ firing/acquisition and set next firing parameters.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_tx_cw">
-<code class="sig-name descname">set_tx_cw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">is_enable</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_tx_cw" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_tx_cw</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Enables/disables generation of long TX bursts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -641,8 +995,8 @@ firing/acquisition and set next firing parameters.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_tx_delay">
-<code class="sig-name descname">set_tx_delay</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">delay</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_tx_delay" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_tx_delay</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets channel’s TX delay.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -659,8 +1013,8 @@ firing/acquisition and set next firing parameters.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_tx_delays">
-<code class="sig-name descname">set_tx_delays</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">delays</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_tx_delays" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_tx_delays</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets channel’s TX delays.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -677,8 +1031,8 @@ should be equal to the number of module’s TX channels</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_tx_frequency">
-<code class="sig-name descname">set_tx_frequency</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_tx_frequency" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_tx_frequency</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets TX frequency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -694,8 +1048,8 @@ should be equal to the number of module’s TX channels</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_tx_half_periods">
-<code class="sig-name descname">set_tx_half_periods</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_half_periods</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_tx_half_periods" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_tx_half_periods</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets number of TX signal half-periods.</p>
 <blockquote>
 <div><dl class="field-list simple">
@@ -713,8 +1067,8 @@ should be equal to the number of module’s TX channels</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.set_tx_invert">
-<code class="sig-name descname">set_tx_invert</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">is_enable</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.set_tx_invert" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">set_tx_invert</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Enables/disables inversion of TX signal.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -727,45 +1081,45 @@ should be equal to the number of module’s TX channels</p></li>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.start_if_necessary">
-<code class="sig-name descname">start_if_necessary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.start_if_necessary" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">start_if_necessary</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Starts the card if is powered down.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.start_trigger">
-<code class="sig-name descname">start_trigger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.start_trigger" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">start_trigger</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Starts generation of the hardware trigger.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.stop_trigger">
-<code class="sig-name descname">stop_trigger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.stop_trigger" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">stop_trigger</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Stops generation of the hardware trigger.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.sw_next_tx">
-<code class="sig-name descname">sw_next_tx</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.sw_next_tx" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">sw_next_tx</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets all TX and RX parameters for the next firing/acquisition.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.sw_trigger">
-<code class="sig-name descname">sw_trigger</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.sw_trigger" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">sw_trigger</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Triggers pulse generation and starts RX transmissions on all
 (master and slave) modules. Should be called only for a master module.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.sync_test_patterns">
-<code class="sig-name descname">sync_test_patterns</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.sync_test_patterns" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">sync_test_patterns</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Waits for update of test patterns.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.transfer_rx_buffer_to_host">
-<code class="sig-name descname">transfer_rx_buffer_to_host</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src_addr</span></em>, <em class="sig-param"><span class="n">length</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.transfer_rx_buffer_to_host" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">transfer_rx_buffer_to_host</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Transfers data from the given module’s memory address to the host’s
 memory, and returns data buffer (numpy.ndarray).</p>
 <p><strong>NOTE: This function returns a buffer which is managed internally by the module.
@@ -785,8 +1139,8 @@ Please copy buffer’s data to your own array before proceeding with the acquisi
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.transfer_rx_buffer_to_host_buffer">
-<code class="sig-name descname">transfer_rx_buffer_to_host_buffer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src_addr</span></em>, <em class="sig-param"><span class="n">dst_buffer</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.transfer_rx_buffer_to_host_buffer" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">transfer_rx_buffer_to_host_buffer</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Transfers data from the given module’s memory address to the provided
 host’s buffer memory.</p>
 <p>The buffer’s address should be aligned to 4096</p>
@@ -802,13 +1156,14 @@ host’s buffer memory.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt id="arrus.devices.us4oem.Us4OEM.trigger_sync">
-<code class="sig-name descname">trigger_sync</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.devices.us4oem.Us4OEM.trigger_sync" title="Permalink to this definition">¶</a></dt>
+<dt>
+<code class="sig-name descname">trigger_sync</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Resumes generation of the hardware trigger.</p>
 </dd></dl>
 
 </dd></dl>
 
+</div>
 </div>
 </div>
 
@@ -823,7 +1178,7 @@ host’s buffer memory.</p>
         <a href="misc/acknowledgments.html" class="btn btn-neutral float-right" title="Acknowledgments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="examples/single_module.html" class="btn btn-neutral float-left" title="Single Module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="examples/single_module.html" class="btn btn-neutral float-left" title="Communicating with Us4OEM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Single Module &mdash; ARRUS (python) 0.4.1-dev documentation</title>
+  <title>Communicating with Us4OEM &mdash; ARRUS (python) 0.4.2-dev documentation</title>
   
 
   
@@ -84,10 +84,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Single Module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#initialization">Initialization</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#defining-tx-rx-acquisitions">Defining TX/RX acquisitions</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#acquiring-data">Acquiring data</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Communicating with Us4OEM</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-session">Configuring session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#defining-operations-to-perform">Defining operations to perform</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-operation">Running operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
@@ -141,7 +142,7 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Single Module</li>
+      <li>Communicating with Us4OEM</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -158,162 +159,134 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="single-module">
-<h1>Single Module<a class="headerlink" href="#single-module" title="Permalink to this headline">¶</a></h1>
-<div class="admonition caution">
-<p class="admonition-title">Caution</p>
-<p>ARRUS is currently under development and its API will be modified in the
-future. Please expect breaking changes.</p>
-</div>
-<p>In the following example we show:</p>
+  <div class="section" id="communicating-with-us4oem">
+<h1>Communicating with Us4OEM<a class="headerlink" href="#communicating-with-us4oem" title="Permalink to this headline">¶</a></h1>
+<p>Acquiring echo signal data requires three steps:</p>
 <ol class="arabic simple">
-<li><p>how to configure TX and RX subsystems in order to generate a plane wave,</p></li>
-<li><p>how to trigger a pulse generation and acquire a complete RF frame.</p></li>
+<li><p>configure a <cite>session</cite> with Us4OEM device,</p></li>
+<li><p>define operations (ops) that should be executed by the device,</p></li>
+<li><p>execute operations within the session.</p></li>
 </ol>
-<p>Make sure that you have installed an appropriate <code class="docutils literal notranslate"><span class="pre">arrus</span></code> wheel file.</p>
-<p>A complete source code is available in a <code class="docutils literal notranslate"><span class="pre">python/examples/basics/us4oem_x1.py</span></code>.
-To run it in your shell:</p>
-<ol class="arabic simple">
-<li><p>change your current location to a directory: <code class="docutils literal notranslate"><span class="pre">python/example/basics</span></code>,</p></li>
-<li><p>execute following command: <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">us4oem_x1.py</span></code>.</p></li>
-</ol>
-<div class="section" id="initialization">
-<h2>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h2>
-<p>First, an interactive session with a device must be created.
-Assuming you are running the example from the directory, in which the script is originally located, following should work:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sess</span> <span class="o">=</span> <span class="n">ar</span><span class="o">.</span><span class="n">session</span><span class="o">.</span><span class="n">InteractiveSession</span><span class="p">(</span><span class="s2">&quot;cfg.yaml&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The configuration file <code class="docutils literal notranslate"><span class="pre">python/examples/basics/cfg.yaml</span></code> contains information about
-devices that should be visible in a session. In our example, cfg.yaml states
-that:</p>
+<p>All these three steps are described below.</p>
+<div class="section" id="configuring-session">
+<h2>Configuring session<a class="headerlink" href="#configuring-session" title="Permalink to this headline">¶</a></h2>
+<p>User communicates with the Us4OEM device in a single <cite>session</cite>.
+Session is an abstract object that represents connection between client’s
+programming interface and the device. The session should be configured before
+starting. In particular it is required to provide:</p>
 <ul class="simple">
-<li><p>there is only one us4oem module available,</p></li>
-<li><p>no HV256 (power supplier) module will be used.</p></li>
+<li><p>description of the system to which the user wants to connect to,</p></li>
+<li><p>Us4OEM device initialization parameters.</p></li>
 </ul>
-<p>We also have to obtain a handle to the device with which we want to communicate:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">get_device</span><span class="p">(</span><span class="s2">&quot;/Us4OEM:0&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>Next, we need to take into account a probe adapter that is currently installed on our board, thus an appropriate
-RX and TX channels mapping must be set:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">interface</span> <span class="o">=</span> <span class="n">ar</span><span class="o">.</span><span class="n">interface</span><span class="o">.</span><span class="n">get_interface</span><span class="p">(</span><span class="s2">&quot;esaote&quot;</span><span class="p">)</span>
-<span class="n">module</span><span class="o">.</span><span class="n">store_mappings</span><span class="p">(</span>
-    <span class="n">interface</span><span class="o">.</span><span class="n">get_tx_channel_mapping</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span>
-    <span class="n">interface</span><span class="o">.</span><span class="n">get_rx_channel_mapping</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<p>System description should be provided as an instance of
+<a class="reference internal" href="../api.html#arrus.CustomUs4RCfg" title="arrus.CustomUs4RCfg"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.CustomUs4RCfg</span></code></a> class.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># US4R-LITE CONFIGURATION</span>
+<span class="n">system_cfg</span> <span class="o">=</span> <span class="n">CustomUs4RCfg</span><span class="p">(</span>
+    <span class="n">n_us4oems</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">is_hv256</span><span class="o">=</span><span class="kc">True</span>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Then, we start the device:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">module</span><span class="o">.</span><span class="n">start_if_necessary</span><span class="p">()</span>
+<p>Us4OEM initialization parameters should be set using <a class="reference internal" href="../api.html#arrus.Us4OEMCfg" title="arrus.Us4OEMCfg"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.Us4OEMCfg</span></code></a>
+class, e.g:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">us4oem_cfg</span> <span class="o">=</span> <span class="n">Us4OEMCfg</span><span class="p">(</span>
+    <span class="n">channel_mapping</span><span class="o">=</span><span class="s2">&quot;esaote&quot;</span><span class="p">,</span>
+    <span class="n">active_channel_groups</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">dtgc</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="n">active_termination</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+    <span class="n">log_transfer_time</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
 </pre></div>
 </div>
-<p>In this place we also set all RX parameters that we will not change later in the example:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">module</span><span class="o">.</span><span class="n">set_pga_gain</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="c1"># [dB]</span>
-<span class="n">module</span><span class="o">.</span><span class="n">set_lpf_cutoff</span><span class="p">(</span><span class="mf">10e6</span><span class="p">)</span> <span class="c1"># [Hz]</span>
-<span class="n">module</span><span class="o">.</span><span class="n">set_active_termination</span><span class="p">(</span><span class="mi">200</span><span class="p">)</span>
-<span class="n">module</span><span class="o">.</span><span class="n">set_lna_gain</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span> <span class="c1">#[dB]</span>
-<span class="n">module</span><span class="o">.</span><span class="n">set_dtgc</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># [dB]</span>
-<span class="n">module</span><span class="o">.</span><span class="n">set_tgc_samples</span><span class="p">(</span>
-    <span class="p">[</span><span class="mh">0x9001</span><span class="p">]</span> \
-    <span class="o">+</span> <span class="p">(</span><span class="mh">0x4000</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1500</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">14</span><span class="p">))</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
-    <span class="o">+</span> <span class="p">[</span><span class="mh">0x4000</span> <span class="o">+</span> <span class="mi">3000</span><span class="p">])</span>
-<span class="n">module</span><span class="o">.</span><span class="n">enable_tgc</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>That is:</p>
-<ol class="arabic simple">
-<li><p>we set amplifier gain,</p></li>
-<li><p>set low-pass cutoff frequency,</p></li>
-<li><p>we enable active termination,</p></li>
-<li><p>we set low-noise amplifier gain,</p></li>
-<li><p>and enable digital time gain compensation,</p></li>
-<li><p>turn on TGC and set TGC samples.</p></li>
-</ol>
-<p>Check <a class="reference internal" href="../api.html#api-main"><span class="std std-ref">API Reference</span></a> for more information on each method.</p>
-</div>
-<div class="section" id="defining-tx-rx-acquisitions">
-<h2>Defining TX/RX acquisitions<a class="headerlink" href="#defining-tx-rx-acquisitions" title="Permalink to this headline">¶</a></h2>
-<p>In this example we want to transmit and capture a signal using 128 channels.
-In us4OEM module there are 32 receive channels in total, but each receive channel
-is connected to 4 different transducers through the T/R switches.
-This architecture enables handling 128 element probes with low-cost hardware.
-Full 128-channel data capture can be done with a sequence of 4 transmit/receive acquisitions.</p>
-<p>We want to perform 4 TX/RX acquisition to complete one RF frame;
-in order to do that, we need to define TX/RX parameters first,
-for each firing/acquisition (an <em>event</em>) separately.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">TX_FREQUENCY</span> <span class="o">=</span> <span class="mf">5e6</span>
-
-<span class="n">NEVENTS</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">NSAMPLES</span> <span class="o">=</span> <span class="mi">8192</span>
-<span class="n">NCHANELS</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">get_n_rx_channels</span><span class="p">()</span>
-<span class="n">delays</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">i</span><span class="o">*</span><span class="mf">0.000e-6</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">module</span><span class="o">.</span><span class="n">get_n_tx_channels</span><span class="p">())])</span>
-
-<span class="c1"># Clear RX tasks queue.</span>
-<span class="n">module</span><span class="o">.</span><span class="n">clear_scheduled_receive</span><span class="p">()</span>
-<span class="c1"># Set number of triggers to perform for one RF data frame.</span>
-<span class="n">module</span><span class="o">.</span><span class="n">set_n_triggers</span><span class="p">(</span><span class="n">NEVENTS</span><span class="p">)</span>
-<span class="c1"># Set number of firings to perform.</span>
-<span class="n">module</span><span class="o">.</span><span class="n">set_number_of_firings</span><span class="p">(</span><span class="n">NEVENTS</span><span class="p">)</span>
-
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NEVENTS</span><span class="p">):</span>
-    <span class="n">module</span><span class="o">.</span><span class="n">set_tx_delays</span><span class="p">(</span><span class="n">delays</span><span class="o">=</span><span class="n">delays</span><span class="p">,</span> <span class="n">firing</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">module</span><span class="o">.</span><span class="n">set_tx_frequency</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="mf">5e6</span><span class="p">,</span> <span class="n">firing</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">module</span><span class="o">.</span><span class="n">set_tx_half_periods</span><span class="p">(</span><span class="n">n_periods</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">firing</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">module</span><span class="o">.</span><span class="n">set_tx_invert</span><span class="p">(</span><span class="n">is_enable</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-    <span class="n">module</span><span class="o">.</span><span class="n">set_tx_aperture</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">firing</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-
-    <span class="n">module</span><span class="o">.</span><span class="n">set_rx_time</span><span class="p">(</span><span class="n">time</span><span class="o">=</span><span class="mf">200e-6</span><span class="p">,</span> <span class="n">firing</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">module</span><span class="o">.</span><span class="n">set_rx_delay</span><span class="p">(</span><span class="n">delay</span><span class="o">=</span><span class="mf">20e-6</span><span class="p">,</span> <span class="n">firing</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">module</span><span class="o">.</span><span class="n">set_rx_aperture</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="n">i</span><span class="o">*</span><span class="mi">32</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">firing</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
-    <span class="n">module</span><span class="o">.</span><span class="n">schedule_receive</span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="n">NSAMPLES</span><span class="p">,</span> <span class="n">NSAMPLES</span><span class="p">)</span>
-    <span class="n">module</span><span class="o">.</span><span class="n">set_trigger</span><span class="p">(</span>
-        <span class="n">time_to_next_trigger</span><span class="o">=</span><span class="n">PRI</span><span class="p">,</span>
-        <span class="n">time_to_next_tx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">is_sync_required</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">idx</span><span class="o">=</span><span class="n">i</span>
-    <span class="p">)</span>
-<span class="n">module</span><span class="o">.</span><span class="n">enable_transmit</span><span class="p">()</span>
-<span class="c1"># In order to stop the device after the last event,</span>
-<span class="c1"># set &#39;is_sync_required=True&#39;.</span>
-<span class="n">module</span><span class="o">.</span><span class="n">set_trigger</span><span class="p">(</span>
-        <span class="n">time_to_next_trigger</span><span class="o">=</span><span class="n">PRI</span><span class="p">,</span>
-        <span class="n">time_to_next_tx</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-        <span class="n">is_sync_required</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">idx</span><span class="o">=</span><span class="n">NEVENTS</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<p>Finally, you can prepare a <a class="reference internal" href="../api.html#arrus.SessionCfg" title="arrus.SessionCfg"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.SessionCfg</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">session_cfg</span> <span class="o">=</span> <span class="n">SessionCfg</span><span class="p">(</span>
+    <span class="n">system</span><span class="o">=</span><span class="n">system_cfg</span><span class="p">,</span>
+    <span class="n">devices</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;Us4OEM:0&quot;</span><span class="p">:</span> <span class="n">us4oem_cfg</span><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="acquiring-data">
-<h2>Acquiring data<a class="headerlink" href="#acquiring-data" title="Permalink to this headline">¶</a></h2>
-<p>To start TX signal generation call <code class="docutils literal notranslate"><span class="pre">trigger_start</span></code> function.</p>
-<p>Before starting data capture, we need to enable it with
-<code class="docutils literal notranslate"><span class="pre">enable_receive</span></code> function. Then <code class="docutils literal notranslate"><span class="pre">trigger_sync</span></code> should be called to wait for
-all the data to be collected. After that a complete RF frame should be available
-in the us4OEM module’s internal memory.</p>
-<p>In order to transfer the data to the host computer’s memory you have to use a
-method <code class="docutils literal notranslate"><span class="pre">transfer_rx_buffer_to_host</span></code>. Note, that this function returns an array
-of shape <code class="docutils literal notranslate"><span class="pre">(NEVENTS*NSAMPLES,</span> <span class="pre">NCHANNELS)</span></code>.
-An additional reordering may be required - see example below.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">module</span><span class="o">.</span><span class="n">trigger_start</span><span class="p">()</span>
-<span class="c1"># ...</span>
-<span class="n">module</span><span class="o">.</span><span class="n">enable_receive</span><span class="p">()</span>
-<span class="n">module</span><span class="o">.</span><span class="n">trigger_sync</span><span class="p">()</span>
-
-<span class="c1"># - transfer data from module&#39;s internal memory to the host memory</span>
-<span class="n">buffer</span> <span class="o">=</span> <span class="n">module</span><span class="o">.</span><span class="n">transfer_rx_buffer_to_host</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">NEVENTS</span><span class="o">*</span><span class="n">NSAMPLES</span><span class="p">)</span>
-
-<span class="c1"># - reorder acquired data</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">NEVENTS</span><span class="p">):</span>
-    <span class="n">rf</span><span class="p">[:,</span> <span class="n">i</span><span class="o">*</span><span class="n">NCHANELS</span><span class="p">:(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">NCHANELS</span><span class="p">]</span> <span class="o">=</span> <span class="n">buffer</span><span class="p">[</span><span class="n">i</span><span class="o">*</span><span class="n">NSAMPLES</span><span class="p">:(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">*</span><span class="n">NSAMPLES</span><span class="p">,</span> <span class="p">:]</span>
-
-<span class="c1"># ...</span>
-<span class="c1"># Stop the automatic trigger when no more data is necessary.</span>
-<span class="n">module</span><span class="o">.</span><span class="n">trigger_stop</span><span class="p">()</span>
+<div class="section" id="defining-operations-to-perform">
+<h2>Defining operations to perform<a class="headerlink" href="#defining-operations-to-perform" title="Permalink to this headline">¶</a></h2>
+<p>In ARRUS, user defines <strong>operations</strong> that will be executed on a particular
+<strong>device</strong>.</p>
+<p>Us4OEM modules implements <a class="reference internal" href="../api.html#arrus.ops.TxRx" title="arrus.ops.TxRx"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.TxRx</span></code></a> operation,
+that is, a single transmit and echo signal reception. The result of this
+operation is stored directly in the module’s DDR memory, and then is transferred
+to the PC for further processing. A single <code class="docutils literal notranslate"><span class="pre">TxRx</span></code> allows to transmit a signal
+impulse using at most 128 channels and to receive echo data using at most 32
+channels.</p>
+<p>A single <code class="docutils literal notranslate"><span class="pre">TxRx</span></code> operation is limited by module’s maximum number of Rx channels.
+In most cases a <a class="reference internal" href="../api.html#arrus.ops.Sequence" title="arrus.ops.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.Sequence</span></code></a> of <code class="docutils literal notranslate"><span class="pre">TxRx</span></code> operations will be
+desired. A single <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> allows to execute a given collection of
+<code class="docutils literal notranslate"><span class="pre">TxRx</span></code> operations, store all acquired data in module’s DDR memory,
+then transfer it to the computer’s memory. For example, a <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> of 4
+<code class="docutils literal notranslate"><span class="pre">TxRx</span></code> operations with a shifted Rx aperture (stride 32) allows to acquire
+data using 128 Rx channels:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">operations</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+    <span class="n">tx</span> <span class="o">=</span> <span class="n">Tx</span><span class="p">(</span><span class="n">excitation</span><span class="o">=</span><span class="n">SineWave</span><span class="p">(</span><span class="n">frequency</span><span class="o">=</span><span class="mf">8.125e6</span><span class="p">,</span> <span class="n">n_periods</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span>
+                                <span class="n">inverse</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
+            <span class="n">aperture</span><span class="o">=</span><span class="n">RegionBasedAperture</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">128</span><span class="p">),</span>
+            <span class="n">pri</span><span class="o">=</span><span class="mf">200e-6</span><span class="p">)</span>
+    <span class="n">rx</span> <span class="o">=</span> <span class="n">Rx</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="mi">8192</span><span class="p">,</span>
+            <span class="n">aperture</span><span class="o">=</span><span class="n">RegionBasedAperture</span><span class="p">(</span><span class="n">origin</span><span class="o">=</span><span class="n">i</span><span class="o">*</span><span class="mi">32</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">32</span><span class="p">))</span>
+    <span class="n">tx_rx</span> <span class="o">=</span> <span class="n">TxRx</span><span class="p">(</span><span class="n">tx</span><span class="p">,</span> <span class="n">rx</span><span class="p">)</span>
+    <span class="n">operations</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tx_rx</span><span class="p">)</span>
+<span class="n">tx_rx_sequence</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">operations</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Variable <code class="docutils literal notranslate"><span class="pre">rf</span></code> should now contain all the collected samples.
-To stop trigger generation, call <code class="docutils literal notranslate"><span class="pre">trigger_stop</span></code>.</p>
+<p>In real-time imaging user probably would like to execute a given operation
+in a loop, until the system is explicitly stopped. In this case
+<a class="reference internal" href="../api.html#arrus.ops.Loop" title="arrus.ops.Loop"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.Loop</span></code></a> is advised to be used. This operations repeats given
+<code class="docutils literal notranslate"><span class="pre">Sequence</span></code> of <code class="docutils literal notranslate"><span class="pre">TxRx</span></code> ops, until the loop is explicitly stopped.
+After each execution of the <code class="docutils literal notranslate"><span class="pre">Sequence</span></code>, a <code class="docutils literal notranslate"><span class="pre">callback</span></code> function is called
+with the rf data provided as an input. If the acquisition should be continued,
+the <code class="docutils literal notranslate"><span class="pre">callback</span></code> function should return <code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New data!&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">True</span>
+
+<span class="n">sequence_loop</span> <span class="o">=</span> <span class="n">Loop</span><span class="p">(</span><span class="n">tx_rx_sequence</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="running-operation">
+<h2>Running operation<a class="headerlink" href="#running-operation" title="Permalink to this headline">¶</a></h2>
+<p>Operations can be executed within a <a class="reference internal" href="../api.html#arrus.Session" title="arrus.Session"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.Session</span></code></a>.</p>
+<p>In particular, to run the sequence of 4 <code class="docutils literal notranslate"><span class="pre">TxRx</span></code> operations:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">arrus</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">cfg</span><span class="o">=</span><span class="n">session_cfg</span><span class="p">)</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">us4oem</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">get_device</span><span class="p">(</span><span class="s2">&quot;/Us4OEM:0&quot;</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">tx_rx_sequence</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="n">us4oem</span><span class="p">})</span>
+</pre></div>
+</div>
+<p>Please note that <code class="docutils literal notranslate"><span class="pre">Session</span></code> is a <cite>python context manager class</cite> with the
+following semantic: when the context (an indented block of code) ends, all
+running devices are stopped and the session is closed.</p>
+<p>A parameter <code class="docutils literal notranslate"><span class="pre">feed_dict</span></code> allows to fill the executed operation placeholders
+with specific values. An example of such placeholder is a <code class="docutils literal notranslate"><span class="pre">device</span></code>, on which
+the operation should be executed. <code class="docutils literal notranslate"><span class="pre">Loop</span></code> operation requires an additional
+feed value, a <code class="docutils literal notranslate"><span class="pre">callback</span></code> function, that should be called when the data
+acquisition is finished.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">arrus</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">cfg</span><span class="o">=</span><span class="n">session_cfg</span><span class="p">)</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
+    <span class="n">us4oem</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">get_device</span><span class="p">(</span><span class="s2">&quot;/Us4OEM:0&quot;</span><span class="p">)</span>
+    <span class="n">sess</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">sequence_loop</span><span class="p">,</span> <span class="n">feed_dict</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;device&#39;</span><span class="p">:</span> <span class="n">us4oem</span><span class="p">,</span>
+                                       <span class="s1">&#39;callback&#39;</span><span class="p">:</span> <span class="n">callback</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Following examples are available in <code class="docutils literal notranslate"><span class="pre">python\examples\us4oem</span></code> directory:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">us4oem_x1_pwi_single.py</span></code>: using Us4OEM to transmit a single plane wave and acquire echo data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us4oem_x1_sta_single.py</span></code>: using Us4OEM to perform a single STA sequence </p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us4oem_x1_sta_multiple.py</span></code>: using Us4OEM to perform STA sequence multipletimes; saves acquired RF data to <code class="docutils literal notranslate"><span class="pre">numpy</span></code> file with given frequency.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us4oem_x1_sta_old_api.py</span></code>: an example using the old, legacy API.</p></li>
+</ul>
+<p>All examples require <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> package to be installed.</p>
 </div>
 </div>
 
