@@ -1,15 +1,18 @@
 
 
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; ARRUS (matlab) 0.4.2-dev documentation</title>
+  <title>Installation &mdash; ARRUS (matlab) 0.4.4-dev documentation</title>
   
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
 
   
   
@@ -17,7 +20,9 @@
   
 
   
-  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
@@ -30,10 +35,6 @@
     <script type="text/javascript" src="../../_static/js/theme.js"></script>
 
     
-
-  
-  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="B-mode Imaging" href="../examples/bmode_imaging.html" />
@@ -51,7 +52,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> ARRUS (matlab)
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> ARRUS (matlab)
           
 
           
@@ -74,6 +75,7 @@
           
         </div>
 
+        
         <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
           
             
@@ -87,7 +89,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Installation</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#drivers">Drivers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#drivers">Drivers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#uninstall-arius-drivers-if-previously-installed">Uninstall ARIUS drivers (if previously installed)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#install-us4oem-drivers">Install Us4OEM drivers</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#startup">Startup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#arrus">ARRUS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#matlab-api">MATLAB API</a></li>
@@ -107,6 +113,7 @@
             
           
         </div>
+        
       </div>
     </nav>
 
@@ -145,7 +152,7 @@
 
   <ul class="wy-breadcrumbs">
     
-      <li><a href="../../index.html">Docs</a> &raquo;</li>
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
       <li>Installation</li>
     
@@ -165,7 +172,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<span id="arrus-installation"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>Microsoft® Windows 10 x64 operating system is supported.</p>
@@ -184,31 +191,35 @@ cable and is enabled in your Thunderbolt software, e.g.:</p>
 <a class="reference internal image-reference" href="../../_images/thunderbolt.png"><img alt="../../_images/thunderbolt.png" src="../../_images/thunderbolt.png" style="width: 392.0px; height: 468.8px;" /></a>
 </div>
 <p>The <cite>Connection status</cite> should be <cite>Connected</cite> (or something similar).</p>
-<p>Then perform the following driver installation procedure:</p>
-<ol class="arabic">
-<li><p>Download and extract <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/arius-drivers-1290/arius-drivers-1290.zip">arius-drivers-1290.zip</a> file,
-for example into <code class="docutils literal notranslate"><span class="pre">C:\local\arius-drivers-1290\</span></code> directory.</p></li>
-<li><p>Disable driver signature enforcement on Windows 10:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li><p>Click “start menu → Settings → Update and Security → Recovery →
-Restart now” under Advanced startup</p></li>
-<li><p>Press “Troubleshoot → Advanced options → Startup settings →
-Restart”</p></li>
-<li><p>After the computer restart a list of options should be presented.
-Press F7 to choose “Disable driver signature enforcement”.</p></li>
+<div class="section" id="uninstall-arius-drivers-if-previously-installed">
+<h4>Uninstall ARIUS drivers (if previously installed)<a class="headerlink" href="#uninstall-arius-drivers-if-previously-installed" title="Permalink to this headline">¶</a></h4>
+<p>If ARIUS drivers are installed on your computer, uninstall them first. ARIUS
+drivers are the legacy drivers that were required before 0.4.3 version.</p>
+<ol class="arabic simple">
+<li><p>Open Windows Device Manager, uninstall <code class="docutils literal notranslate"><span class="pre">ARIUS</span></code> and <code class="docutils literal notranslate"><span class="pre">WinDriver1290</span></code>
+devices available in the “Jungo Connectivity” node. <strong>Check
+“Delete the driver software for this device”</strong>.</p></li>
 </ol>
-</div></blockquote>
-</li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">C:\local\arius-drivers-1290\install.bat</span></code> with <strong>administrative
-privileges</strong>. Confirm driver installation if necessary.</p></li>
-<li><p>If your hardware is properly connected to the computer, a new <code class="docutils literal notranslate"><span class="pre">PCI</span> <span class="pre">device</span></code>
-node should be visible in Windows Device Manager. Install drivers for the
-<code class="docutils literal notranslate"><span class="pre">PCI</span> <span class="pre">Device</span></code> using <code class="docutils literal notranslate"><span class="pre">C:\local\arius-drivers-1290\drivers\arius.inf</span></code> file.</p></li>
-</ol>
-<p>As a result, two <code class="docutils literal notranslate"><span class="pre">ARIUS</span></code> nodes should be visible in the Device Manager.</p>
 <div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/dev_manager.png"><img alt="../../_images/dev_manager.png" src="../../_images/dev_manager.png" style="width: 150.0px; height: 94.0px;" /></a>
+<a class="reference internal image-reference" href="../../_images/uninstall_arius_drv.png"><img alt="../../_images/uninstall_arius_drv.png" src="../../_images/uninstall_arius_drv.png" style="width: 344.0px; height: 234.0px;" /></a>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Restart computer.</p></li>
+</ol>
+</div>
+<div class="section" id="install-us4oem-drivers">
+<h4>Install Us4OEM drivers<a class="headerlink" href="#install-us4oem-drivers" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li><p>Download and extract <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/us4oem-drivers-1290/us4oem-drivers-1290.zip">us4oem-drivers-1290.zip</a>
+file.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">install.bat</span></code> with <strong>administrative privileges</strong>. Confirm driver
+installation if necessary.</p></li>
+</ol>
+<p>As a result, <code class="docutils literal notranslate"><span class="pre">us4oem</span></code> and <code class="docutils literal notranslate"><span class="pre">us4OEM</span></code> nodes should be visible in the
+Device Manager.</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/dev_manager.png"><img alt="../../_images/dev_manager.png" src="../../_images/dev_manager.png" style="width: 149.0px; height: 77.0px;" /></a>
+</div>
 </div>
 </div>
 <div class="section" id="startup">
@@ -234,7 +245,7 @@ Thunderbolt-3 cable.</p></li>
 <li><p>that your <strong>system-wide</strong> environment variable <code class="docutils literal notranslate"><span class="pre">Path</span></code> does not contain entries for any of the previously installed versions of the software.</p></li>
 </ul>
 <ol class="arabic simple">
-<li><p>Download and extract <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/0.4.2-dev/arrus-0.4.2-dev.zip">arrus</a> package.</p></li>
+<li><p>Download and extract <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/0.4.4-dev/arrus-0.4.4-dev.zip">arrus</a> package.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">install.exe</span></code> file and follow provided instructions.</p></li>
 </ol>
 <div class="figure align-default" id="fig-install-result">
@@ -271,11 +282,19 @@ Thunderbolt-3 cable.</p></li>
 
   <div role="contentinfo">
     <p>
+        
         &copy; Copyright 2020, us4us Ltd.
 
     </p>
   </div>
-  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
 
@@ -286,7 +305,6 @@ Thunderbolt-3 cable.</p></li>
 
   </div>
   
-
 
   <script type="text/javascript">
       jQuery(function () {
