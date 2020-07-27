@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Us4MEX API &mdash; ARRUS (matlab) 0.4.4-dev documentation</title>
+  <title>Us4MEX API &mdash; ARRUS (matlab) 0.4.5-dev documentation</title>
   
 
   
@@ -190,13 +190,13 @@ to the number of available modules.</p>
 <span id="mex-setrxchannelmapping"></span><h3>SetRxChannelMapping<a class="headerlink" href="#setrxchannelmapping" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
-<code class="sig-name descname">Us4MEX</code><span class="sig-paren">(</span><em class="sig-param">moduleIndex</em>, <em class="sig-param">&quot;SetRxChannelMapping&quot;</em>, <em class="sig-param">srcChannel</em>, <em class="sig-param">dstChannel</em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">Us4MEX</code><span class="sig-paren">(</span><em class="sig-param">moduleIndex</em>, <em class="sig-param">&quot;SetRxChannelMapping&quot;</em>, <em class="sig-param">mapping</em>, <em class="sig-param">rxMapId</em><span class="sig-paren">)</span></dt>
 <dd><p>Sets RX mapping from the source (module’s) channel to the destination (Probe’s) channel.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>srcChannel</strong> – source channel number</p></li>
-<li><p><strong>dstChannel</strong> – destination channel number</p></li>
+<li><p><strong>mapping</strong> – 32-element vector with channel mapping. mapping[source channel] = destination channel.</p></li>
+<li><p><strong>rxMapId</strong> – mapping index</p></li>
 </ul>
 </dd>
 </dl>
@@ -651,30 +651,23 @@ Single group has 8 channels (single pulser).</p>
 </dd></dl>
 
 </div>
-<div class="section" id="enablereceive">
-<span id="mex-enablereceive"></span><h3>EnableReceive<a class="headerlink" href="#enablereceive" title="Permalink to this headline">¶</a></h3>
-<dl class="mat function">
-<dt>
-<code class="sig-name descname">Us4MEX</code><span class="sig-paren">(</span><em class="sig-param">moduleIndex</em>, <em class="sig-param">&quot;EnableReceive&quot;</em><span class="sig-paren">)</span></dt>
-<dd><p>Enables RX data transfer from the probe’s adapter to the module’s internal memory.</p>
-</dd></dl>
-
-</div>
 <div class="section" id="schedulereceive">
 <span id="mex-schedulereceive"></span><h3>ScheduleReceive<a class="headerlink" href="#schedulereceive" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
-<code class="sig-name descname">Us4MEX</code><span class="sig-paren">(</span><em class="sig-param">moduleIndex</em>, <em class="sig-param">&quot;ScheduleReceive&quot;</em>, <em class="sig-param">address</em>, <em class="sig-param">length</em>, <em class="sig-param">startSample</em>, <em class="sig-param">decimation</em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">Us4MEX</code><span class="sig-paren">(</span><em class="sig-param">moduleIndex</em>, <em class="sig-param">&quot;ScheduleReceive&quot;</em>, <em class="sig-param">firing</em>, <em class="sig-param">address</em>, <em class="sig-param">length</em>, <em class="sig-param">startSample</em>, <em class="sig-param">decimation</em>, <em class="sig-param">rxMapId</em><span class="sig-paren">)</span></dt>
 <dd><p>Schedules a new data transmission from the probe’s adapter to the module’s internal memory.</p>
 <p>This function queues a new data transmission from all available RX channels to the device’s internal memory.
 Data transfer starts with the next “TriggerStart” operation call.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
+<li><p><strong>firing</strong> – a firing, in which this data transmission should apply, <strong>starts from 0</strong></p></li>
 <li><p><strong>address</strong> – module’s internal memory address (a number), where RX data should be saved</p></li>
-<li><p><strong>length</strong> – number of samples from single channel to acquire</p></li>
+<li><p><strong>length</strong> – number of samples (per 32 channels) to acquire</p></li>
 <li><p><strong>startSample</strong> – starting sample (delay from trigger). MUST BE EQUAL FOR ALL FUNTION CALLS (current firmware limitation)</p></li>
 <li><p><strong>decimation</strong> – number of samples to skip before writing to memory. MUST BE EQUAL FOR ALL FUNTION CALLS (current firmware limitation)</p></li>
+<li><p><strong>rxMapId</strong> – index of the rx channel mapping to be used.</p></li>
 </ul>
 </dd>
 </dl>
@@ -702,14 +695,13 @@ Data transfer starts with the next “TriggerStart” operation call.</p>
 <span id="mex-settrigger"></span><h3>SetTrigger<a class="headerlink" href="#settrigger" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
-<code class="sig-name descname">Us4MEX</code><span class="sig-paren">(</span><em class="sig-param">moduleIndex</em>, <em class="sig-param">&quot;SetTrigger&quot;</em>, <em class="sig-param">timeToNextTrigger</em>, <em class="sig-param">timeToNextTx</em>, <em class="sig-param">syncReq</em>, <em class="sig-param">idx</em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">Us4MEX</code><span class="sig-paren">(</span><em class="sig-param">moduleIndex</em>, <em class="sig-param">&quot;SetTrigger&quot;</em>, <em class="sig-param">timeToNextTrigger</em>, <em class="sig-param">syncReq</em>, <em class="sig-param">idx</em><span class="sig-paren">)</span></dt>
 <dd><p>Sets parameters of the trigger event.
 Each trigger event will generate a trigger signal for the current firing/acquisition and set next firing parameters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>timeToNextTrigger</strong> – time between current and the next trigger [uS]</p></li>
-<li><p><strong>timeToNextTx</strong> – delay between current trigger and setting next firing parameters [uS]</p></li>
 <li><p><strong>syncReq</strong> – should the trigger generator pause and wait for the TriggerSync() call</p></li>
 <li><p><strong>idx</strong> – a firing, in which the parameters values should apply, <strong>starts from 0</strong></p></li>
 </ul>
@@ -724,6 +716,15 @@ Each trigger event will generate a trigger signal for the current firing/acquisi
 <dt>
 <code class="sig-name descname">Us4MEX</code><span class="sig-paren">(</span><em class="sig-param">moduleIndex</em>, <em class="sig-param">&quot;EnableTransmit&quot;</em><span class="sig-paren">)</span></dt>
 <dd><p>Enables TX pulse generation.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="enablesequencer">
+<span id="mex-enablesequencer"></span><h3>EnableSequencer<a class="headerlink" href="#enablesequencer" title="Permalink to this headline">¶</a></h3>
+<dl class="mat function">
+<dt>
+<code class="sig-name descname">Us4MEX</code><span class="sig-paren">(</span><em class="sig-param">moduleIndex</em>, <em class="sig-param">&quot;EnableSequencer&quot;</em><span class="sig-paren">)</span></dt>
+<dd><p>Enables hardware sequencer.</p>
 </dd></dl>
 
 </div>

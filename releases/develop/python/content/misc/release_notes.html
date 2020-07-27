@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Release notes &mdash; ARRUS (python) 0.4.4-dev documentation</title>
+  <title>Release notes &mdash; ARRUS (python) 0.4.5-dev documentation</title>
   
 
   
@@ -92,6 +92,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="acknowledgments.html">Acknowledgments</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Release notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#version-0-4-4">Version 0.4.4</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-4-3">Version 0.4.3</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-4-2">Version 0.4.2</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-4-1">Version 0.4.1</a></li>
@@ -167,6 +168,19 @@
             
   <div class="section" id="release-notes">
 <h1>Release notes<a class="headerlink" href="#release-notes" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="version-0-4-4">
+<h2>Version 0.4.4<a class="headerlink" href="#version-0-4-4" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>MATLAB API:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The Us4R constructor now requires the <code class="docutils literal notranslate"><span class="pre">adapterType</span></code> parameter to be explicitly provided. Please check <span class="xref std std-ref">arrus-Us4R</span> documentation.</p></li>
+<li><p>A support for new Esaote probes adapter have been added. The new Esaote adapter is identified by the name <code class="docutils literal notranslate"><span class="pre">'esaote2'</span></code>. The new adapter design allows for using wider rx aperture: 64 elements in a single tx/rx. However, due to the adapter design, it may happen that a single rx channel is connected to two probe’s elements being in the rx aperture. In such cases the second of the elements is switched off in the receive. In the worst case this workaround switches off 4 of 64 rx elements. The size of the acquired rf data is unaffected by this workaround.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
 <div class="section" id="version-0-4-3">
 <h2>Version 0.4.3<a class="headerlink" href="#version-0-4-3" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; ARRUS (python) 0.4.4-dev documentation</title>
+  <title>API Reference &mdash; ARRUS (python) 0.4.5-dev documentation</title>
   
 
   
@@ -620,44 +620,44 @@ where ARRUS_PATH is an user-defined environment variable.</p>
 <dd><p>A single Us4OEM.</p>
 <dl class="py method">
 <dt>
-<code class="sig-name descname">clear_scheduled_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">clear_scheduled_receive</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Clears scheduled receive queue.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">disable_test_patterns</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">disable_test_patterns</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Turns off test patterns generation and turns on probe’s RX data acquisition.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">disable_tgc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">disable_tgc</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Disables Time Gain Compensation (TGC).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">enable_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">enable_receive</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Enables RX data transfer from the probe’s adapter to the module’s internal memory.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">enable_test_patterns</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">enable_test_patterns</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Turns off probe’s RX data acquisition and turns on test patterns generation.
 When test patterns are enabled, sawtooth signal is generated.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">enable_tgc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">enable_tgc</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Enables Time Gain Compensation (TGC).</p>
 </dd></dl>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">enable_transmit</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">enable_transmit</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Enables TX pulse generation.</p>
 </dd></dl>
 
@@ -713,7 +713,7 @@ When test patterns are enabled, sawtooth signal is generated.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">schedule_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">schedule_receive</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">address</span></em>, <em class="sig-param"><span class="n">length</span></em>, <em class="sig-param"><span class="n">start</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">decimation</span><span class="o">=</span><span class="default_value">0</span></em>, <em class="sig-param"><span class="n">callback</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Schedules a new data transmission from the probe’s adapter to the module’s internal memory.
 This function queues a new data transmission from all available RX channels to the device’s internal memory.
 Data transfer starts with the next “SWTrigger” operation call.</p>
@@ -733,7 +733,7 @@ Data transfer starts with the next “SWTrigger” operation call.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_active_channel_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_active_channel_group</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">active_groups_mask</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets active channel groups.
 Channel is active when it is TX/RX/CLAMP state. Channel is inactive
 when in HIZ state.
@@ -768,7 +768,7 @@ Single group has 8 channels (single pulser).</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_active_termination</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_active_termination</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">active_termination</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets active termination for this card. When active termination is None,
 the property is disabled.</p>
 <dl class="field-list simple">
@@ -781,7 +781,7 @@ the property is disabled.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_dtgc</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_dtgc</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">attenuation</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Configures time gain compensation (TGC).  When attenuation is None,
 DTGC is set to disabled.</p>
 <dl class="field-list simple">
@@ -794,7 +794,7 @@ DTGC is set to disabled.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_lna_gain</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_lna_gain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gain</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Configures low-noise amplifier (LNA) gain.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -805,7 +805,7 @@ DTGC is set to disabled.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_lpf_cutoff</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_lpf_cutoff</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cutoff</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets low-pass filter (LPF) cutoff frequency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -817,7 +817,7 @@ DTGC is set to disabled.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_n_triggers</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_n_triggers</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_triggers</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets the number of trigger to be generated.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -828,7 +828,7 @@ DTGC is set to disabled.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_number_of_firings</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_number_of_firings</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_firings</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">1</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets number firings/acquisitions for new TX/RX sequence.
 For each firing/acquisition a different TX/RX parameters can be applied.</p>
 <dl class="field-list simple">
@@ -840,7 +840,7 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_pga_gain</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_pga_gain</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">gain</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Configures programmable-gain amplifier (PGA).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -854,7 +854,7 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_rx_aperture</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_rx_aperture</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">origin</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">size</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets RX aperture’s origin and size.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -869,7 +869,7 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_rx_aperture_mask</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_rx_aperture_mask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">aperture</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets position of an active RX aperture.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -883,7 +883,7 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_rx_channel_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_rx_channel_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">rx_channel_mapping</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets card’s RX channel mapping.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -894,7 +894,7 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_rx_delay</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_rx_delay</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">delay</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets the starting point of the acquisition time [s]</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -908,7 +908,7 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_rx_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_rx_time</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets length of acquisition time.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -922,7 +922,7 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_tgc_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_tgc_samples</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">samples</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets TGC samples.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -933,7 +933,7 @@ For each firing/acquisition a different TX/RX parameters can be applied.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_trigger</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_trigger</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">time_to_next_trigger</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">time_to_next_tx</span><span class="p">:</span> <span class="n">float</span> <span class="o">=</span> <span class="default_value">0.0</span></em>, <em class="sig-param"><span class="n">is_sync_required</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">idx</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets parameters of the trigger event.
 Each trigger event will generate a trigger signal for the current
 firing/acquisition and set next firing parameters.</p>
@@ -951,7 +951,7 @@ firing/acquisition and set next firing parameters.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_tx_aperture</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_tx_aperture</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">origin</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">size</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets position of an active TX aperture.
 :param origin: an origin channel of the aperture, <strong>starts from 0</strong>
 :param size: a length of the aperture
@@ -960,7 +960,7 @@ firing/acquisition and set next firing parameters.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_tx_aperture_mask</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_tx_aperture_mask</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">aperture</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets mask of active TX aperture channels.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -974,7 +974,7 @@ firing/acquisition and set next firing parameters.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_tx_channel_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_tx_channel_mapping</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">tx_channel_mapping</span><span class="p">:</span> <span class="n">List<span class="p">[</span>int<span class="p">]</span></span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets card’s TX channel mapping.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -985,7 +985,7 @@ firing/acquisition and set next firing parameters.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_tx_cw</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_tx_cw</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">is_enable</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Enables/disables generation of long TX bursts.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -999,7 +999,7 @@ firing/acquisition and set next firing parameters.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_tx_delay</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_tx_delay</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">channel</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">delay</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets channel’s TX delay.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1017,7 +1017,7 @@ firing/acquisition and set next firing parameters.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_tx_delays</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_tx_delays</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">delays</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets channel’s TX delays.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1035,7 +1035,7 @@ should be equal to the number of module’s TX channels</p></li>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_tx_frequency</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_tx_frequency</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">frequency</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets TX frequency.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1052,7 +1052,7 @@ should be equal to the number of module’s TX channels</p></li>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_tx_half_periods</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_tx_half_periods</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_half_periods</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Sets number of TX signal half-periods.</p>
 <blockquote>
 <div><dl class="field-list simple">
@@ -1071,7 +1071,7 @@ should be equal to the number of module’s TX channels</p></li>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">set_tx_invert</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">set_tx_invert</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">is_enable</span><span class="p">:</span> <span class="n">bool</span></em>, <em class="sig-param"><span class="n">firing</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Enables/disables inversion of TX signal.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -1091,38 +1091,38 @@ should be equal to the number of module’s TX channels</p></li>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">start_trigger</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">start_trigger</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Starts generation of the hardware trigger.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">stop_trigger</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">stop_trigger</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Stops generation of the hardware trigger.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">sw_next_tx</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">sw_next_tx</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Sets all TX and RX parameters for the next firing/acquisition.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">sw_trigger</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">sw_trigger</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Triggers pulse generation and starts RX transmissions on all
 (master and slave) modules. Should be called only for a master module.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">sync_test_patterns</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">sync_test_patterns</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Waits for update of test patterns.</p>
 </dd></dl>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">transfer_rx_buffer_to_host</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">transfer_rx_buffer_to_host</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src_addr</span></em>, <em class="sig-param"><span class="n">length</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Transfers data from the given module’s memory address to the host’s
 memory, and returns data buffer (numpy.ndarray).</p>
 <p><strong>NOTE: This function returns a buffer which is managed internally by the module.
@@ -1143,7 +1143,7 @@ Please copy buffer’s data to your own array before proceeding with the acquisi
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">transfer_rx_buffer_to_host_buffer</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">transfer_rx_buffer_to_host_buffer</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src_addr</span></em>, <em class="sig-param"><span class="n">dst_buffer</span></em><span class="sig-paren">)</span></dt>
 <dd><p>Transfers data from the given module’s memory address to the provided
 host’s buffer memory.</p>
 <p>The buffer’s address should be aligned to 4096</p>
@@ -1160,7 +1160,7 @@ host’s buffer memory.</p>
 
 <dl class="py method">
 <dt>
-<code class="sig-name descname">trigger_sync</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span></dt>
+<code class="sig-name descname">trigger_sync</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
 <dd><p>Resumes generation of the hardware trigger.</p>
 </dd></dl>
 

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; ARRUS (python) 0.4.4-dev documentation</title>
+  <title>Installation &mdash; ARRUS (python) 0.4.5-dev documentation</title>
   
 
   
@@ -88,12 +88,12 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#id1">Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#startup">Startup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#drivers">Drivers</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#uninstall-arius-drivers-if-previously-installed">Uninstall ARIUS drivers (if previously installed)</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#install-us4oem-drivers">Install Us4OEM drivers</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#startup">Startup</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#arrus">ARRUS</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#python-api">Python API</a></li>
 </ul>
@@ -182,45 +182,6 @@
 </div>
 <div class="section" id="id1">
 <h2>Installation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="drivers">
-<h3>Drivers<a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h3>
-<p>Make sure, that your us4R-lite device is properly connected via Thunderbolt-3
-cable and is enabled in your Thunderbolt software, e.g.:</p>
-<div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/thunderbolt.png"><img alt="../../_images/thunderbolt.png" src="../../_images/thunderbolt.png" style="width: 392.0px; height: 468.8px;" /></a>
-</div>
-<p>The <cite>Connection status</cite> should be <cite>Connected</cite> (or something similar).</p>
-<div class="section" id="uninstall-arius-drivers-if-previously-installed">
-<h4>Uninstall ARIUS drivers (if previously installed)<a class="headerlink" href="#uninstall-arius-drivers-if-previously-installed" title="Permalink to this headline">¶</a></h4>
-<p>If ARIUS drivers are installed on your computer, uninstall them first. ARIUS
-drivers are the legacy drivers that were required before 0.4.3 version.</p>
-<ol class="arabic simple">
-<li><p>Open Windows Device Manager, uninstall <code class="docutils literal notranslate"><span class="pre">ARIUS</span></code> and <code class="docutils literal notranslate"><span class="pre">WinDriver1290</span></code>
-devices available in the “Jungo Connectivity” node. <strong>Check
-“Delete the driver software for this device”</strong>.</p></li>
-</ol>
-<div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/uninstall_arius_drv.png"><img alt="../../_images/uninstall_arius_drv.png" src="../../_images/uninstall_arius_drv.png" style="width: 344.0px; height: 234.0px;" /></a>
-</div>
-<ol class="arabic simple" start="2">
-<li><p>Restart computer.</p></li>
-</ol>
-</div>
-<div class="section" id="install-us4oem-drivers">
-<h4>Install Us4OEM drivers<a class="headerlink" href="#install-us4oem-drivers" title="Permalink to this headline">¶</a></h4>
-<ol class="arabic simple">
-<li><p>Download and extract <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/us4oem-drivers-1290/us4oem-drivers-1290.zip">us4oem-drivers-1290.zip</a>
-file.</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">install.bat</span></code> with <strong>administrative privileges</strong>. Confirm driver
-installation if necessary.</p></li>
-</ol>
-<p>As a result, <code class="docutils literal notranslate"><span class="pre">us4oem</span></code> and <code class="docutils literal notranslate"><span class="pre">us4OEM</span></code> nodes should be visible in the
-Device Manager.</p>
-<div class="figure align-default">
-<a class="reference internal image-reference" href="../../_images/dev_manager.png"><img alt="../../_images/dev_manager.png" src="../../_images/dev_manager.png" style="width: 149.0px; height: 77.0px;" /></a>
-</div>
-</div>
-</div>
 <div class="section" id="startup">
 <h3>Startup<a class="headerlink" href="#startup" title="Permalink to this headline">¶</a></h3>
 <div class="admonition caution">
@@ -236,15 +197,49 @@ Thunderbolt-3 cable.</p></li>
 </ol>
 </div>
 </div>
+<div class="section" id="drivers">
+<h3>Drivers<a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h3>
+<p>Make sure, that your us4R-lite device is properly connected via Thunderbolt-3
+cable and is enabled in your Thunderbolt software, e.g.:</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/thunderbolt.png"><img alt="../../_images/thunderbolt.png" src="../../_images/thunderbolt.png" style="width: 392.0px; height: 468.8px;" /></a>
+</div>
+<p>The <cite>Connection status</cite> should be <cite>Connected</cite> (or something similar).</p>
+<div class="section" id="uninstall-arius-drivers-if-previously-installed">
+<h4>Uninstall ARIUS drivers (if previously installed)<a class="headerlink" href="#uninstall-arius-drivers-if-previously-installed" title="Permalink to this headline">¶</a></h4>
+<p>If ARIUS drivers are installed on your computer, uninstall them first. ARIUS
+drivers are the legacy drivers that were required before 0.4.3 version.</p>
+<ol class="arabic simple">
+<li><p>Open Windows Device Manager, uninstall all <code class="docutils literal notranslate"><span class="pre">ARIUS</span></code> and <code class="docutils literal notranslate"><span class="pre">WinDriver1290</span></code>
+devices available in the “Jungo Connectivity” node. <strong>Check
+“Delete the driver software for this device”</strong>.</p></li>
+</ol>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/uninstall_arius_drv.png"><img alt="../../_images/uninstall_arius_drv.png" src="../../_images/uninstall_arius_drv.png" style="width: 344.0px; height: 234.0px;" /></a>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Restart computer.</p></li>
+</ol>
+</div>
+<div class="section" id="install-us4oem-drivers">
+<h4>Install Us4OEM drivers<a class="headerlink" href="#install-us4oem-drivers" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li><p>Download and extract <code class="docutils literal notranslate"><span class="pre">us4oem-drivers-1290.zip</span></code> (ask us4us support to get the newest version).</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">install.bat</span></code> with <strong>administrative privileges</strong>. Confirm driver
+installation if necessary.</p></li>
+</ol>
+<p>As a result, <code class="docutils literal notranslate"><span class="pre">us4oem</span></code> and <code class="docutils literal notranslate"><span class="pre">us4OEM</span></code> nodes should be visible in the
+Device Manager.</p>
+<div class="figure align-default">
+<a class="reference internal image-reference" href="../../_images/dev_manager.png"><img alt="../../_images/dev_manager.png" src="../../_images/dev_manager.png" style="width: 149.0px; height: 77.0px;" /></a>
+</div>
+</div>
+</div>
 <div class="section" id="arrus">
 <h3>ARRUS<a class="headerlink" href="#arrus" title="Permalink to this headline">¶</a></h3>
-<p>Before proceeding please make sure:</p>
-<ul class="simple">
-<li><p>the device is properly connected to the computer,</p></li>
-<li><p>that your <strong>system-wide</strong> environment variable <code class="docutils literal notranslate"><span class="pre">Path</span></code> does not contain entries for any of the previously installed versions of the software.</p></li>
-</ul>
+<p>Before proceeding please make sure the device is properly connected to the computer.</p>
 <ol class="arabic simple">
-<li><p>Download and extract <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/0.4.4-dev/arrus-0.4.4-dev.zip">arrus</a> package.</p></li>
+<li><p>Download and extract <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/0.4.5-dev/arrus-0.4.5-dev.zip">arrus</a> package.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">install.exe</span></code> file and follow provided instructions.</p></li>
 </ol>
 <div class="figure align-default" id="fig-install-result">

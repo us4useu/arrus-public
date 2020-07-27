@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; ARRUS (matlab) 0.4.4-dev documentation</title>
+  <title>API Reference &mdash; ARRUS (matlab) 0.4.5-dev documentation</title>
   
 
   
@@ -178,16 +178,30 @@ in the future.</p>
 <span id="arrus-us4r"></span><h2>Handle to Us4R System<a class="headerlink" href="#handle-to-us4r-system" title="Permalink to this headline">¶</a></h2>
 <dl class="mat class">
 <dt id="arrus.Us4R">
-<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Us4R</code><span class="sig-paren">(</span><em class="sig-param">nArius</em>, <em class="sig-param">probeName</em>, <em class="sig-param">voltage</em>, <em class="sig-param">logTime</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Us4R</code><span class="sig-paren">(</span><em class="sig-param">nArius</em>, <em class="sig-param">probeName</em>, <em class="sig-param">adapterType</em>, <em class="sig-param">voltage</em>, <em class="sig-param">logTime</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">handle</span></code></p>
 <p>A handle to the Us4R system.</p>
 <p>This class provides functions to configure the system and perform
 data acquisition using the Us4R.</p>
+<p>Available probe names:</p>
+<ul class="simple">
+<li><p>Esaote: ‘AL2442’, ‘SL1543’, ‘AC2541’, ‘SP2430’</p></li>
+<li><p>Ultrasonix: ‘L14-5/38’.</p></li>
+<li><p>ATL: ‘L7-4’</p></li>
+</ul>
+<p>Available adapter types:</p>
+<ul class="simple">
+<li><p>‘esaote’: legacy adapter for esaote probes,</p></li>
+<li><p>‘esaote2’: current version of the esaote adapter,</p></li>
+<li><p>‘ultrasonix’: current version of the ultrasonix probe adapter.</p></li>
+<li><p>‘atl/philips’: current version of the ATL/PHILIPS probe adapter.</p></li>
+</ul>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>nArius</strong> – number of Us4OEM modules available in the us4R system</p></li>
-<li><p><strong>probeName</strong> – name of the probe to use, available: Esaote: ‘AL2442’, ‘SL1543’, Ultrasonix: ‘L14-5/38’</p></li>
+<li><p><strong>probeName</strong> – name of the probe to use</p></li>
+<li><p><strong>adapterType</strong> – name of the adapter type to use</p></li>
 <li><p><strong>voltage</strong> – a voltage to set, should be in range 0-90 [0.5*Vpp]</p></li>
 <li><p><strong>logTime</strong> – set to true if you want to display acquisition and reconstruction time (optional)</p></li>
 </ul>
