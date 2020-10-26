@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; ARRUS (matlab) 0.4.5-dev documentation</title>
+  <title>Installation &mdash; ARRUS (matlab) 0.4.6-dev documentation</title>
   
 
   
@@ -175,8 +175,8 @@
 <span id="arrus-installation"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
-<p>Microsoft® Windows 10 x64 operating system is supported.</p>
-<p>Make sure that you have installed following dependencies:</p>
+<p>The Microsoft® Windows 10 x64 operating system is supported.</p>
+<p>Make sure that you have installed the following dependencies:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aka.ms/vs/16/release/vc_redist.x64.exe">Microsoft Visual C++ Redistributable for Visual Studio 2017</a></p></li>
 </ul>
@@ -187,7 +187,7 @@
 <h3>Startup<a class="headerlink" href="#startup" title="Permalink to this headline">¶</a></h3>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<p>If you use <strong>MSI GS65 notebook</strong> and connect with the device via Thunderbolt-3
+<p>If you use the <strong>MSI GS65 notebook</strong> and connect with the device via a Thunderbolt-3
 cable, you have to follow this extended startup procedure:</p>
 <ol class="arabic simple">
 <li><p>Turn off the notebook and your device, plug off Thunderbolt-3 cable.</p></li>
@@ -200,18 +200,18 @@ Thunderbolt-3 cable.</p></li>
 </div>
 <div class="section" id="drivers">
 <h3>Drivers<a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h3>
-<p>Make sure, that your us4R-lite device is properly connected via Thunderbolt-3
+<p>Make sure that your us4R-lite device is properly connected via a Thunderbolt-3
 cable and is enabled in your Thunderbolt software, e.g.:</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/thunderbolt.png"><img alt="../../_images/thunderbolt.png" src="../../_images/thunderbolt.png" style="width: 392.0px; height: 468.8px;" /></a>
 </div>
-<p>The <cite>Connection status</cite> should be <cite>Connected</cite> (or something similar).</p>
+<p>The <cite>Connection status</cite> should read <cite>Connected</cite> (or something similar).</p>
 <div class="section" id="uninstall-arius-drivers-if-previously-installed">
 <h4>Uninstall ARIUS drivers (if previously installed)<a class="headerlink" href="#uninstall-arius-drivers-if-previously-installed" title="Permalink to this headline">¶</a></h4>
 <p>If ARIUS drivers are installed on your computer, uninstall them first. ARIUS
-drivers are the legacy drivers that were required before 0.4.3 version.</p>
+drivers are the legacy drivers that were required before the 0.4.3 version.</p>
 <ol class="arabic simple">
-<li><p>Open Windows Device Manager, uninstall all <code class="docutils literal notranslate"><span class="pre">ARIUS</span></code> and <code class="docutils literal notranslate"><span class="pre">WinDriver1290</span></code>
+<li><p>Open the Windows Device Manager, uninstall all <code class="docutils literal notranslate"><span class="pre">ARIUS</span></code> and <code class="docutils literal notranslate"><span class="pre">WinDriver1290</span></code>
 devices available in the “Jungo Connectivity” node. <strong>Check
 “Delete the driver software for this device”</strong>.</p></li>
 </ol>
@@ -225,11 +225,11 @@ devices available in the “Jungo Connectivity” node. <strong>Check
 <div class="section" id="install-us4oem-drivers">
 <h4>Install Us4OEM drivers<a class="headerlink" href="#install-us4oem-drivers" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
-<li><p>Download and extract <code class="docutils literal notranslate"><span class="pre">us4oem-drivers-1290.zip</span></code> (ask us4us support to get the newest version).</p></li>
+<li><p>Download and extract <code class="docutils literal notranslate"><span class="pre">us4oem-drivers-1290.zip</span></code> (contact us4us support to make sure you get the newest version).</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">install.bat</span></code> with <strong>administrative privileges</strong>. Confirm driver
 installation if necessary.</p></li>
 </ol>
-<p>As a result, <code class="docutils literal notranslate"><span class="pre">us4oem</span></code> and <code class="docutils literal notranslate"><span class="pre">us4OEM</span></code> nodes should be visible in the
+<p><code class="docutils literal notranslate"><span class="pre">us4oem</span></code> and <code class="docutils literal notranslate"><span class="pre">us4OEM</span></code> nodes should now be visible in the
 Device Manager.</p>
 <div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/dev_manager.png"><img alt="../../_images/dev_manager.png" src="../../_images/dev_manager.png" style="width: 149.0px; height: 77.0px;" /></a>
@@ -238,10 +238,10 @@ Device Manager.</p>
 </div>
 <div class="section" id="arrus">
 <h3>ARRUS<a class="headerlink" href="#arrus" title="Permalink to this headline">¶</a></h3>
-<p>Before proceeding please make sure the device is properly connected to the computer.</p>
+<p>Before you proceed, please make sure the device is properly connected to the computer.</p>
 <ol class="arabic simple">
-<li><p>Download and extract <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/0.4.5-dev/arrus-0.4.5-dev.zip">arrus</a> package.</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">install.exe</span></code> file and follow provided instructions.</p></li>
+<li><p>Download and extract the <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/0.4.6-dev/arrus-0.4.6-dev.zip">arrus</a> package.</p></li>
+<li><p>Run the <code class="docutils literal notranslate"><span class="pre">install.exe</span></code> file and follow the instructions provided.</p></li>
 </ol>
 <div class="figure align-default" id="fig-install-result">
 <img alt="../../_images/install_result.png" src="../../_images/install_result.png" />
@@ -252,7 +252,8 @@ Device Manager.</p>
 <p>MATLAB 2018b is required.</p>
 <p>Add <code class="docutils literal notranslate"><span class="pre">matlab\arrus</span></code> subdirectory to the MATLAB search paths.</p>
 <p>To check if everything is ok run script
-<code class="docutils literal notranslate"><span class="pre">matlab\us4R_control.m</span></code> or <code class="docutils literal notranslate"><span class="pre">matlab\us4RUltrasonix_control.m</span></code> script.</p>
+<code class="docutils literal notranslate"><span class="pre">matlab\examples\Us4R_control.m</span></code> (for Esaote adapter) or
+<code class="docutils literal notranslate"><span class="pre">matlab\examples\Us4RUltrasonix_control.m</span></code> (for Ultrasonix adapter).</p>
 </div>
 </div>
 </div>

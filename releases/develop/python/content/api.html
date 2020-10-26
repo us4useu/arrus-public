@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; ARRUS (python) 0.4.5-dev documentation</title>
+  <title>API Reference &mdash; ARRUS (python) 0.4.6-dev documentation</title>
   
 
   
@@ -37,7 +37,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Acknowledgments" href="misc/acknowledgments.html" />
-    <link rel="prev" title="Communicating with Us4OEM" href="examples/single_module.html" /> 
+    <link rel="prev" title="Communicating with the Us4OEM" href="examples/single_module.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,7 +86,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/single_module.html">Communicating with Us4OEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/single_module.html">Communicating with the Us4OEM</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#devices">Devices</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#operations">Operations</a><ul>
@@ -183,13 +183,13 @@
 <span id="api-main"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<p>We will do our best to maintain backward compatibility, but please note
-that ARRUS is under development and its API may be modified in the future.</p>
+<p>We will do our best to maintain backward compatibility but please note
+that ARRUS is currently under development and its API may be modified in the future.</p>
 </div>
 <div class="section" id="devices">
 <h2>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h2>
 <p><strong>Do not create instances of the below classes directly</strong>. Use
-<code class="docutils literal notranslate"><span class="pre">session.get_device</span></code> to acquire appropriate device, for example:
+<code class="docutils literal notranslate"><span class="pre">session.get_device</span></code> to acquire the appropriate device, for example:
 <code class="docutils literal notranslate"><span class="pre">session.get_device('Us4OEM:0')</span></code>.</p>
 <dl class="py class">
 <dt id="arrus.devices.us4oem.Us4OEM">
@@ -426,7 +426,7 @@ if it requires any additional session values.</p></li>
 </div>
 <div class="section" id="configuration">
 <h2>Configuration<a class="headerlink" href="#configuration" title="Permalink to this headline">¶</a></h2>
-<p>Configuration to apply to each of the arrus components.</p>
+<p>The configuration to apply to each of the Arrus components.</p>
 <dl class="py class">
 <dt id="arrus.CustomUs4RCfg">
 <em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">CustomUs4RCfg</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">n_us4oems</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">is_hv256</span><span class="p">:</span> <span class="n">bool</span> <span class="o">=</span> <span class="default_value">False</span></em>, <em class="sig-param"><span class="n">master_us4oem</span><span class="p">:</span> <span class="n">int</span> <span class="o">=</span> <span class="default_value">0</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.CustomUs4RCfg" title="Permalink to this definition">¶</a></dt>
@@ -534,13 +534,13 @@ communicate; a map: device id → device configuration</p></li>
 <h2>Legacy API Reference<a class="headerlink" href="#legacy-api-reference" title="Permalink to this headline">¶</a></h2>
 <div class="admonition danger">
 <p class="admonition-title">Danger</p>
-<p>Below API is deprecated and it is discouraged to use it. Legacy API
-will be removed in near future.</p>
+<p>The API below is deprecated and we discourage using it. The legacy API
+will be removed in the near future.</p>
 </div>
 <div class="section" id="interface">
 <h3>Interface<a class="headerlink" href="#interface" title="Permalink to this headline">¶</a></h3>
-<p>An interface contains all information required to configure probe’s adapter
-which is provided with us4OEM module. Use following function to obtain an
+<p>An interface contains all the information required to configure the probe adapter
+provided with the us4OEM module. Use the following function to obtain the
 appropriate interface.</p>
 <dl class="py function">
 <dt id="arrus.interface.get_interface">
@@ -556,7 +556,7 @@ appropriate interface.</p>
 </dl>
 </dd></dl>
 
-<p>Currently, an <code class="docutils literal notranslate"><span class="pre">esaote</span></code> and <code class="docutils literal notranslate"><span class="pre">ultrasonix</span></code> interface are implemented.</p>
+<p>Currently, <code class="docutils literal notranslate"><span class="pre">esaote</span></code> and <code class="docutils literal notranslate"><span class="pre">ultrasonix</span></code> interfaces are implemented.</p>
 <dl class="py class">
 <dt id="arrus.interface.UltrasoundInterface">
 <em class="property">class </em><code class="sig-prename descclassname">arrus.interface.</code><code class="sig-name descname">UltrasoundInterface</code><a class="headerlink" href="#arrus.interface.UltrasoundInterface" title="Permalink to this definition">¶</a></dt>
@@ -594,7 +594,7 @@ appropriate interface.</p>
 </div>
 <div class="section" id="interactive-session">
 <h3>Interactive session<a class="headerlink" href="#interactive-session" title="Permalink to this headline">¶</a></h3>
-<p>A session object allows you to obtain an appropriate device handler.</p>
+<p>A session object allows you to obtain the appropriate device handler.</p>
 <dl class="py class">
 <dt id="arrus.session.InteractiveSession">
 <em class="property">class </em><code class="sig-prename descclassname">arrus.session.</code><code class="sig-name descname">InteractiveSession</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cfg_path</span><span class="p">:</span> <span class="n">str</span> <span class="o">=</span> <span class="default_value">None</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.session.InteractiveSession" title="Permalink to this definition">¶</a></dt>
@@ -1181,7 +1181,7 @@ host’s buffer memory.</p>
         <a href="misc/acknowledgments.html" class="btn btn-neutral float-right" title="Acknowledgments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="examples/single_module.html" class="btn btn-neutral float-left" title="Communicating with Us4OEM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="examples/single_module.html" class="btn btn-neutral float-left" title="Communicating with the Us4OEM" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

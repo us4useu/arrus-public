@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; ARRUS (matlab) 0.4.5-dev documentation</title>
+  <title>API Reference &mdash; ARRUS (matlab) 0.4.6-dev documentation</title>
   
 
   
@@ -89,7 +89,7 @@
 <li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/bmode_imaging.html">B-mode Imaging</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#handle-to-us4r-system">Handle to Us4R System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#handle-to-the-us4r-system">Handle to the Us4R System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#operations">Operations</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#tx-rx-sequences">TX/RX sequences</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#b-mode-image-reconstruction">B-mode Image Reconstruction</a></li>
@@ -170,15 +170,15 @@
 <span id="arrus-api-main"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
-<p>We will do our best to maintain backward compatibility, but please note
-that ARRUS is under development and its API may be modified
+<p>We will do our best to maintain backward compatibility but please note
+that ARRUS is currently under development and its API may be modified
 in the future.</p>
 </div>
-<div class="section" id="handle-to-us4r-system">
-<span id="arrus-us4r"></span><h2>Handle to Us4R System<a class="headerlink" href="#handle-to-us4r-system" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="handle-to-the-us4r-system">
+<span id="arrus-us4r"></span><h2>Handle to the Us4R System<a class="headerlink" href="#handle-to-the-us4r-system" title="Permalink to this headline">¶</a></h2>
 <dl class="mat class">
 <dt id="arrus.Us4R">
-<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Us4R</code><span class="sig-paren">(</span><em class="sig-param">nArius</em>, <em class="sig-param">probeName</em>, <em class="sig-param">adapterType</em>, <em class="sig-param">voltage</em>, <em class="sig-param">logTime</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">Us4R</code><span class="sig-paren">(</span><em class="sig-param">varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">handle</span></code></p>
 <p>A handle to the Us4R system.</p>
 <p>This class provides functions to configure the system and perform
@@ -191,19 +191,22 @@ data acquisition using the Us4R.</p>
 </ul>
 <p>Available adapter types:</p>
 <ul class="simple">
-<li><p>‘esaote’: legacy adapter for esaote probes,</p></li>
-<li><p>‘esaote2’: current version of the esaote adapter,</p></li>
+<li><p>‘esaote’: 1st esaote adapter (no alternation in element handling),</p></li>
+<li><p>‘esaote2’: 2nd esaote adapter (troublesome mapping),</p></li>
+<li><p>‘esaote3’: current version of the esaote adapter,</p></li>
 <li><p>‘ultrasonix’: current version of the ultrasonix probe adapter.</p></li>
 <li><p>‘atl/philips’: current version of the ATL/PHILIPS probe adapter.</p></li>
 </ul>
+<p>Only one of the following parameters should be provided:</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>nArius</strong> – number of Us4OEM modules available in the us4R system</p></li>
-<li><p><strong>probeName</strong> – name of the probe to use</p></li>
-<li><p><strong>adapterType</strong> – name of the adapter type to use</p></li>
-<li><p><strong>voltage</strong> – a voltage to set, should be in range 0-90 [0.5*Vpp]</p></li>
-<li><p><strong>logTime</strong> – set to true if you want to display acquisition and reconstruction time (optional)</p></li>
+<li><p><strong>nUs4OEM</strong> – number of Us4OEM modules available in the us4R system. Required.</p></li>
+<li><p><strong>voltage</strong> – a voltage to set, should be in range 0-90 [0.5*Vpp]. Required.</p></li>
+<li><p><strong>logTime</strong> – set to true if you want to display acquisition and reconstruction time. Optional.</p></li>
+<li><p><strong>probeName</strong> – name of the probe to use. The parameter is required when <code class="docutils literal notranslate"><span class="pre">probe</span></code> is not provided.</p></li>
+<li><p><strong>adapterType</strong> – name of the adapter type to use. The parameter is required when <code class="docutils literal notranslate"><span class="pre">probe</span></code> is not provided.</p></li>
+<li><p><strong>probe</strong> – definition of the probe to use. The parameter is required when <code class="docutils literal notranslate"><span class="pre">probeName</span></code> and <code class="docutils literal notranslate"><span class="pre">adapterType</span></code> are not provided.</p></li>
 </ul>
 </dd>
 </dl>
@@ -231,6 +234,19 @@ implementations.</p>
 <li><p><strong>isContinue</strong> – should the system continue executing the op? Takes no parameters and returns a boolean value.</p></li>
 <li><p><strong>callback</strong> – a function to call after executing the operation. Should take one parameter, which will be feed with the output of the executed op.</p></li>
 </ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="mat method">
+<dt id="arrus.Us4R.runWithMetadata">
+<code class="sig-name descname">runWithMetadata</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.Us4R.runWithMetadata" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs uploaded operations in the us4R system.</p>
+<p>Currently, only supports <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTxRxSequence</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstruction</span></code>
+implementations.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>RF frame, reconstructed image (if <code class="xref py py-class docutils literal notranslate"><span class="pre">Reconstruction</span></code> operation was uploaded) and metadata located in the first sample of the master module</p>
 </dd>
 </dl>
 </dd></dl>
@@ -268,7 +284,7 @@ and <code class="xref py py-class docutils literal notranslate"><span class="pre
 
 <div class="section" id="tx-rx-sequences">
 <span id="arrus-api-sequences"></span><h3>TX/RX sequences<a class="headerlink" href="#tx-rx-sequences" title="Permalink to this headline">¶</a></h3>
-<p>All TX/RX sequence derives parameters from <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTxRxSequence</span></code> class.</p>
+<p>All TX/RX sequences derive parameters from the <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTxRxSequence</span></code> class.</p>
 <span class="target" id="arrus-simpletxrxsequence"></span><dl class="mat class">
 <dt id="arrus.SimpleTxRxSequence">
 <em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">SimpleTxRxSequence</code><span class="sig-paren">(</span><em class="sig-param">varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.SimpleTxRxSequence" title="Permalink to this definition">¶</a></dt>
@@ -300,7 +316,8 @@ account the size of RAM, etc.) will be used.</p></li>
 <li><p><strong>tgcStart</strong> – TGC starting gain [dB]</p></li>
 <li><p><strong>tgcSlope</strong> – TGC gain slope [dB/m]</p></li>
 <li><p><strong>fsDivider</strong> – sampling frequency divider. Should be positive int. 
-Default value is equal to 1, which means sampling with the highest possible frequency (no decimation).</p></li>
+Default value is equal to 1, which means sampling with the highest possible frequency (no decimation)</p></li>
+<li><p><strong>txInvert</strong> – tx pulse polarity marker</p></li>
 </ul>
 </dd>
 </dl>
@@ -309,7 +326,7 @@ TGC gain is limited to 14-54 dB, any values out of that range
 will be set to 54 dB (if &gt; 54 dB) or 14 dB (if &lt;14 dB)</p>
 </dd></dl>
 
-<p>Following specific sequences are currently available in the system:</p>
+<p>Specific sequences currently available in the system are as follows:</p>
 <span class="target" id="arrus-pwisequence"></span><dl class="mat class">
 <dt id="arrus.PWISequence">
 <em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">PWISequence</code><span class="sig-paren">(</span><em class="sig-param">varargin</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.PWISequence" title="Permalink to this definition">¶</a></dt>
@@ -390,7 +407,7 @@ will be set to 54 dB (if &gt; 54 dB) or 14 dB (if &lt;14 dB)</p>
 <h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="arrus-bmodedisplay"></span><dl class="mat class">
 <dt id="arrus.BModeDisplay">
-<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">BModeDisplay</code><span class="sig-paren">(</span><em class="sig-param">xGrid</em>, <em class="sig-param">zGrid</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.BModeDisplay" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">arrus.</code><code class="sig-name descname">BModeDisplay</code><span class="sig-paren">(</span><em class="sig-param">xGrid</em>, <em class="sig-param">zGrid</em>, <em class="sig-param">dynamicRange</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.BModeDisplay" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">handle</span></code></p>
 <p>A B-mode image display.</p>
 <p>Currently is implemented as a simple MATLAB figure with dynamically
@@ -400,15 +417,10 @@ updated content.</p>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>xGrid</strong> – (1, width) vector, x-coordinates of the image pixels [m]</p></li>
 <li><p><strong>zGrid</strong> – (1, depth) vector z-coordinates of the image pixels [m]</p></li>
+<li><p><strong>dynamicRange</strong> – two-element vector [min, max], value lims to apply</p></li>
 </ul>
 </dd>
 </dl>
-<dl class="mat method">
-<dt id="arrus.BModeDisplay.BModeDisplay">
-<code class="sig-name descname">BModeDisplay</code><span class="sig-paren">(</span><em class="sig-param">xGrid</em>, <em class="sig-param">zGrid</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.BModeDisplay.BModeDisplay" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create figure.</p>
-</dd></dl>
-
 <dl class="mat method">
 <dt id="arrus.BModeDisplay.isOpen">
 <code class="sig-name descname">isOpen</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#arrus.BModeDisplay.isOpen" title="Permalink to this definition">¶</a></dt>

@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Communicating with Us4OEM &mdash; ARRUS (python) 0.4.5-dev documentation</title>
+  <title>Communicating with the Us4OEM &mdash; ARRUS (python) 0.4.6-dev documentation</title>
   
 
   
@@ -86,10 +86,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Communicating with Us4OEM</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Communicating with the Us4OEM</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#configuring-session">Configuring session</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#defining-operations-to-perform">Defining operations to perform</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#running-operation">Running operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-operations">Running operations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
 </ul>
 </li>
@@ -145,7 +145,7 @@
     
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Communicating with Us4OEM</li>
+      <li>Communicating with the Us4OEM</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -162,26 +162,26 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="communicating-with-us4oem">
-<h1>Communicating with Us4OEM<a class="headerlink" href="#communicating-with-us4oem" title="Permalink to this headline">¶</a></h1>
-<p>Acquiring echo signal data requires three steps:</p>
+  <div class="section" id="communicating-with-the-us4oem">
+<h1>Communicating with the Us4OEM<a class="headerlink" href="#communicating-with-the-us4oem" title="Permalink to this headline">¶</a></h1>
+<p>Acquiring echo signal data requires these three steps:</p>
 <ol class="arabic simple">
-<li><p>configure a <cite>session</cite> with Us4OEM device,</p></li>
+<li><p>configure a <cite>session</cite> with the Us4OEM device,</p></li>
 <li><p>define operations (ops) that should be executed by the device,</p></li>
 <li><p>execute operations within the session.</p></li>
 </ol>
-<p>All these three steps are described below.</p>
+<p>All three steps are described below.</p>
 <div class="section" id="configuring-session">
 <h2>Configuring session<a class="headerlink" href="#configuring-session" title="Permalink to this headline">¶</a></h2>
 <p>User communicates with the Us4OEM device in a single <cite>session</cite>.
-Session is an abstract object that represents connection between client’s
+Session is an abstract object that represents a connection between client’s
 programming interface and the device. The session should be configured before
-starting. In particular it is required to provide:</p>
+starting. In particular, it is essential to provide:</p>
 <ul class="simple">
-<li><p>description of the system to which the user wants to connect to,</p></li>
+<li><p>a description of the system which the user wants to connect to,</p></li>
 <li><p>Us4OEM device initialization parameters.</p></li>
 </ul>
-<p>System description should be provided as an instance of
+<p>The system description should be provided as an instance of the
 <a class="reference internal" href="../api.html#arrus.CustomUs4RCfg" title="arrus.CustomUs4RCfg"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.CustomUs4RCfg</span></code></a> class.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># US4R-LITE CONFIGURATION</span>
 <span class="n">system_cfg</span> <span class="o">=</span> <span class="n">CustomUs4RCfg</span><span class="p">(</span>
@@ -190,7 +190,7 @@ starting. In particular it is required to provide:</p>
 <span class="p">)</span>
 </pre></div>
 </div>
-<p>Us4OEM initialization parameters should be set using <a class="reference internal" href="../api.html#arrus.Us4OEMCfg" title="arrus.Us4OEMCfg"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.Us4OEMCfg</span></code></a>
+<p>Us4OEM initialization parameters should be set using the <a class="reference internal" href="../api.html#arrus.Us4OEMCfg" title="arrus.Us4OEMCfg"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.Us4OEMCfg</span></code></a>
 class, e.g:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">us4oem_cfg</span> <span class="o">=</span> <span class="n">Us4OEMCfg</span><span class="p">(</span>
     <span class="n">channel_mapping</span><span class="o">=</span><span class="s2">&quot;esaote&quot;</span><span class="p">,</span>
@@ -213,18 +213,18 @@ class, e.g:</p>
 </div>
 <div class="section" id="defining-operations-to-perform">
 <h2>Defining operations to perform<a class="headerlink" href="#defining-operations-to-perform" title="Permalink to this headline">¶</a></h2>
-<p>In ARRUS, user defines <strong>operations</strong> that will be executed on a particular
+<p>In ARRUS, the user defines the <strong>operations</strong> that will be executed on a particular
 <strong>device</strong>.</p>
-<p>Us4OEM modules implements <a class="reference internal" href="../api.html#arrus.ops.TxRx" title="arrus.ops.TxRx"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.TxRx</span></code></a> operation,
+<p>Us4OEM modules implement the <a class="reference internal" href="../api.html#arrus.ops.TxRx" title="arrus.ops.TxRx"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.TxRx</span></code></a> operation,
 that is, a single transmit and echo signal reception. The result of this
-operation is stored directly in the module’s DDR memory, and then is transferred
+operation is stored directly in the module’s DDR memory, and then transferred
 to the PC for further processing. A single <code class="docutils literal notranslate"><span class="pre">TxRx</span></code> allows to transmit a signal
-impulse using at most 128 channels and to receive echo data using at most 32
+impulse using 128 channels at most and to receive echo data using a maximum of 32
 channels.</p>
-<p>A single <code class="docutils literal notranslate"><span class="pre">TxRx</span></code> operation is limited by module’s maximum number of Rx channels.
+<p>A single <code class="docutils literal notranslate"><span class="pre">TxRx</span></code> operation is limited by the module’s maximum number of Rx channels.
 In most cases a <a class="reference internal" href="../api.html#arrus.ops.Sequence" title="arrus.ops.Sequence"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.Sequence</span></code></a> of <code class="docutils literal notranslate"><span class="pre">TxRx</span></code> operations will be
 desired. A single <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> allows to execute a given collection of
-<code class="docutils literal notranslate"><span class="pre">TxRx</span></code> operations, store all acquired data in module’s DDR memory,
+<code class="docutils literal notranslate"><span class="pre">TxRx</span></code> operations, store all acquired data in the module’s DDR memory,
 then transfer it to the computer’s memory. For example, a <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> of 4
 <code class="docutils literal notranslate"><span class="pre">TxRx</span></code> operations with a shifted Rx aperture (stride 32) allows to acquire
 data using 128 Rx channels:</p>
@@ -241,12 +241,12 @@ data using 128 Rx channels:</p>
 <span class="n">tx_rx_sequence</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">(</span><span class="n">operations</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>In real-time imaging user probably would like to execute a given operation
+<p>In real-time imaging, the user would likely wish to execute a given operation
 in a loop, until the system is explicitly stopped. In this case
-<a class="reference internal" href="../api.html#arrus.ops.Loop" title="arrus.ops.Loop"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.Loop</span></code></a> is advised to be used. This operations repeats given
+<a class="reference internal" href="../api.html#arrus.ops.Loop" title="arrus.ops.Loop"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.ops.Loop</span></code></a> should be used. This operation repeats a given
 <code class="docutils literal notranslate"><span class="pre">Sequence</span></code> of <code class="docutils literal notranslate"><span class="pre">TxRx</span></code> ops, until the loop is explicitly stopped.
-After each execution of the <code class="docutils literal notranslate"><span class="pre">Sequence</span></code>, a <code class="docutils literal notranslate"><span class="pre">callback</span></code> function is called
-with the rf data provided as an input. If the acquisition should be continued,
+After each execution of the <code class="docutils literal notranslate"><span class="pre">Sequence</span></code>, a <code class="docutils literal notranslate"><span class="pre">callback</span></code> function is called,
+with the RF data provided as input. If the acquisition is to continue,
 the <code class="docutils literal notranslate"><span class="pre">callback</span></code> function should return <code class="docutils literal notranslate"><span class="pre">True</span></code>, <code class="docutils literal notranslate"><span class="pre">False</span></code> otherwise.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">callback</span><span class="p">(</span><span class="n">data</span><span class="p">):</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;New data!&quot;</span><span class="p">)</span>
@@ -256,8 +256,8 @@ the <code class="docutils literal notranslate"><span class="pre">callback</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="running-operation">
-<h2>Running operation<a class="headerlink" href="#running-operation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="running-operations">
+<h2>Running operations<a class="headerlink" href="#running-operations" title="Permalink to this headline">¶</a></h2>
 <p>Operations can be executed within a <a class="reference internal" href="../api.html#arrus.Session" title="arrus.Session"><code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.Session</span></code></a>.</p>
 <p>In particular, to run the sequence of 4 <code class="docutils literal notranslate"><span class="pre">TxRx</span></code> operations:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">arrus</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">cfg</span><span class="o">=</span><span class="n">session_cfg</span><span class="p">)</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
@@ -269,9 +269,9 @@ the <code class="docutils literal notranslate"><span class="pre">callback</span>
 following semantic: when the context (an indented block of code) ends, all
 running devices are stopped and the session is closed.</p>
 <p>A parameter <code class="docutils literal notranslate"><span class="pre">feed_dict</span></code> allows to fill the executed operation placeholders
-with specific values. An example of such placeholder is a <code class="docutils literal notranslate"><span class="pre">device</span></code>, on which
-the operation should be executed. <code class="docutils literal notranslate"><span class="pre">Loop</span></code> operation requires an additional
-feed value, a <code class="docutils literal notranslate"><span class="pre">callback</span></code> function, that should be called when the data
+with specific values. An example of such a placeholder is a <code class="docutils literal notranslate"><span class="pre">device</span></code> on which
+the operation should be executed. The <code class="docutils literal notranslate"><span class="pre">Loop</span></code> operation requires an additional
+feed value, the <code class="docutils literal notranslate"><span class="pre">callback</span></code> function, that should be called when data
 acquisition is finished.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">arrus</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="n">cfg</span><span class="o">=</span><span class="n">session_cfg</span><span class="p">)</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">us4oem</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">get_device</span><span class="p">(</span><span class="s2">&quot;/Us4OEM:0&quot;</span><span class="p">)</span>
@@ -282,14 +282,14 @@ acquisition is finished.</p>
 </div>
 <div class="section" id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p>Following examples are available in <code class="docutils literal notranslate"><span class="pre">python\examples\us4oem</span></code> directory:</p>
+<p>The following examples are available in the <code class="docutils literal notranslate"><span class="pre">python\examples\us4oem</span></code> directory:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">us4oem_x1_pwi_single.py</span></code>: using Us4OEM to transmit a single plane wave and acquire echo data.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">us4oem_x1_sta_single.py</span></code>: using Us4OEM to perform a single STA sequence </p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">us4oem_x1_sta_multiple.py</span></code>: using Us4OEM to perform STA sequence multipletimes; saves acquired RF data to <code class="docutils literal notranslate"><span class="pre">numpy</span></code> file with given frequency.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us4oem_x1_sta_multiple.py</span></code>: using Us4OEM to perform the STA sequence multipletimes; saves acquired RF data to a <code class="docutils literal notranslate"><span class="pre">numpy</span></code> file with a given frequency.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">us4oem_x1_sta_old_api.py</span></code>: an example using the old, legacy API.</p></li>
 </ul>
-<p>All examples require <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> package to be installed.</p>
+<p>All examples require the <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code> package to be installed.</p>
 </div>
 </div>
 
