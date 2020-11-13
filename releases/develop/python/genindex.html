@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Index &mdash; ARRUS (python) 0.4.7-dev documentation</title>
+  <title>Index &mdash; ARRUS (python) 0.5.0-dev documentation</title>
   
 
   
@@ -84,7 +84,7 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="content/introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="content/installation/index.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="content/examples/single_module.html">Communicating with the Us4OEM</a></li>
+<li class="toctree-l1"><a class="reference internal" href="content/examples/mock_session_example.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="content/api.html">API Reference</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
@@ -159,13 +159,17 @@
 
 <div class="genindex-jumpbox">
  <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
  | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
  | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#H"><strong>H</strong></a>
- | <a href="#I"><strong>I</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
  | <a href="#R"><strong>R</strong></a>
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
@@ -180,14 +184,30 @@
   </ul></td>
 </tr></table>
 
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="content/api.html#arrus.utils.imaging.BandpassFilter">BandpassFilter (class in arrus.utils.imaging)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.ChannelMapping">ChannelMapping (class in arrus)</a>
+      <li><a href="content/api.html#arrus.devices.cpu.CPU">CPU (class in arrus.devices.cpu)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="content/api.html#arrus.utils.imaging.Decimation">Decimation (class in arrus.utils.imaging)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.CustomUs4RCfg">CustomUs4RCfg (class in arrus)</a>
+      <li><a href="content/api.html#arrus.devices.us4r.Us4R.disable_hv">disable_hv() (arrus.devices.us4r.Us4R method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -195,7 +215,19 @@
 <h2 id="E">E</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.Excitation">Excitation (class in arrus)</a>
+      <li><a href="content/api.html#arrus.metadata.EchoDataDescription">EchoDataDescription (class in arrus.metadata)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="content/api.html#arrus.utils.imaging.EnvelopeDetection">EnvelopeDetection (class in arrus.utils.imaging)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="content/api.html#arrus.metadata.FrameAcquisitionContext">FrameAcquisitionContext (class in arrus.metadata)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -203,19 +235,13 @@
 <h2 id="G">G</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.interface.get_interface">get_interface() (in module arrus.interface)</a>
-</li>
-      <li><a href="content/api.html#arrus.devices.us4oem.Us4OEM.get_n_rx_channels">get_n_rx_channels() (arrus.devices.us4oem.Us4OEM method)</a>
-</li>
-      <li><a href="content/api.html#arrus.devices.us4oem.Us4OEM.get_n_tx_channels">get_n_tx_channels() (arrus.devices.us4oem.Us4OEM method)</a>
+      <li><a href="content/api.html#arrus.Session.get_device">get_device() (arrus.Session method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.interface.UltrasoundInterface.get_rx_channel_mapping">get_rx_channel_mapping() (arrus.interface.UltrasoundInterface method)</a>
+      <li><a href="content/api.html#arrus.ops.us4r.TxRxSequence.get_n_samples">get_n_samples() (arrus.ops.us4r.TxRxSequence method)</a>
 </li>
-      <li><a href="content/api.html#arrus.devices.us4oem.Us4OEM.get_sampling_frequency">get_sampling_frequency() (arrus.devices.us4oem.Us4OEM method)</a>
-</li>
-      <li><a href="content/api.html#arrus.interface.UltrasoundInterface.get_tx_channel_mapping">get_tx_channel_mapping() (arrus.interface.UltrasoundInterface method)</a>
+      <li><a href="content/api.html#arrus.devices.gpu.GPU">GPU (class in arrus.devices.gpu)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -223,15 +249,7 @@
 <h2 id="H">H</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.devices.hv256.HV256">HV256 (class in arrus.devices.hv256)</a>
-</li>
-  </ul></td>
-</tr></table>
-
-<h2 id="I">I</h2>
-<table style="width: 100%" class="indextable genindextable"><tr>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.session.InteractiveSession">InteractiveSession (class in arrus.session)</a>
+      <li><a href="content/api.html#arrus.devices.us4r.HostBuffer">HostBuffer (class in arrus.devices.us4r)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -239,7 +257,11 @@
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.ops.Loop">Loop (class in arrus.ops)</a>
+      <li><a href="content/api.html#arrus.ops.imaging.LinSequence">LinSequence (class in arrus.ops.imaging)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="content/api.html#arrus.utils.imaging.LogCompression">LogCompression (class in arrus.utils.imaging)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -247,7 +269,27 @@
 <h2 id="M">M</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.MaskAperture">MaskAperture (class in arrus)</a>
+      <li><a href="content/api.html#arrus.metadata.Metadata">Metadata (class in arrus.metadata)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="content/api.html#arrus.utils.imaging.Pipeline">Pipeline (class in arrus.utils.imaging)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="content/api.html#arrus.ops.us4r.Pulse">Pulse (class in arrus.ops.us4r)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="content/api.html#arrus.utils.imaging.QuadratureDemodulation">QuadratureDemodulation (class in arrus.utils.imaging)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -255,13 +297,13 @@
 <h2 id="R">R</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.RegionBasedAperture">RegionBasedAperture (class in arrus)</a>
+      <li><a href="content/api.html#arrus.devices.us4r.HostBuffer.release_tail">release_tail() (arrus.devices.us4r.HostBuffer method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.Session.run">run() (arrus.Session method)</a>
+      <li><a href="content/api.html#arrus.ops.us4r.Rx">Rx (class in arrus.ops.us4r)</a>
 </li>
-      <li><a href="content/api.html#arrus.ops.Rx">Rx (class in arrus.ops)</a>
+      <li><a href="content/api.html#arrus.utils.imaging.RxBeamforming">RxBeamforming (class in arrus.utils.imaging)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -269,21 +311,23 @@
 <h2 id="S">S</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.ops.Sequence">Sequence (class in arrus.ops)</a>
+      <li><a href="content/api.html#arrus.devices.us4r.Us4R.sampling_frequency">sampling_frequency() (arrus.devices.us4r.Us4R property)</a>
+</li>
+      <li><a href="content/api.html#arrus.utils.imaging.ScanConversion">ScanConversion (class in arrus.utils.imaging)</a>
 </li>
       <li><a href="content/api.html#arrus.Session">Session (class in arrus)</a>
 </li>
-      <li><a href="content/api.html#arrus.SessionCfg">SessionCfg (class in arrus)</a>
+      <li><a href="content/api.html#arrus.set_clog_level">set_clog_level() (in module arrus)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.set_log_level">set_log_level() (in module arrus)</a>
+      <li><a href="content/api.html#arrus.Session.set_current_medium">set_current_medium() (arrus.Session method)</a>
 </li>
-      <li><a href="content/api.html#arrus.SineWave">SineWave (class in arrus)</a>
+      <li><a href="content/api.html#arrus.devices.us4r.Us4R.set_hv_voltage">set_hv_voltage() (arrus.devices.us4r.Us4R method)</a>
 </li>
-      <li><a href="content/api.html#arrus.SingleElementAperture">SingleElementAperture (class in arrus)</a>
+      <li><a href="content/api.html#arrus.devices.us4r.Us4R.start">start() (arrus.devices.us4r.Us4R method)</a>
 </li>
-      <li><a href="content/api.html#arrus.Session.stop_device">stop_device() (arrus.Session method)</a>
+      <li><a href="content/api.html#arrus.devices.us4r.Us4R.stop">stop() (arrus.devices.us4r.Us4R method)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -291,11 +335,17 @@
 <h2 id="T">T</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.ops.Tx">Tx (class in arrus.ops)</a>
+      <li><a href="content/api.html#arrus.devices.us4r.HostBuffer.tail">tail() (arrus.devices.us4r.HostBuffer method)</a>
+</li>
+      <li><a href="content/api.html#arrus.utils.imaging.Transpose">Transpose (class in arrus.utils.imaging)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.ops.TxRx">TxRx (class in arrus.ops)</a>
+      <li><a href="content/api.html#arrus.ops.us4r.Tx">Tx (class in arrus.ops.us4r)</a>
+</li>
+      <li><a href="content/api.html#arrus.ops.us4r.TxRx">TxRx (class in arrus.ops.us4r)</a>
+</li>
+      <li><a href="content/api.html#arrus.ops.us4r.TxRxSequence">TxRxSequence (class in arrus.ops.us4r)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -303,13 +353,11 @@
 <h2 id="U">U</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.interface.UltrasoundInterface">UltrasoundInterface (class in arrus.interface)</a>
+      <li><a href="content/api.html#arrus.devices.us4r.Us4R.upload">upload() (arrus.devices.us4r.Us4R method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="content/api.html#arrus.devices.us4oem.Us4OEM">Us4OEM (class in arrus.devices.us4oem)</a>
-</li>
-      <li><a href="content/api.html#arrus.Us4OEMCfg">Us4OEMCfg (class in arrus)</a>
+      <li><a href="content/api.html#arrus.devices.us4r.Us4R">Us4R (class in arrus.devices.us4r)</a>
 </li>
   </ul></td>
 </tr></table>
