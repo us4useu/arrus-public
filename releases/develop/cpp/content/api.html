@@ -1,0 +1,337 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>C++ API Reference &mdash; ARRUS (cpp) 0.5.10-dev documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Acknowledgments" href="misc/acknowledgments.html" />
+    <link rel="prev" title="User Guide" href="user_guide.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> ARRUS (cpp)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">C++ API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#notation">Notation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#session">Session</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#operations">Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#scheme">Scheme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-tx-rx-sequences">Custom Tx/Rx sequences</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#devices">Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#output-data">Output data</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="misc/acknowledgments.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/release_notes.html">Release notes</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ARRUS (cpp)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>C++ API Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="c-api-reference">
+<h1>C++ API Reference<a class="headerlink" href="#c-api-reference" title="Permalink to this headline">¶</a></h1>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>ARRUS C++ API is currently under development and its API will be modified in the future. Please expect breaking changes.</p>
+</div>
+<div class="section" id="notation">
+<h2>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Class::Handle</span></code> is a typedef for <code class="docutils literal notranslate"><span class="pre">std::unique_ptr&lt;Class&gt;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Class::SharedHandle</span></code> is a typedef for <code class="docutils literal notranslate"><span class="pre">std::shared_ptr&lt;Class&gt;</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="session">
+<h2>Session<a class="headerlink" href="#session" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenfunction: Cannot find function “arrus::session::createSession” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::session::Session” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+</div>
+<div class="section" id="operations">
+<h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="scheme">
+<h3>Scheme<a class="headerlink" href="#scheme" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::ops::us4r::Scheme” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::framework::DataBufferSpec” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+</div>
+<div class="section" id="custom-tx-rx-sequences">
+<h3>Custom Tx/Rx sequences<a class="headerlink" href="#custom-tx-rx-sequences" title="Permalink to this headline">¶</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::ops::us4r::TxRxSequence” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::ops::us4r::Pulse” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::ops::us4r::TxRx” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::ops::us4r::Tx” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::ops::us4r::Rx” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::ops::us4r::TxRxSequence” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygentypedef: Cannot find typedef “arrus::ops::us4r::TGCCurve” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+</div>
+</div>
+<div class="section" id="devices">
+<h2>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::devices::Us4R” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+</div>
+<div class="section" id="output-data">
+<h2>Output data<a class="headerlink" href="#output-data" title="Permalink to this headline">¶</a></h2>
+<p>An instance of the following class is returned by the <code class="docutils literal notranslate"><span class="pre">sesion.upload</span></code> function:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::session::UploadResult” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<p>Upload result can include some additional information (metadata) about the acquired data:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::session::UploadConstMetadata” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<p>Currently uploading scheme for the Us4R device returns a metadata with a
+key <code class="docutils literal notranslate"><span class="pre">frameChannelMapping</span></code>; the metadata value type is:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::devices::FrameChannelMapping” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<p>Upload result contains also a handle to the output data buffer.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::framework::DataBuffer” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<p>Data buffers consists of multiple elements.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::framework::BufferElement” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::framework::NdArray” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>doxygenclass: Cannot find class “arrus::Tuple” in doxygen xml output for project “arrus” from directory: C:/Program Files (x86)/Jenkins/workspace/arrus_develop/build/docs/cpp/doxy/xml</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="misc/acknowledgments.html" class="btn btn-neutral float-right" title="Acknowledgments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="user_guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, us4us Ltd..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
