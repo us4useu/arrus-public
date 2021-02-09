@@ -256,7 +256,7 @@ on the devices should be done withing the session context.</p>
 <li><p><strong>tx_rx_sequence</strong> – a sequence of tx/rx parameters to perform</p></li>
 <li><p><strong>rx_buffer_size</strong> – number of elements the rx buffer (allocated on       us4r ddr internal memory) should consists of</p></li>
 <li><p><strong>output_buffer</strong> – specification of the output buffer</p></li>
-<li><p><strong>work_mode</strong> – determines the system work mode, available values: ‘ASYNC’</p></li>
+<li><p><strong>work_mode</strong> – determines the system work mode, available values: ‘ASYNC’, ‘HOST’</p></li>
 <li><p><strong>processing</strong> – data processing to perform on the raw channel RF data       currently only arrus.utils.imaging is supported</p></li>
 </ul>
 </dd>
@@ -350,7 +350,7 @@ by the total pri only. [s]</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>operations</strong> – sequence of TX/RX operations to perform</p></li>
 <li><p><strong>tgc_curve</strong> – TGC curve samples [dB]</p></li>
-<li><p><strong>sri</strong> – sequence repetition interval - the time between consecutive RF frames. When None, the time between consecutive RF frames is determined by the total pri only. [s]</p></li>
+<li><p><strong>sri</strong> – sequence repetition interval - the time between consecutive RF         frames. When None, the time between consecutive RF frames is         determined by the total pri only. [s]</p></li>
 </ul>
 </dd>
 </dl>
@@ -402,7 +402,7 @@ by the total pri only. [s]</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>aperture</strong> – a set of TX channels that should be enabled - a binary mask, where 1 at location i means that the channel should be turned on, 0 means that the channel should be turned off</p></li>
+<li><p><strong>aperture</strong> – a set of TX channels that should be enabled - a binary         mask, where 1 at location i means that the channel should be turned         on, 0 means that the channel should be turned off</p></li>
 <li><p><strong>pulse</strong> – an excitation to perform</p></li>
 <li><p><strong>delays</strong> – an array of delays to set to active elements. Should have the         shape (n_a,), where n_a is a number of active elements determined by         tx aperture. When None, firings are performed with no delay (delays=0) [s].</p></li>
 </ul>
@@ -418,7 +418,8 @@ by the total pri only. [s]</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>aperture</strong> – a set of RX channels that should be enabled - a binary mask, where 1 at location i means that the channel should be turned on, 0 means that the channel should be turned off</p></li>
+<li><p><strong>aperture</strong> – a set of RX channels that should be enabled - a binary
+mask, where 1 at location i means that the channel should be turned on,         0 means that the channel should be turned off</p></li>
 <li><p><strong>sample_range</strong> – a range of samples to acquire [start, end), starts from 0</p></li>
 <li><p><strong>downsampling_factor</strong> – a sampling frequency divider. For example, if         nominal sampling frequency (fs) is equal to 65e6 Hz, <code class="docutils literal notranslate"><span class="pre">fs_divider=1</span></code>,        means to use the nominal fs, <code class="docutils literal notranslate"><span class="pre">fs_divider=2</span></code> means to use 32.5e6 Hz,         etc.</p></li>
 <li><p><strong>padding</strong> – a pair of values (left, right); the left/right value means
