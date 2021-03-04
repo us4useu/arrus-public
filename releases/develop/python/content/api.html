@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>API Reference &mdash; ARRUS (python) 0.5.10-dev documentation</title>
+  <title>API Reference &mdash; ARRUS (python) 0.5.11-dev documentation</title>
   
 
   
@@ -405,7 +405,7 @@ by the total pri only. [s]</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>aperture</strong> – a set of TX channels that should be enabled - a binary         mask, where 1 at location i means that the channel should be turned         on, 0 means that the channel should be turned off</p></li>
 <li><p><strong>pulse</strong> – an excitation to perform</p></li>
-<li><p><strong>delays</strong> – an array of delays to set to active elements. Should have the         shape (n_a,), where n_a is a number of active elements determined by         tx aperture. When None, firings are performed with no delay (delays=0) [s].</p></li>
+<li><p><strong>delays</strong> – an array of delays to set to active elements. Should have the         shape (n_a,), where n_a is a number of active elements determined by         tx aperture. When None, firings are performed with no delay (delays=0) [s]        The stored value is always of type numpy.ndarray.</p></li>
 </ul>
 </dd>
 </dl>
@@ -420,7 +420,7 @@ by the total pri only. [s]</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>aperture</strong> – a set of RX channels that should be enabled - a binary
-mask, where 1 at location i means that the channel should be turned on,         0 means that the channel should be turned off</p></li>
+mask, where 1 at location i means that the channel should be turned on,         0 means that the channel should be turned off. The stored value is         always of type numpy.ndarray.</p></li>
 <li><p><strong>sample_range</strong> – a range of samples to acquire [start, end), starts from 0</p></li>
 <li><p><strong>downsampling_factor</strong> – a sampling frequency divider. For example, if         nominal sampling frequency (fs) is equal to 65e6 Hz, <code class="docutils literal notranslate"><span class="pre">fs_divider=1</span></code>,        means to use the nominal fs, <code class="docutils literal notranslate"><span class="pre">fs_divider=2</span></code> means to use 32.5e6 Hz,         etc.</p></li>
 <li><p><strong>padding</strong> – a pair of values (left, right); the left/right value means
