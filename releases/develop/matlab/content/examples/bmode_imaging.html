@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>B-mode Imaging &mdash; ARRUS (matlab) 0.5.11-dev documentation</title>
+  <title>B-mode Imaging &mdash; ARRUS (matlab) 0.5.13-dev documentation</title>
   
 
   
@@ -16,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -55,7 +53,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> ARRUS (matlab)
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> ARRUS (matlab)
           
 
           
@@ -86,7 +84,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">User Documentation</span></p>
+              <p><span class="caption-text">User Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation</a></li>
@@ -102,7 +100,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<p><span class="caption-text">Miscellaneous</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/acknowledgments.html">Acknowledgments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/release_notes.html">Release notes</a></li>
@@ -146,8 +144,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -159,7 +155,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -171,7 +167,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="b-mode-imaging">
+  <section id="b-mode-imaging">
 <h1>B-mode Imaging<a class="headerlink" href="#b-mode-imaging" title="Permalink to this headline">¶</a></h1>
 <p>In the following parts of this chapter, we will show you how to communicate with
 the system in order to acquire RF data for B-mode image reconstruction using
@@ -179,14 +175,16 @@ ARRUS software. The source code of the ready-to-run examples can be found in
 matlab/examples directory.</p>
 <p>For more information on the parameters of individual functions please refer
 to section <a class="reference internal" href="../api.html#arrus-api-main"><span class="std std-ref">API Reference</span></a>.</p>
-<div class="section" id="coordinate-system">
+<section id="coordinate-system">
 <h2>Coordinate system<a class="headerlink" href="#coordinate-system" title="Permalink to this headline">¶</a></h2>
 <p>The adopted coordinate system is shown in <a class="reference internal" href="#fig-coordinate-system"><span class="std std-numref">Fig. 1</span></a>.</p>
-<div class="figure align-default" id="id1">
+<figure class="align-default" id="id1">
 <span id="fig-coordinate-system"></span><img alt="../../_images/coordinate_system.jpeg" src="../../_images/coordinate_system.jpeg" />
-<p class="caption"><span class="caption-number">Fig. 1 </span><span class="caption-text">Adopted coordinate system in the imaging plane (left) and taking into
+<figcaption>
+<p><span class="caption-number">Fig. 1 </span><span class="caption-text">Adopted coordinate system in the imaging plane (left) and taking into
 account the 3rd dimension (right).</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
-</div>
+</figcaption>
+</figure>
 <p>Important notes:</p>
 <ul class="simple">
 <li><p>point coordinates are written in (z,x) or (z,x,y) format</p></li>
@@ -195,13 +193,13 @@ account the 3rd dimension (right).</span><a class="headerlink" href="#id1" title
 <li><p>angle <span class="math notranslate nohighlight">\(\phi=0\)</span>  covers with the z-axis direction and positive
 <span class="math notranslate nohighlight">\(\phi\)</span> direction is counter-clockwise.</p></li>
 </ul>
-</div>
-<div class="section" id="operations">
+</section>
+<section id="operations">
 <h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
 <p>In ARRUS, users can define and run the <strong>operations</strong>  available for the
 supported hardware. Transmission/reception (TX/RX) sequences and B-mode image
 reconstruction are examples of such operations.</p>
-<div class="section" id="tx-rx-sequence">
+<section id="tx-rx-sequence">
 <h3>TX/RX sequence<a class="headerlink" href="#tx-rx-sequence" title="Permalink to this headline">¶</a></h3>
 <p>The following sequences are currently available:</p>
 <ul class="simple">
@@ -253,8 +251,8 @@ class.</p>
 </pre></div>
 </div>
 <p>For more information, see the documentation of available <a class="reference internal" href="../api.html#arrus-api-sequences"><span class="std std-ref">TX/RX sequences</span></a>.</p>
-</div>
-<div class="section" id="reconstruction">
+</section>
+<section id="reconstruction">
 <h3>Reconstruction<a class="headerlink" href="#reconstruction" title="Permalink to this headline">¶</a></h3>
 <p>To perform B-mode image reconstruction, create an instance of the
 <a class="reference internal" href="../api.html#arrus-reconstruction"><span class="std std-ref">B-mode Image Reconstruction</span></a> class.</p>
@@ -268,9 +266,9 @@ class.</p>
 <span class="w">                     </span><span class="s">&#39;zGrid&#39;</span><span class="p">,</span><span class="w">            </span><span class="p">(</span><span class="w">  </span><span class="mi">0</span><span class="p">:</span><span class="mf">0.10</span><span class="p">:</span><span class="mi">50</span><span class="p">)</span><span class="o">*</span><span class="mf">1e-3</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="running-operations-in-the-system">
+</section>
+</section>
+<section id="running-operations-in-the-system">
 <h2>Running operations in the system<a class="headerlink" href="#running-operations-in-the-system" title="Permalink to this headline">¶</a></h2>
 <p>First, you should create a handle to the system on which you want to perform
 operations. For example, to communicate with the Us4R system, create an instance of the
@@ -295,37 +293,45 @@ a B-mode image interactively), use the <code class="docutils literal notranslate
 </pre></div>
 </div>
 <p>See the <a class="reference internal" href="../api.html#arrus-us4r"><span class="std std-ref">Handle to the Us4R System</span></a> docs for more information.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../installation/index.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="../api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../installation/index.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, us4us Ltd..
+        
+        &copy; Copyright 2021, us4us Ltd.
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

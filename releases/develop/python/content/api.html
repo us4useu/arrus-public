@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>API Reference &mdash; ARRUS (python) 0.5.11-dev documentation</title>
+  <title>API Reference &mdash; ARRUS (python) 0.5.13-dev documentation</title>
   
 
   
@@ -16,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -55,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> ARRUS (python)
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> ARRUS (python)
           
 
           
@@ -86,7 +84,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">User Documentation</span></p>
+              <p><span class="caption-text">User Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
@@ -113,7 +111,7 @@
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<p><span class="caption-text">Miscellaneous</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="misc/acknowledgments.html">Acknowledgments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc/release_notes.html">Release notes</a></li>
@@ -157,8 +155,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -170,7 +166,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -182,9 +178,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="api-reference">
+  <section id="api-reference">
 <span id="api-main"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="session">
+<section id="session">
 <h2>Session<a class="headerlink" href="#session" title="Permalink to this headline">¶</a></h2>
 <dl class="py class">
 <dt id="arrus.Session">
@@ -241,10 +237,10 @@ on the devices should be done withing the session context.</p>
 
 </dd></dl>
 
-</div>
-<div class="section" id="operations">
+</section>
+<section id="operations">
 <h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="scheme">
+<section id="scheme">
 <h3>Scheme<a class="headerlink" href="#scheme" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="arrus.ops.us4r.Scheme">
@@ -279,8 +275,8 @@ on the devices should be done withing the session context.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="common-tx-rx-sequences">
+</section>
+<section id="common-tx-rx-sequences">
 <h3>Common Tx/Rx sequences<a class="headerlink" href="#common-tx-rx-sequences" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="arrus.ops.imaging.LinSequence">
@@ -313,7 +309,7 @@ center (you can provide array of tx or rx aperture center elements).</p>
 
 <dl class="py class">
 <dt id="arrus.ops.imaging.PwiSequence">
-<em class="property">class </em><code class="sig-prename descclassname">arrus.ops.imaging.</code><code class="sig-name descname">PwiSequence</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">angles</span><span class="p">:</span> <span class="n">list</span></em>, <em class="sig-param"><span class="n">pulse</span><span class="p">:</span> <span class="n"><a class="reference internal" href="#arrus.ops.us4r.Pulse" title="arrus.ops.us4r.Pulse">arrus.ops.us4r.Pulse</a></span></em>, <em class="sig-param"><span class="n">rx_sample_range</span><span class="p">:</span> <span class="n">tuple</span></em>, <em class="sig-param"><span class="n">downsampling_factor</span><span class="p">:</span> <span class="n">int</span></em>, <em class="sig-param"><span class="n">speed_of_sound</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">pri</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">tgc_start</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">tgc_slope</span><span class="p">:</span> <span class="n">float</span></em>, <em class="sig-param"><span class="n">sri</span><span class="p">:</span> <span class="n">float</span></em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.ops.imaging.PwiSequence" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">arrus.ops.imaging.</code><code class="sig-name descname">PwiSequence</code><span class="sig-paren">(</span><em class="sig-param">angles: list</em>, <em class="sig-param">pulse: arrus.ops.us4r.Pulse</em>, <em class="sig-param">rx_sample_range: tuple</em>, <em class="sig-param">downsampling_factor: int</em>, <em class="sig-param">speed_of_sound: float</em>, <em class="sig-param">pri: float</em>, <em class="sig-param">sri: float</em>, <em class="sig-param">tgc_start: float = None</em>, <em class="sig-param">tgc_slope: float = None</em>, <em class="sig-param">tgc_curve: list = &lt;factory&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#arrus.ops.imaging.PwiSequence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>A sequence of Tx/Rx operations for plane wave imaging.</p>
 <p>Tx/Rxs from a given sequence differ in the plane wave angle
@@ -338,8 +334,8 @@ by the total pri only. [s]</p></li>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="custom-tx-rx-sequences">
+</section>
+<section id="custom-tx-rx-sequences">
 <h3>Custom Tx/Rx sequences<a class="headerlink" href="#custom-tx-rx-sequences" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="arrus.ops.us4r.TxRxSequence">
@@ -433,9 +429,9 @@ beamforming).</p></li>
 </dl>
 </dd></dl>
 
-</div>
-</div>
-<div class="section" id="devices">
+</section>
+</section>
+<section id="devices">
 <h2>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h2>
 <p><strong>Do not create instances of the below classes directly</strong>. Use
 <code class="docutils literal notranslate"><span class="pre">session.get_device</span></code> to acquire the appropriate device, for example:
@@ -477,8 +473,8 @@ beamforming).</p></li>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">arrus.devices.device.Device</span></code></p>
 </dd></dl>
 
-</div>
-<div class="section" id="output-data">
+</section>
+<section id="output-data">
 <h2>Output data<a class="headerlink" href="#output-data" title="Permalink to this headline">¶</a></h2>
 <p>An instance of the following class is returned by the <code class="docutils literal notranslate"><span class="pre">sesion.upload</span></code> function:</p>
 <dl class="py class">
@@ -504,7 +500,7 @@ arrives.</p>
 </dd></dl>
 
 <p>Data buffers consists of multiple buffer elements.</p>
-<div class="section" id="metadata">
+<section id="metadata">
 <h3>Metadata<a class="headerlink" href="#metadata" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="arrus.metadata.ConstMetadata">
@@ -559,11 +555,11 @@ arrives.</p>
 </dl>
 </dd></dl>
 
-</div>
-</div>
-<div class="section" id="utility-functions">
+</section>
+</section>
+<section id="utility-functions">
 <h2>Utility functions<a class="headerlink" href="#utility-functions" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="b-mode-imaging-pipeline-using-cupy-numpy">
+<section id="b-mode-imaging-pipeline-using-cupy-numpy">
 <h3>B-mode imaging pipeline using cupy/numpy<a class="headerlink" href="#b-mode-imaging-pipeline-using-cupy-numpy" title="Permalink to this headline">¶</a></h3>
 <dl class="py class">
 <dt id="arrus.utils.imaging.Pipeline">
@@ -714,8 +710,8 @@ acquired frames.</p></li>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="logging">
+</section>
+<section id="logging">
 <h3>Logging<a class="headerlink" href="#logging" title="Permalink to this headline">¶</a></h3>
 <dl class="py function">
 <dt id="arrus.set_clog_level">
@@ -749,38 +745,46 @@ acquired frames.</p></li>
 <code class="docutils literal notranslate"><span class="pre">arrus.logging.WARNING</span></code>,
 <code class="docutils literal notranslate"><span class="pre">arrus.logging.ERROR</span></code>,
 <code class="docutils literal notranslate"><span class="pre">arrus.logging.FATAL</span></code></p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="misc/acknowledgments.html" class="btn btn-neutral float-right" title="Acknowledgments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="user_guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="misc/acknowledgments.html" class="btn btn-neutral float-right" title="Acknowledgments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="user_guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, us4us Ltd..
+        
+        &copy; Copyright 2021, us4us Ltd.
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

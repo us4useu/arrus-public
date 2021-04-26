@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Installation &mdash; ARRUS (python) 0.5.11-dev documentation</title>
+  <title>Installation &mdash; ARRUS (python) 0.5.13-dev documentation</title>
   
 
   
@@ -16,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -55,7 +53,7 @@
           
 
           
-            <a href="../../index.html" class="icon icon-home"> ARRUS (python)
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> ARRUS (python)
           
 
           
@@ -86,7 +84,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">User Documentation</span></p>
+              <p><span class="caption-text">User Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
@@ -108,7 +106,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<p><span class="caption-text">Miscellaneous</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/acknowledgments.html">Acknowledgments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/release_notes.html">Release notes</a></li>
@@ -152,8 +150,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -165,7 +161,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -177,19 +173,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="installation">
+  <section id="installation">
 <span id="arrus-installation"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="requirements">
+<section id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>The Microsoft® Windows 10 x64 operating system is supported.</p>
 <p>Make sure that you have installed the following dependencies:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aka.ms/vs/16/release/vc_redist.x64.exe">Microsoft Visual C++ Redistributable for Visual Studio 2017</a></p></li>
 </ul>
-</div>
-<div class="section" id="id1">
+</section>
+<section id="id1">
 <h2>Installation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="startup">
+<section id="startup">
 <h3>Startup<a class="headerlink" href="#startup" title="Permalink to this headline">¶</a></h3>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
@@ -203,16 +199,16 @@ Thunderbolt-3 cable.</p></li>
 <li><p>After Windows 10 loads, restart the notebook.</p></li>
 </ol>
 </div>
-</div>
-<div class="section" id="drivers">
+</section>
+<section id="drivers">
 <h3>Drivers<a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h3>
 <p>Make sure that your us4R-lite device is properly connected via a Thunderbolt-3
 cable and is enabled in your Thunderbolt software, e.g.:</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../../_images/thunderbolt.png"><img alt="../../_images/thunderbolt.png" src="../../_images/thunderbolt.png" style="width: 392.0px; height: 468.8px;" /></a>
-</div>
+</figure>
 <p>The <cite>Connection status</cite> should read <cite>Connected</cite> (or something similar).</p>
-<div class="section" id="uninstall-arius-drivers-if-previously-installed">
+<section id="uninstall-arius-drivers-if-previously-installed">
 <h4>Uninstall ARIUS drivers (if previously installed)<a class="headerlink" href="#uninstall-arius-drivers-if-previously-installed" title="Permalink to this headline">¶</a></h4>
 <p>If ARIUS drivers are installed on your computer, uninstall them first. ARIUS
 drivers are the legacy drivers that were required before the 0.4.3 version.</p>
@@ -221,14 +217,14 @@ drivers are the legacy drivers that were required before the 0.4.3 version.</p>
 devices available in the “Jungo Connectivity” node. <strong>Check
 “Delete the driver software for this device”</strong>.</p></li>
 </ol>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../../_images/uninstall_arius_drv.png"><img alt="../../_images/uninstall_arius_drv.png" src="../../_images/uninstall_arius_drv.png" style="width: 344.0px; height: 234.0px;" /></a>
-</div>
+</figure>
 <ol class="arabic simple" start="2">
 <li><p>Restart computer.</p></li>
 </ol>
-</div>
-<div class="section" id="install-us4oem-drivers">
+</section>
+<section id="install-us4oem-drivers">
 <h4>Install Us4OEM drivers<a class="headerlink" href="#install-us4oem-drivers" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
 <li><p>Download and extract <code class="docutils literal notranslate"><span class="pre">us4oem-drivers-1450.zip</span></code> (contact us4us support to make sure you get the newest version).</p></li>
@@ -237,60 +233,68 @@ installation if necessary.</p></li>
 </ol>
 <p><code class="docutils literal notranslate"><span class="pre">us4oem</span></code> and <code class="docutils literal notranslate"><span class="pre">WinDriver1450</span></code> nodes should now be visible in the
 Device Manager.</p>
-<div class="figure align-default">
+<figure class="align-default">
 <a class="reference internal image-reference" href="../../_images/dev_manager.png"><img alt="../../_images/dev_manager.png" src="../../_images/dev_manager.png" style="width: 153.0px; height: 76.0px;" /></a>
-</div>
-</div>
-</div>
-<div class="section" id="arrus">
+</figure>
+</section>
+</section>
+<section id="arrus">
 <h3>ARRUS<a class="headerlink" href="#arrus" title="Permalink to this headline">¶</a></h3>
 <p>Before you proceed, please make sure the device is properly connected to the computer.</p>
 <ol class="arabic simple">
-<li><p>Download and extract the <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/0.5.11-dev/arrus-0.5.11-dev.zip">arrus</a> package.</p></li>
+<li><p>Download and extract the <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/0.5.13-dev/arrus-0.5.13-dev.zip">arrus</a> package.</p></li>
 <li><p>Run the <code class="docutils literal notranslate"><span class="pre">install.exe</span></code> file and follow the instructions provided.</p></li>
 </ol>
-<div class="figure align-default" id="fig-install-result">
+<figure class="align-default" id="fig-install-result">
 <img alt="../../_images/install_result.png" src="../../_images/install_result.png" />
-</div>
-</div>
-<div class="section" id="python-api">
+</figure>
+</section>
+<section id="python-api">
 <h3>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">¶</a></h3>
 <p>Python 3.8 is required.</p>
 <p>Install whl package located in the <code class="docutils literal notranslate"><span class="pre">python</span></code> subdirectory using
 <code class="docutils literal notranslate"><span class="pre">pip</span></code> package manager.</p>
 <p>Python examples are available in <code class="docutils literal notranslate"><span class="pre">python\examples</span></code> directory.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../definitions.html" class="btn btn-neutral float-right" title="Glossary and assumptions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="../introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="../definitions.html" class="btn btn-neutral float-right" title="Glossary and assumptions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../introduction.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, us4us Ltd..
+        
+        &copy; Copyright 2021, us4us Ltd.
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

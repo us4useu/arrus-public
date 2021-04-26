@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>Us4MEX API &mdash; ARRUS (matlab) 0.5.11-dev documentation</title>
+  <title>Us4MEX API &mdash; ARRUS (matlab) 0.5.13-dev documentation</title>
   
 
   
@@ -16,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -53,7 +51,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> ARRUS (matlab)
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> ARRUS (matlab)
           
 
           
@@ -84,14 +82,14 @@
               
             
             
-              <p class="caption"><span class="caption-text">User Documentation</span></p>
+              <p><span class="caption-text">User Documentation</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/bmode_imaging.html">B-mode Imaging</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<p><span class="caption-text">Miscellaneous</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="misc/acknowledgments.html">Acknowledgments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc/release_notes.html">Release notes</a></li>
@@ -135,8 +133,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -148,7 +144,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -160,14 +156,14 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="us4mex-api">
+  <section id="us4mex-api">
 <h1>Us4MEX API<a class="headerlink" href="#us4mex-api" title="Permalink to this headline">¶</a></h1>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>The API is deprecated and will be removed in the future. We encourage you
 to use API described here: <a class="reference internal" href="api.html#arrus-api-main"><span class="std std-ref">API Reference</span></a>.</p>
 </div>
-<div class="section" id="general-formula">
+<section id="general-formula">
 <h2>General formula<a class="headerlink" href="#general-formula" title="Permalink to this headline">¶</a></h2>
 <p>Use <code class="docutils literal notranslate"><span class="pre">Us4MEX</span></code> MATLAB function to communicate with the provided hardware. This function allows to perform some particular <strong>operation</strong> with
 given <strong>parameters</strong> on a selected <strong>us4OEM module</strong> (a card).</p>
@@ -188,10 +184,10 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="system-configuration">
+</section>
+<section id="system-configuration">
 <h2>System configuration<a class="headerlink" href="#system-configuration" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="setrxchannelmapping">
+<section id="setrxchannelmapping">
 <span id="mex-setrxchannelmapping"></span><h3>SetRxChannelMapping<a class="headerlink" href="#setrxchannelmapping" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -207,8 +203,8 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="settxchannelmapping">
+</section>
+<section id="settxchannelmapping">
 <span id="mex-settxchannelmapping"></span><h3>SetTxChannelMapping<a class="headerlink" href="#settxchannelmapping" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -224,11 +220,11 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-</div>
-<div class="section" id="high-voltage-supplier">
+</section>
+</section>
+<section id="high-voltage-supplier">
 <h2>High voltage supplier<a class="headerlink" href="#high-voltage-supplier" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="enablehv">
+<section id="enablehv">
 <span id="mex-enablehv"></span><h3>EnableHV<a class="headerlink" href="#enablehv" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -236,8 +232,8 @@ to the number of available modules.</p>
 <dd><p>Enables High Voltage supplier.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="disablehv">
+</section>
+<section id="disablehv">
 <span id="mex-disablehv"></span><h3>DisableHV<a class="headerlink" href="#disablehv" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -245,8 +241,8 @@ to the number of available modules.</p>
 <dd><p>Disables High Voltage supplier.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="sethvvoltage">
+</section>
+<section id="sethvvoltage">
 <span id="mex-sethvvoltage"></span><h3>SetHVVoltage<a class="headerlink" href="#sethvvoltage" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -259,11 +255,11 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-</div>
-<div class="section" id="programming-tx-rx-sequence">
+</section>
+</section>
+<section id="programming-tx-rx-sequence">
 <h2>Programming TX/RX sequence<a class="headerlink" href="#programming-tx-rx-sequence" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="setnumberoffirings">
+<section id="setnumberoffirings">
 <span id="mex-setnumberoffirings"></span><h3>SetNumberOfFirings<a class="headerlink" href="#setnumberoffirings" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -276,8 +272,8 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="settxdelay">
+</section>
+<section id="settxdelay">
 <span id="mex-settxdelay"></span><h3>SetTxDelay<a class="headerlink" href="#settxdelay" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -297,8 +293,8 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="settxdelays">
+</section>
+<section id="settxdelays">
 <span id="mex-settxdelays"></span><h3>SetTxDelays<a class="headerlink" href="#settxdelays" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -317,8 +313,8 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="settxfrequency">
+</section>
+<section id="settxfrequency">
 <span id="mex-settxfrequency"></span><h3>SetTxFrequency<a class="headerlink" href="#settxfrequency" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -337,8 +333,8 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="settxhalfperiods">
+</section>
+<section id="settxhalfperiods">
 <span id="mex-settxhalfperiods"></span><h3>SetTxHalfPeriods<a class="headerlink" href="#settxhalfperiods" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -357,8 +353,8 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="setrxaperture">
+</section>
+<section id="setrxaperture">
 <span id="mex-setrxaperture"></span><h3>SetRxAperture<a class="headerlink" href="#setrxaperture" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -389,8 +385,8 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="settxaperture">
+</section>
+<section id="settxaperture">
 <span id="mex-settxaperture"></span><h3>SetTxAperture<a class="headerlink" href="#settxaperture" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -421,8 +417,8 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="setrxtime">
+</section>
+<section id="setrxtime">
 <span id="mex-setrxtime"></span><h3>SetRxTime<a class="headerlink" href="#setrxtime" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -438,8 +434,8 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="settxinvert">
+</section>
+<section id="settxinvert">
 <span id="mex-settxinvert"></span><h3>SetTxInvert<a class="headerlink" href="#settxinvert" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -455,8 +451,8 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="settxcw">
+</section>
+<section id="settxcw">
 <span id="mex-settxcw"></span><h3>SetTxCw<a class="headerlink" href="#settxcw" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -472,8 +468,8 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="setrxdelay">
+</section>
+<section id="setrxdelay">
 <span id="mex-setrxdelay"></span><h3>SetRxDelay<a class="headerlink" href="#setrxdelay" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -489,8 +485,8 @@ to the number of available modules.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="setactivechannelgroup">
+</section>
+<section id="setactivechannelgroup">
 <span id="mex-setactivechannelgroup"></span><h3>SetActiveChannelGroup<a class="headerlink" href="#setactivechannelgroup" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -527,11 +523,11 @@ Single group has 8 channels (single pulser).</p>
 </dl>
 </dd></dl>
 
-</div>
-</div>
-<div class="section" id="rx-settings">
+</section>
+</section>
+<section id="rx-settings">
 <h2>RX settings<a class="headerlink" href="#rx-settings" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="setpgagain">
+<section id="setpgagain">
 <span id="mex-setpgagain"></span><h3>SetPGAGain<a class="headerlink" href="#setpgagain" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -544,8 +540,8 @@ Single group has 8 channels (single pulser).</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="setlnagain">
+</section>
+<section id="setlnagain">
 <span id="mex-setlnagain"></span><h3>SetLNAGain<a class="headerlink" href="#setlnagain" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -558,8 +554,8 @@ Single group has 8 channels (single pulser).</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="setdtgc">
+</section>
+<section id="setdtgc">
 <span id="mex-setdtgc"></span><h3>SetDTGC<a class="headerlink" href="#setdtgc" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -575,8 +571,8 @@ Single group has 8 channels (single pulser).</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="tgcenable">
+</section>
+<section id="tgcenable">
 <span id="mex-tgcenable"></span><h3>TGCEnable<a class="headerlink" href="#tgcenable" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -584,8 +580,8 @@ Single group has 8 channels (single pulser).</p>
 <dd><p>Enables time gain compensation (TGC).</p>
 </dd></dl>
 
-</div>
-<div class="section" id="tgcdisable">
+</section>
+<section id="tgcdisable">
 <span id="mex-tgcdisable"></span><h3>TGCDisable<a class="headerlink" href="#tgcdisable" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -593,8 +589,8 @@ Single group has 8 channels (single pulser).</p>
 <dd><p>Disables time gain compensation (TGC).</p>
 </dd></dl>
 
-</div>
-<div class="section" id="tgcsetsamples">
+</section>
+<section id="tgcsetsamples">
 <span id="mex-tgcsetsamples"></span><h3>TGCSetSamples<a class="headerlink" href="#tgcsetsamples" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -611,8 +607,8 @@ Single group has 8 channels (single pulser).</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="setlpfcutoff">
+</section>
+<section id="setlpfcutoff">
 <span id="mex-setlpfcutoff"></span><h3>SetLPFCutoff<a class="headerlink" href="#setlpfcutoff" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -626,8 +622,8 @@ Single group has 8 channels (single pulser).</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="setactivetermination">
+</section>
+<section id="setactivetermination">
 <span id="mex-setactivetermination"></span><h3>SetActiveTermination<a class="headerlink" href="#setactivetermination" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -643,11 +639,11 @@ Single group has 8 channels (single pulser).</p>
 </dl>
 </dd></dl>
 
-</div>
-</div>
-<div class="section" id="managing-data-acquisition">
+</section>
+</section>
+<section id="managing-data-acquisition">
 <h2>Managing data acquisition<a class="headerlink" href="#managing-data-acquisition" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="clearscheduledreceive">
+<section id="clearscheduledreceive">
 <span id="mex-clearscheduledreceive"></span><h3>ClearScheduledReceive<a class="headerlink" href="#clearscheduledreceive" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -655,8 +651,8 @@ Single group has 8 channels (single pulser).</p>
 <dd><p>Clears a queue of RX tasks, should be called before defining any new TX/RX scheme.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="schedulereceive">
+</section>
+<section id="schedulereceive">
 <span id="mex-schedulereceive"></span><h3>ScheduleReceive<a class="headerlink" href="#schedulereceive" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -678,11 +674,11 @@ Data transfer starts with the next “TriggerStart” operation call.</p>
 </dl>
 </dd></dl>
 
-</div>
-</div>
-<div class="section" id="tx-triggers">
+</section>
+</section>
+<section id="tx-triggers">
 <h2>TX Triggers<a class="headerlink" href="#tx-triggers" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="setntriggers">
+<section id="setntriggers">
 <span id="mex-setntriggers"></span><h3>SetNTriggers<a class="headerlink" href="#setntriggers" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -695,8 +691,8 @@ Data transfer starts with the next “TriggerStart” operation call.</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="settrigger">
+</section>
+<section id="settrigger">
 <span id="mex-settrigger"></span><h3>SetTrigger<a class="headerlink" href="#settrigger" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -714,8 +710,8 @@ Each trigger event will generate a trigger signal for the current firing/acquisi
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="enabletransmit">
+</section>
+<section id="enabletransmit">
 <span id="mex-enabletransmit"></span><h3>EnableTransmit<a class="headerlink" href="#enabletransmit" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -723,8 +719,8 @@ Each trigger event will generate a trigger signal for the current firing/acquisi
 <dd><p>Enables TX pulse generation.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="enablesequencer">
+</section>
+<section id="enablesequencer">
 <span id="mex-enablesequencer"></span><h3>EnableSequencer<a class="headerlink" href="#enablesequencer" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -732,8 +728,8 @@ Each trigger event will generate a trigger signal for the current firing/acquisi
 <dd><p>Enables hardware sequencer.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="triggerstart">
+</section>
+<section id="triggerstart">
 <span id="mex-triggerstart"></span><h3>TriggerStart<a class="headerlink" href="#triggerstart" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -741,8 +737,8 @@ Each trigger event will generate a trigger signal for the current firing/acquisi
 <dd><p>Starts generation of the hardware trigger.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="triggerstop">
+</section>
+<section id="triggerstop">
 <span id="mex-triggerstop"></span><h3>TriggerStop<a class="headerlink" href="#triggerstop" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -750,8 +746,8 @@ Each trigger event will generate a trigger signal for the current firing/acquisi
 <dd><p>Stops generation of the hardware trigger.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="triggersync">
+</section>
+<section id="triggersync">
 <span id="mex-triggersync"></span><h3>TriggerSync<a class="headerlink" href="#triggersync" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -759,8 +755,8 @@ Each trigger event will generate a trigger signal for the current firing/acquisi
 <dd><p>Resumes generation of the hardware trigger.</p>
 </dd></dl>
 
-</div>
-<div class="section" id="swtrigger">
+</section>
+<section id="swtrigger">
 <span id="mex-swtrigger"></span><h3>SWTrigger<a class="headerlink" href="#swtrigger" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -769,8 +765,8 @@ Each trigger event will generate a trigger signal for the current firing/acquisi
 <strong>DEPRECATED:</strong> please use <cite>TriggerStart</cite>, <cite>TriggerSync</cite>, <cite>TriggerStop</cite></p>
 </dd></dl>
 
-</div>
-<div class="section" id="swnexttx">
+</section>
+<section id="swnexttx">
 <span id="mex-swnexttx"></span><h3>SWNextTX<a class="headerlink" href="#swnexttx" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -779,11 +775,11 @@ Each trigger event will generate a trigger signal for the current firing/acquisi
 <strong>DEPRECATED:</strong> please use <cite>TriggerStart</cite>, <cite>TriggerSync</cite>, <cite>TriggerStop</cite></p>
 </dd></dl>
 
-</div>
-</div>
-<div class="section" id="data-transfer-from-device-to-host">
+</section>
+</section>
+<section id="data-transfer-from-device-to-host">
 <h2>Data transfer from device to host<a class="headerlink" href="#data-transfer-from-device-to-host" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="transferrxbuffertohost">
+<section id="transferrxbuffertohost">
 <span id="mex-transferrxbuffertohost"></span><h3>TransferRXBufferToHost<a class="headerlink" href="#transferrxbuffertohost" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -804,8 +800,8 @@ of shape (number of RX channels, length)</p>
 </dl>
 </dd></dl>
 
-</div>
-<div class="section" id="transferallrxbufferstohost">
+</section>
+<section id="transferallrxbufferstohost">
 <span id="mex-transferallrxbufferstohost"></span><h3>TransferAllRXBuffersToHost<a class="headerlink" href="#transferallrxbufferstohost" title="Permalink to this headline">¶</a></h3>
 <dl class="mat function">
 <dt>
@@ -834,34 +830,37 @@ COPY ITS CONTENT TO SEPARATE ARRAY.</p>
 </dl>
 </dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, us4us Ltd..
+        
+        &copy; Copyright 2021, us4us Ltd.
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 

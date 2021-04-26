@@ -3,11 +3,12 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-  <title>User Guide &mdash; ARRUS (python) 0.5.11-dev documentation</title>
+  <title>User Guide &mdash; ARRUS (python) 0.5.13-dev documentation</title>
   
 
   
@@ -16,10 +17,7 @@
 
   
   
-
   
-  
-
   
 
   
@@ -55,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home"> ARRUS (python)
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> ARRUS (python)
           
 
           
@@ -86,7 +84,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">User Documentation</span></p>
+              <p><span class="caption-text">User Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
@@ -114,7 +112,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<p><span class="caption-text">Miscellaneous</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="misc/acknowledgments.html">Acknowledgments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc/release_notes.html">Release notes</a></li>
@@ -158,8 +156,6 @@
 
 
 
-
-
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -171,7 +167,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-          
+            
         
       </li>
     
@@ -183,12 +179,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="user-guide">
+  <section id="user-guide">
 <h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
 <p>This section describes how users can acquire data using ultrasound hardware.
 Users can communicate with the device via a communication <cite>session</cite> object.
 During the session it is possible to upload and run <cite>operations</cite>.</p>
-<div class="section" id="configuring-session">
+<section id="configuring-session">
 <h2>Configuring session<a class="headerlink" href="#configuring-session" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -198,7 +194,7 @@ if you already have a session configuration file prepared by e.g.
 us4us developers, and you don’t need to change any device-related
 parameters.</p>
 </div>
-<div class="section" id="session-configuration-file">
+<section id="session-configuration-file">
 <h3>Session configuration file<a class="headerlink" href="#session-configuration-file" title="Permalink to this headline">¶</a></h3>
 <p>A session configuration file consists of device settings valid for a given
 session.
@@ -206,7 +202,7 @@ Currently, the configuration file can be written in .prototxt file
 (a protobuf i/o format readable for humans).
 Sample configuration files are available <a class="reference external" href="https://github.com/us4useu/arrus/tree/develop/arrus/core/io/test-data">here</a>.</p>
 <p>Currently only us4R device can be configured using session configuration file.</p>
-<div class="section" id="us4r">
+<section id="us4r">
 <h4>us4R<a class="headerlink" href="#us4r" title="Permalink to this headline">¶</a></h4>
 <p>To use the us4R system in a particular session, create a field <code class="docutils literal notranslate"><span class="pre">us4r</span></code> in the
 session configuration file.</p>
@@ -238,14 +234,14 @@ in the arrus package supports only one type of HV device:</p>
 <p>To turn off the high voltage supplier, skip the <code class="docutils literal notranslate"><span class="pre">hv</span></code> field.</p>
 <p>To configure us4r’s signal transmission/data reception, it is essential to
 specify the settings of the probe and probe adapter used in the system.</p>
-<div class="section" id="specify-the-settings-of-the-probe-and-probe-adapter">
+<section id="specify-the-settings-of-the-probe-and-probe-adapter">
 <h5>Specify the settings of the probe and probe adapter<a class="headerlink" href="#specify-the-settings-of-the-probe-and-probe-adapter" title="Permalink to this headline">¶</a></h5>
 <p>Examples:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/us4useu/arrus/blob/develop/arrus/core/io/test-data/us4r.prototxt">use predefined probe and adapter</a></p></li>
 <li><p><a class="reference external" href="https://github.com/us4useu/arrus/blob/develop/arrus/core/io/test-data/custom_us4r.prototxt">create custom probe and adapter</a></p></li>
 </ul>
-<div class="section" id="probe-model">
+<section id="probe-model">
 <h6>Probe Model<a class="headerlink" href="#probe-model" title="Permalink to this headline">¶</a></h6>
 <p>The user can specify which probe model they are currently using in one of the
 following ways:</p>
@@ -293,8 +289,8 @@ following ways:</p>
 in the dictionary file.</p>
 <p>When no dictionary file is provided, the
 <a class="reference internal" href="#default-dictionary"><span class="std std-ref">Default dictionary</span></a> will be assumed.</p>
-</div>
-<div class="section" id="probe-to-adapter-connection">
+</section>
+<section id="probe-to-adapter-connection">
 <h6>Probe-to-adapter connection<a class="headerlink" href="#probe-to-adapter-connection" title="Permalink to this headline">¶</a></h6>
 <p>The <code class="docutils literal notranslate"><span class="pre">probe_to_adapter_connection</span></code> field specifies how the <code class="docutils literal notranslate"><span class="pre">probe</span></code> elements
 map to the <code class="docutils literal notranslate"><span class="pre">adapter</span></code> channels.</p>
@@ -313,8 +309,8 @@ them is already defined, this field can be omitted — the arrus package will
 try to determine the probe-adapter mapping based on the dictionary file.
 When <code class="docutils literal notranslate"><span class="pre">probe_to_adapter_connection</span></code> is still given, it will overwrite
 the settings from the dictionary file.</p>
-</div>
-<div class="section" id="rx-settings">
+</section>
+<section id="rx-settings">
 <h6>Rx Settings<a class="headerlink" href="#rx-settings" title="Permalink to this headline">¶</a></h6>
 <p>The user can specify the default data reception settings to be set on all
 system modules. To do this, add an <cite>rx_settings</cite> with the following attributes:</p>
@@ -326,8 +322,8 @@ system modules. To do this, add an <cite>rx_settings</cite> with the following a
 <li><p><code class="docutils literal notranslate"><span class="pre">lpf_cutoff</span></code>: low-pass filter cut-off frequency, available values: 10000000, 15000000, 20000000, 30000000, 35000000, 50000000 [Hz]</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">active_termination</span></code> active termination to apply, available values: 50, 100, 200, 400. Optional, no value means turn off active termination.</p></li>
 </ul>
-</div>
-<div class="section" id="channel-masks">
+</section>
+<section id="channel-masks">
 <h6>Channel masks<a class="headerlink" href="#channel-masks" title="Permalink to this headline">¶</a></h6>
 <p>To turn off specific channels of the us4R system (i.e. the probe elements),
 add both of the following fields to the <cite>us4r</cite> settings:</p>
@@ -341,11 +337,11 @@ for example by changing adapter model by mistake
 it is necessary to specify the fields:
 <cite>channels_mask</cite> and <code class="docutils literal notranslate"><span class="pre">us4oem_channels_mask</span></code>. If these two mappings do not
 match, an error will be reported at the device configuration stage.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="section" id="dictionary">
+</section>
+</section>
+</section>
+</section>
+<section id="dictionary">
 <h3>Dictionary<a class="headerlink" href="#dictionary" title="Permalink to this headline">¶</a></h3>
 <p>It is possible to specify a dictionary of probe models and adapters that are
 supported by the us4R system. To do this, add the <code class="docutils literal notranslate"><span class="pre">dictionary_file</span></code> field
@@ -390,7 +386,7 @@ that are supported by the us4R device. The file consists of the  following field
 <span class="p">]</span>
 </pre></div>
 </div>
-<div class="section" id="default-dictionary">
+<section id="default-dictionary">
 <span id="id2"></span><h4>Default dictionary<a class="headerlink" href="#default-dictionary" title="Permalink to this headline">¶</a></h4>
 <p>Arrus package already contains a dictionary files of probes and adapters that
 were tested on us4r devices.
@@ -401,7 +397,19 @@ session configuration file.</p>
 <li><p>esaote:</p>
 <ul>
 <li><p>probes: <code class="docutils literal notranslate"><span class="pre">sl1543</span></code>, <code class="docutils literal notranslate"><span class="pre">al2442</span></code>, <code class="docutils literal notranslate"><span class="pre">sp2430</span></code></p></li>
-<li><p>adpaters: <code class="docutils literal notranslate"><span class="pre">esoate</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote2</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote3</span></code></p></li>
+<li><p>adapters: <code class="docutils literal notranslate"><span class="pre">esoate</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote2</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote3</span></code></p></li>
+</ul>
+</li>
+<li><p>als:</p>
+<ul>
+<li><p>probes: <code class="docutils literal notranslate"><span class="pre">l14-6a</span></code></p></li>
+<li><p>adapters: <code class="docutils literal notranslate"><span class="pre">esaote2</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote3</span></code></p></li>
+</ul>
+</li>
+<li><p>apex:</p>
+<ul>
+<li><p>probes: <code class="docutils literal notranslate"><span class="pre">tl094</span></code></p></li>
+<li><p>adapters: <code class="docutils literal notranslate"><span class="pre">esaote2</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote3</span></code></p></li>
 </ul>
 </li>
 <li><p>ultrasonix:</p>
@@ -429,10 +437,10 @@ session configuration file.</p>
 </ul>
 </li>
 </ul>
-</div>
-</div>
-</div>
-<div class="section" id="running-example-scripts">
+</section>
+</section>
+</section>
+<section id="running-example-scripts">
 <span id="running-example"></span><h2>Running example scripts<a class="headerlink" href="#running-example-scripts" title="Permalink to this headline">¶</a></h2>
 <p>The general overview of data acquisition and processing is as follows:</p>
 <ol class="arabic simple">
@@ -444,14 +452,16 @@ session configuration file.</p>
 </ol>
 <p>Let’s delve into the details of each stage; we will describe the whole process
 on the example of a <code class="docutils literal notranslate"><span class="pre">pwi_sequence_example.py</span></code> script.</p>
-<div class="section" id="creating-scheme">
+<section id="creating-scheme">
 <h3>Creating Scheme<a class="headerlink" href="#creating-scheme" title="Permalink to this headline">¶</a></h3>
 <p>First we need to describe data acquisition process (and possibly data
 processing pipeline). In the arrus package that description is called <code class="docutils literal notranslate"><span class="pre">Scheme</span></code>.</p>
-<div class="figure align-default" id="id3">
+<figure class="align-default" id="id3">
 <span id="fig-scheme"></span><img alt="../_images/scheme.png" src="../_images/scheme.png" />
-<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">An example of scheme.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-number">Fig. 2 </span><span class="caption-text">An example of scheme.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>The <code class="docutils literal notranslate"><span class="pre">Scheme</span></code> describes:</p>
 <ul class="simple">
 <li><p>tx/rx sequence to perform on the ultrasound device (in loop),</p></li>
@@ -518,8 +528,8 @@ images into the <code class="docutils literal notranslate"><span class="pre">dis
 An optimized imaging pipeline for real-time b-mode reconstruction
 will be available soon.</p>
 </div>
-</div>
-<div class="section" id="running-the-scheme">
+</section>
+<section id="running-the-scheme">
 <h3>Running the Scheme<a class="headerlink" href="#running-the-scheme" title="Permalink to this headline">¶</a></h3>
 <p>To run the scheme:</p>
 <ol class="arabic simple">
@@ -547,8 +557,8 @@ class requires <cite>matplotlib</cite> package installed.</p>
 the current thread until the window is closed. When the program leaves the
 <code class="docutils literal notranslate"><span class="pre">arrus.Session</span></code> context manager scope, the scheme is stopped and
 the connection to all the running devices is closed.</p>
-</div>
-<div class="section" id="running-custom-callback-functions">
+</section>
+<section id="running-custom-callback-functions">
 <h3>Running custom callback functions<a class="headerlink" href="#running-custom-callback-functions" title="Permalink to this headline">¶</a></h3>
 <p>You can provide your own custom callback functions that should be run when
 raw RF channel data arrives in the ultrasound device output buffer.
@@ -566,8 +576,8 @@ In order to do that, use <code class="docutils literal notranslate"><span class=
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="implementing-custom-arrus-utils-imaging-operations">
+</section>
+<section id="implementing-custom-arrus-utils-imaging-operations">
 <h3>Implementing custom <code class="docutils literal notranslate"><span class="pre">arrus.utils.imaging</span></code> operations<a class="headerlink" href="#implementing-custom-arrus-utils-imaging-operations" title="Permalink to this headline">¶</a></h3>
 <p>It is possible to provide custom processing steps for the
 <code class="docutils literal notranslate"><span class="pre">arrus.utils.imaging</span></code> package. In order to do that, you have to implement
@@ -605,38 +615,46 @@ the following interface:</p>
     <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
            
           </div>
           <footer>
+  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-        <a href="definitions.html" class="btn btn-neutral float-left" title="Glossary and assumptions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="definitions.html" class="btn btn-neutral float-left" title="Glossary and assumptions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
     </div>
+  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        &#169; Copyright 2021, us4us Ltd..
+        
+        &copy; Copyright 2021, us4us Ltd.
 
     </p>
   </div>
     
     
     
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
+
         </div>
       </div>
 
