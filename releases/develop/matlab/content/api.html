@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>API Reference &mdash; ARRUS (matlab) 0.5.13-dev documentation</title>
+  <title>API Reference &mdash; ARRUS (matlab) 0.6.0-dev documentation</title>
   
 
   
@@ -397,6 +397,20 @@ will be set to 54 dB (if &gt; 54 dB) or 14 dB (if &lt;14 dB)</p>
 <li><p><strong>decimation</strong> – decimation factor</p></li>
 <li><p><strong>xGrid</strong> – (1, width) vector, x-coordinates of the image pixels [m]</p></li>
 <li><p><strong>zGrid</strong> – (1, depth) vector z-coordinates of the image pixels [m]</p></li>
+<li><p><strong>bmodeEnable</strong> – boolean, enable B-Mode reconstruction</p></li>
+<li><p><strong>colorEnable</strong> – boolean, enable Color Doppler reconstruction and duplex imaging</p></li>
+<li><p><strong>vectorEnable</strong> – boolean, enable Vector Doppler reconstruction and duplex imaging</p></li>
+<li><p><strong>bmodeFrames</strong> – selects frames to be used in B-Mode reconstruction</p></li>
+<li><p><strong>colorFrames</strong> – selects frames to be used in Color Doppler reconstruction</p></li>
+<li><p><strong>vector0Frames</strong> – selects frames to be used in Vector Doppler reconstruction as 1st projection</p></li>
+<li><p><strong>vector1Frames</strong> – selects frames to be used in Vector Doppler reconstruction as 2nd projection</p></li>
+<li><p><strong>bmodeRxTangLim</strong> – rx tangent limits for B-Mode</p></li>
+<li><p><strong>colorRxTangLim</strong> – rx tangent limits for Color Doppler</p></li>
+<li><p><strong>vector0RxTangLim</strong> – rx tangent limits for Vector Doppler (1st projection)</p></li>
+<li><p><strong>vector1RxTangLim</strong> – rx tangent limits for Vector Doppler (2nd projection)</p></li>
+<li><p><strong>wcFilterACoeff</strong> – 1-D filter denominator coefficient (Wall Clutter Filter for Color/Vector Doppler)</p></li>
+<li><p><strong>wcFilterBCoeff</strong> – 1-D filter numerator coefficient (Wall Clutter Filter for Color/Vector Doppler)</p></li>
+<li><p><strong>wcFiltInitSize</strong> – number of initial filter output samples to be rejected</p></li>
 </ul>
 </dd>
 </dl>

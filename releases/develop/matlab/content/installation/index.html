@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installation &mdash; ARRUS (matlab) 0.5.13-dev documentation</title>
+  <title>Installation &mdash; ARRUS (matlab) 0.6.0-dev documentation</title>
   
 
   
@@ -241,7 +241,7 @@ Device Manager.</p>
 <h3>ARRUS<a class="headerlink" href="#arrus" title="Permalink to this headline">¶</a></h3>
 <p>Before you proceed, please make sure the device is properly connected to the computer.</p>
 <ol class="arabic simple">
-<li><p>Download and extract the <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/0.5.13-dev/arrus-0.5.13-dev.zip">arrus</a> package.</p></li>
+<li><p>Download and extract the <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/0.6.0-dev/arrus-0.6.0-dev.zip">arrus</a> package.</p></li>
 <li><p>Run the <code class="docutils literal notranslate"><span class="pre">install.exe</span></code> file and follow the instructions provided.</p></li>
 </ol>
 <figure class="align-default" id="fig-install-result">
@@ -250,7 +250,11 @@ Device Manager.</p>
 </section>
 <section id="matlab-api">
 <h3>MATLAB API<a class="headerlink" href="#matlab-api" title="Permalink to this headline">¶</a></h3>
-<p>MATLAB 2018b is required.</p>
+<p>Requirements:</p>
+<ul class="simple">
+<li><p>MATLAB 2019a,</p></li>
+<li><p>NVIDIA CUDA Toolkit 10.0.</p></li>
+</ul>
 <p>Add <code class="docutils literal notranslate"><span class="pre">matlab\arrus</span></code> subdirectory to the MATLAB search paths.</p>
 <p>To check if everything is ok run script
 <code class="docutils literal notranslate"><span class="pre">matlab\examples\Us4R_control.m</span></code> (for Esaote adapter) or

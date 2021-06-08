@@ -8,7 +8,7 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>User Guide &mdash; ARRUS (cpp) 0.5.13-dev documentation</title>
+  <title>User Guide &mdash; ARRUS (cpp) 0.6.0-dev documentation</title>
   
 
   
@@ -441,10 +441,10 @@ session configuration file.</p>
 <span class="cp">#include</span> <span class="cpf">&lt;arrus/core/api/arrus.h&gt;</span><span class="cp"></span>
 
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="k">noexcept</span> <span class="p">{</span>
-    <span class="k">using</span> <span class="k">namespace</span> <span class="o">::</span><span class="n">arrus</span><span class="o">::</span><span class="n">session</span><span class="p">;</span>
-    <span class="k">using</span> <span class="k">namespace</span> <span class="o">::</span><span class="n">arrus</span><span class="o">::</span><span class="n">devices</span><span class="p">;</span>
-    <span class="k">using</span> <span class="k">namespace</span> <span class="o">::</span><span class="n">arrus</span><span class="o">::</span><span class="n">ops</span><span class="o">::</span><span class="n">us4r</span><span class="p">;</span>
-    <span class="k">using</span> <span class="k">namespace</span> <span class="o">::</span><span class="n">arrus</span><span class="o">::</span><span class="n">framework</span><span class="p">;</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="o">::</span><span class="nn">arrus</span><span class="o">::</span><span class="nn">session</span><span class="p">;</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="o">::</span><span class="nn">arrus</span><span class="o">::</span><span class="nn">devices</span><span class="p">;</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="o">::</span><span class="nn">arrus</span><span class="o">::</span><span class="nn">ops</span><span class="o">::</span><span class="nn">us4r</span><span class="p">;</span>
+    <span class="k">using</span> <span class="k">namespace</span> <span class="o">::</span><span class="nn">arrus</span><span class="o">::</span><span class="nn">framework</span><span class="p">;</span>
     <span class="k">try</span> <span class="p">{</span>
         <span class="c1">// Read session configuration from the file.</span>
         <span class="k">auto</span> <span class="n">settings</span> <span class="o">=</span> <span class="o">::</span><span class="n">arrus</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">readSessionSettings</span><span class="p">(</span>
@@ -458,11 +458,11 @@ session configuration file.</p>
         <span class="c1">// Tx/Rx sequence:</span>
         <span class="c1">// Common Tx parameters:</span>
         <span class="o">::</span><span class="n">arrus</span><span class="o">::</span><span class="n">BitMask</span> <span class="n">rxAperture</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
-        <span class="n">Pulse</span> <span class="n">pulse</span><span class="p">(</span><span class="mf">4e6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+        <span class="n">Pulse</span> <span class="nf">pulse</span><span class="p">(</span><span class="mf">4e6</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
 
         <span class="c1">// Common Rx parameters:</span>
         <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span> <span class="n">delays</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="mf">0.0f</span><span class="p">);</span>
-        <span class="n">arrus</span><span class="o">::</span><span class="n">BitMask</span> <span class="n">txAperture</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+        <span class="n">arrus</span><span class="o">::</span><span class="n">BitMask</span> <span class="nf">txAperture</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
         <span class="kt">float</span> <span class="n">pri</span> <span class="o">=</span> <span class="mf">200e-6f</span><span class="p">;</span>
         <span class="o">::</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;::</span><span class="n">arrus</span><span class="o">::</span><span class="n">uint32</span><span class="p">,</span> <span class="n">arrus</span><span class="o">::</span><span class="n">uint32</span><span class="o">&gt;</span> <span class="n">sampleRange</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2048</span><span class="p">};</span>
         <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TxRx</span><span class="o">&gt;</span> <span class="n">txrxs</span><span class="p">;</span>
@@ -476,7 +476,7 @@ session configuration file.</p>
         <span class="c1">// Define RF channel data output buffer.</span>
         <span class="n">DataBufferSpec</span> <span class="n">outputBuffer</span><span class="p">{</span><span class="n">DataBufferSpec</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">FIFO</span><span class="p">,</span> <span class="mi">4</span><span class="p">};</span>
         <span class="c1">// Define scheme to execute.</span>
-        <span class="n">Scheme</span> <span class="n">scheme</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">outputBuffer</span><span class="p">,</span> <span class="n">Scheme</span><span class="o">::</span><span class="n">WorkMode</span><span class="o">::</span><span class="n">ASYNC</span><span class="p">);</span>
+        <span class="n">Scheme</span> <span class="nf">scheme</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">outputBuffer</span><span class="p">,</span> <span class="n">Scheme</span><span class="o">::</span><span class="n">WorkMode</span><span class="o">::</span><span class="n">ASYNC</span><span class="p">);</span>
 
         <span class="c1">// Upload the scheme.</span>
         <span class="k">auto</span> <span class="n">result</span> <span class="o">=</span> <span class="n">session</span><span class="o">-&gt;</span><span class="n">upload</span><span class="p">(</span><span class="n">scheme</span><span class="p">);</span>
@@ -488,7 +488,7 @@ session configuration file.</p>
         <span class="c1">// that currently occurred and stops the session when a 10th frame is</span>
         <span class="c1">// acquired.</span>
         <span class="n">std</span><span class="o">::</span><span class="n">condition_variable</span> <span class="n">cv</span><span class="p">;</span>
-        <span class="k">using</span> <span class="k">namespace</span> <span class="n">std</span><span class="o">::</span><span class="n">chrono_literals</span><span class="p">;</span>
+        <span class="k">using</span> <span class="k">namespace</span> <span class="nn">std</span><span class="o">::</span><span class="nn">chrono_literals</span><span class="p">;</span>
         <span class="n">OnNewDataCallback</span> <span class="n">callback</span> <span class="o">=</span> <span class="p">[</span><span class="o">&amp;</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">](</span><span class="k">const</span> <span class="n">BufferElement</span><span class="o">::</span><span class="n">SharedHandle</span> <span class="o">&amp;</span><span class="n">ptr</span><span class="p">)</span> <span class="k">mutable</span> <span class="p">{</span>
             <span class="k">try</span> <span class="p">{</span>
                 <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;Iteration: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">i</span> <span class="o">&lt;&lt;</span> <span class="s">&quot;, data: &quot;</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
