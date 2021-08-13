@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>Installation &mdash; ARRUS (python) 0.6.0-dev documentation</title>
@@ -84,7 +83,7 @@
               
             
             
-              <p><span class="caption-text">User Documentation</span></p>
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../introduction.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
@@ -104,9 +103,10 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../definitions.html">Glossary and assumptions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../user_guide.html">User Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../api.html">API Reference</a></li>
 </ul>
-<p><span class="caption-text">Miscellaneous</span></p>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../misc/acknowledgments.html">Acknowledgments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../misc/release_notes.html">Release notes</a></li>
@@ -173,19 +173,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="installation">
+  <div class="section" id="installation">
 <span id="arrus-installation"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<section id="requirements">
+<div class="section" id="requirements">
 <h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
 <p>The Microsoft® Windows 10 x64 operating system is supported.</p>
 <p>Make sure that you have installed the following dependencies:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://aka.ms/vs/16/release/vc_redist.x64.exe">Microsoft Visual C++ Redistributable for Visual Studio 2017</a></p></li>
 </ul>
-</section>
-<section id="id1">
+</div>
+<div class="section" id="id1">
 <h2>Installation<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
-<section id="startup">
+<div class="section" id="startup">
 <h3>Startup<a class="headerlink" href="#startup" title="Permalink to this headline">¶</a></h3>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
@@ -199,32 +199,32 @@ Thunderbolt-3 cable.</p></li>
 <li><p>After Windows 10 loads, restart the notebook.</p></li>
 </ol>
 </div>
-</section>
-<section id="drivers">
+</div>
+<div class="section" id="drivers">
 <h3>Drivers<a class="headerlink" href="#drivers" title="Permalink to this headline">¶</a></h3>
 <p>Make sure that your us4R-lite device is properly connected via a Thunderbolt-3
 cable and is enabled in your Thunderbolt software, e.g.:</p>
-<figure class="align-default">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/thunderbolt.png"><img alt="../../_images/thunderbolt.png" src="../../_images/thunderbolt.png" style="width: 392.0px; height: 468.8px;" /></a>
-</figure>
+</div>
 <p>The <cite>Connection status</cite> should read <cite>Connected</cite> (or something similar).</p>
-<section id="uninstall-arius-drivers-if-previously-installed">
+<div class="section" id="uninstall-arius-drivers-if-previously-installed">
 <h4>Uninstall ARIUS drivers (if previously installed)<a class="headerlink" href="#uninstall-arius-drivers-if-previously-installed" title="Permalink to this headline">¶</a></h4>
 <p>If ARIUS drivers are installed on your computer, uninstall them first. ARIUS
 drivers are the legacy drivers that were required before the 0.4.3 version.</p>
 <ol class="arabic simple">
-<li><p>Open the Windows Device Manager, uninstall all <code class="docutils literal notranslate"><span class="pre">ARIUS</span></code> and <code class="docutils literal notranslate"><span class="pre">WinDriver1290</span></code>
+<li><p>Open the Windows Device Manager, uninstall all <code class="docutils literal notranslate"><span class="pre">ARIUS</span></code> or <code class="docutils literal notranslate"><span class="pre">WinDriver1290</span></code> or <code class="docutils literal notranslate"><span class="pre">us4oem</span></code>
 devices available in the “Jungo Connectivity” node. <strong>Check
 “Delete the driver software for this device”</strong>.</p></li>
 </ol>
-<figure class="align-default">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/uninstall_arius_drv.png"><img alt="../../_images/uninstall_arius_drv.png" src="../../_images/uninstall_arius_drv.png" style="width: 344.0px; height: 234.0px;" /></a>
-</figure>
+</div>
 <ol class="arabic simple" start="2">
 <li><p>Restart computer.</p></li>
 </ol>
-</section>
-<section id="install-us4oem-drivers">
+</div>
+<div class="section" id="install-us4oem-drivers">
 <h4>Install Us4OEM drivers<a class="headerlink" href="#install-us4oem-drivers" title="Permalink to this headline">¶</a></h4>
 <ol class="arabic simple">
 <li><p>Download and extract <code class="docutils literal notranslate"><span class="pre">us4oem-drivers-1450.zip</span></code> (contact us4us support to make sure you get the newest version).</p></li>
@@ -233,31 +233,35 @@ installation if necessary.</p></li>
 </ol>
 <p><code class="docutils literal notranslate"><span class="pre">us4oem</span></code> and <code class="docutils literal notranslate"><span class="pre">WinDriver1450</span></code> nodes should now be visible in the
 Device Manager.</p>
-<figure class="align-default">
+<div class="figure align-default">
 <a class="reference internal image-reference" href="../../_images/dev_manager.png"><img alt="../../_images/dev_manager.png" src="../../_images/dev_manager.png" style="width: 153.0px; height: 76.0px;" /></a>
-</figure>
-</section>
-</section>
-<section id="arrus">
+</div>
+</div>
+</div>
+<div class="section" id="arrus">
 <h3>ARRUS<a class="headerlink" href="#arrus" title="Permalink to this headline">¶</a></h3>
 <p>Before you proceed, please make sure the device is properly connected to the computer.</p>
 <ol class="arabic simple">
 <li><p>Download and extract the <a class="reference external" href="https://github.com/us4useu/arrus-public/releases/download/0.6.0-dev/arrus-0.6.0-dev.zip">arrus</a> package.</p></li>
 <li><p>Run the <code class="docutils literal notranslate"><span class="pre">install.exe</span></code> file and follow the instructions provided.</p></li>
 </ol>
-<figure class="align-default" id="fig-install-result">
+<div class="figure align-default" id="fig-install-result">
 <img alt="../../_images/install_result.png" src="../../_images/install_result.png" />
-</figure>
-</section>
-<section id="python-api">
+</div>
+</div>
+<div class="section" id="python-api">
 <h3>Python API<a class="headerlink" href="#python-api" title="Permalink to this headline">¶</a></h3>
 <p>Python 3.8 is required.</p>
 <p>Install whl package located in the <code class="docutils literal notranslate"><span class="pre">python</span></code> subdirectory using
-<code class="docutils literal notranslate"><span class="pre">pip</span></code> package manager.</p>
-<p>Python examples are available in <code class="docutils literal notranslate"><span class="pre">python\examples</span></code> directory.</p>
-</section>
-</section>
-</section>
+<code class="docutils literal notranslate"><span class="pre">pip</span></code> package manager:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip uninstall arrus</span>
+<span class="go">pip install  arrus-x.y.z-py3-none-any.whl</span>
+</pre></div>
+</div>
+<p>Where x.y.z is the current version of ARRUS package.</p>
+</div>
+</div>
+</div>
 
 
            </div>

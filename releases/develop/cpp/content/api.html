@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>C++ API Reference &mdash; ARRUS (cpp) 0.6.0-dev documentation</title>
@@ -83,7 +82,7 @@
               
             
             
-              <p><span class="caption-text">User Documentation</span></p>
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
@@ -101,7 +100,7 @@
 </ul>
 </li>
 </ul>
-<p><span class="caption-text">Miscellaneous</span></p>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="misc/acknowledgments.html">Acknowledgments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc/release_notes.html">Release notes</a></li>
@@ -168,20 +167,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="c-api-reference">
-<h1>C++ API Reference<a class="headerlink" href="#c-api-reference" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="c-api-reference">
+<span id="arrus-api"></span><h1>C++ API Reference<a class="headerlink" href="#c-api-reference" title="Permalink to this headline">¶</a></h1>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>ARRUS C++ API is currently under development and its API will be modified in the future. Please expect breaking changes.</p>
 </div>
-<section id="notation">
+<div class="section" id="notation">
 <h2>Notation<a class="headerlink" href="#notation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Class::Handle</span></code> is a typedef for <code class="docutils literal notranslate"><span class="pre">std::unique_ptr&lt;Class&gt;</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Class::SharedHandle</span></code> is a typedef for <code class="docutils literal notranslate"><span class="pre">std::shared_ptr&lt;Class&gt;</span></code></p></li>
 </ul>
-</section>
-<section id="session">
+</div>
+<div class="section" id="session">
 <h2>Session<a class="headerlink" href="#session" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp function">
 <dt id="_CPPv4N5arrus7session13createSessionERKNSt6stringE">
@@ -262,10 +261,10 @@
 </div>
 </dd></dl>
 
-</section>
-<section id="operations">
+</div>
+<div class="section" id="operations">
 <h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
-<section id="scheme">
+<div class="section" id="scheme">
 <h3>Scheme<a class="headerlink" href="#scheme" title="Permalink to this headline">¶</a></h3>
 <dl class="cpp class">
 <dt id="_CPPv4N5arrus3ops4us4r6SchemeE">
@@ -360,8 +359,8 @@
 </div>
 </dd></dl>
 
-</section>
-<section id="custom-tx-rx-sequences">
+</div>
+<div class="section" id="custom-tx-rx-sequences">
 <h3>Custom Tx/Rx sequences<a class="headerlink" href="#custom-tx-rx-sequences" title="Permalink to this headline">¶</a></h3>
 <dl class="cpp class">
 <dt id="_CPPv4N5arrus3ops4us4r12TxRxSequenceE">
@@ -547,9 +546,9 @@
 <dd><p>TGC curve to apply on the us4r device. </p>
 </dd></dl>
 
-</section>
-</section>
-<section id="devices">
+</div>
+</div>
+<div class="section" id="devices">
 <h2>Devices<a class="headerlink" href="#devices" title="Permalink to this headline">¶</a></h2>
 <dl class="cpp class">
 <dt id="_CPPv4N5arrus7devices4Us4RE">
@@ -577,8 +576,8 @@
 </div>
 </dd></dl>
 
-</section>
-<section id="output-data">
+</div>
+<div class="section" id="output-data">
 <h2>Output data<a class="headerlink" href="#output-data" title="Permalink to this headline">¶</a></h2>
 <p>An instance of the following class is returned by the <code class="docutils literal notranslate"><span class="pre">sesion.upload</span></code> function:</p>
 <dl class="cpp class">
@@ -846,8 +845,8 @@ key <code class="docutils literal notranslate"><span class="pre">frameChannelMap
 </div>
 </dd></dl>
 
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

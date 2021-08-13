@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>User Guide &mdash; ARRUS (python) 0.6.0-dev documentation</title>
@@ -38,7 +37,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="API Reference" href="api.html" />
+    <link rel="next" title="Examples" href="examples.html" />
     <link rel="prev" title="Glossary and assumptions" href="definitions.html" /> 
 </head>
 
@@ -84,7 +83,7 @@
               
             
             
-              <p><span class="caption-text">User Documentation</span></p>
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
@@ -102,7 +101,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#running-example-scripts">Running example scripts</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#creating-scheme">Creating Scheme</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#creating-scheme">Creating Scheme</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#tx-rx-sequence">TX/RX Sequence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#processing">Processing</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#work-mode">Work mode</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#running-the-scheme">Running the Scheme</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#running-custom-callback-functions">Running custom callback functions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#implementing-custom-arrus-utils-imaging-operations">Implementing custom <code class="docutils literal notranslate"><span class="pre">arrus.utils.imaging</span></code> operations</a></li>
@@ -110,9 +114,10 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
-<p><span class="caption-text">Miscellaneous</span></p>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="misc/acknowledgments.html">Acknowledgments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc/release_notes.html">Release notes</a></li>
@@ -179,30 +184,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="user-guide">
-<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="user-guide">
+<span id="arrus-user-guide"></span><h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
 <p>This section describes how users can acquire data using ultrasound hardware.
 Users can communicate with the device via a communication <cite>session</cite> object.
 During the session it is possible to upload and run <cite>operations</cite>.</p>
-<section id="configuring-session">
+<div class="section" id="configuring-session">
 <h2>Configuring session<a class="headerlink" href="#configuring-session" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The below sections contains details on how to configure the
-provided hardware. You can skip to <a class="reference internal" href="#running-example"><span class="std std-ref">Running example scripts</span></a>
+provided hardware. You can skip to the section how to run examples
 if you already have a session configuration file prepared by e.g.
 us4us developers, and you don’t need to change any device-related
 parameters.</p>
 </div>
-<section id="session-configuration-file">
+<div class="section" id="session-configuration-file">
 <h3>Session configuration file<a class="headerlink" href="#session-configuration-file" title="Permalink to this headline">¶</a></h3>
 <p>A session configuration file consists of device settings valid for a given
 session.
 Currently, the configuration file can be written in .prototxt file
-(a protobuf i/o format readable for humans).
+(a protobuf I/O format readable for humans).
 Sample configuration files are available <a class="reference external" href="https://github.com/us4useu/arrus/tree/develop/arrus/core/io/test-data">here</a>.</p>
 <p>Currently only us4R device can be configured using session configuration file.</p>
-<section id="us4r">
+<div class="section" id="us4r">
 <h4>us4R<a class="headerlink" href="#us4r" title="Permalink to this headline">¶</a></h4>
 <p>To use the us4R system in a particular session, create a field <code class="docutils literal notranslate"><span class="pre">us4r</span></code> in the
 session configuration file.</p>
@@ -221,8 +226,13 @@ session configuration file.</p>
 </pre></div>
 </div>
 <p>The us4R device typically includes a high voltage supplier,
-which can be configured by providing the <code class="docutils literal notranslate"><span class="pre">hv</span></code> field. For now, the us4R device
-in the arrus package supports only one type of HV device:</p>
+which can be configured by providing the <code class="docutils literal notranslate"><span class="pre">hv</span></code> field. The following power
+supplies are currently supported:</p>
+<ul class="simple">
+<li><p>us4R-Lite systems: manufacturer: <code class="docutils literal notranslate"><span class="pre">us4us</span></code>, name: <code class="docutils literal notranslate"><span class="pre">hv256</span></code>,</p></li>
+<li><p>us4R systems: manufacturer: <code class="docutils literal notranslate"><span class="pre">us4us</span></code>, name: <code class="docutils literal notranslate"><span class="pre">us4rpsc</span></code>.</p></li>
+</ul>
+<p>Example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hv</span><span class="p">:</span> <span class="p">{</span>
   <span class="n">model_id</span> <span class="p">{</span>
     <span class="n">manufacturer</span><span class="p">:</span> <span class="s2">&quot;us4us&quot;</span>
@@ -234,19 +244,19 @@ in the arrus package supports only one type of HV device:</p>
 <p>To turn off the high voltage supplier, skip the <code class="docutils literal notranslate"><span class="pre">hv</span></code> field.</p>
 <p>To configure us4r’s signal transmission/data reception, it is essential to
 specify the settings of the probe and probe adapter used in the system.</p>
-<section id="specify-the-settings-of-the-probe-and-probe-adapter">
+<div class="section" id="specify-the-settings-of-the-probe-and-probe-adapter">
 <h5>Specify the settings of the probe and probe adapter<a class="headerlink" href="#specify-the-settings-of-the-probe-and-probe-adapter" title="Permalink to this headline">¶</a></h5>
 <p>Examples:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/us4useu/arrus/blob/develop/arrus/core/io/test-data/us4r.prototxt">use predefined probe and adapter</a></p></li>
 <li><p><a class="reference external" href="https://github.com/us4useu/arrus/blob/develop/arrus/core/io/test-data/custom_us4r.prototxt">create custom probe and adapter</a></p></li>
 </ul>
-<section id="probe-model">
+<div class="section" id="probe-model">
 <h6>Probe Model<a class="headerlink" href="#probe-model" title="Permalink to this headline">¶</a></h6>
 <p>The user can specify which probe model they are currently using in one of the
 following ways:</p>
 <ol class="arabic simple">
-<li><p>describe probe model by the providing <code class="docutils literal notranslate"><span class="pre">probe</span></code> field, e.g.:</p></li>
+<li><p>describe probe model by providing the <code class="docutils literal notranslate"><span class="pre">probe</span></code> field, e.g.:</p></li>
 </ol>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">probe</span><span class="p">:</span> <span class="p">{</span>
   <span class="nb">id</span><span class="p">:</span> <span class="p">{</span>
@@ -287,10 +297,9 @@ following ways:</p>
 </div>
 <p>If the latter method is used, the probe model description will be searched
 in the dictionary file.</p>
-<p>When no dictionary file is provided, the
-<a class="reference internal" href="#default-dictionary"><span class="std std-ref">Default dictionary</span></a> will be assumed.</p>
-</section>
-<section id="probe-to-adapter-connection">
+<p>When no dictionary file is provided, the <a class="reference internal" href="#arrus-default-dictionary"><span class="std std-ref">Default dictionary</span></a> will be assumed.</p>
+</div>
+<div class="section" id="probe-to-adapter-connection">
 <h6>Probe-to-adapter connection<a class="headerlink" href="#probe-to-adapter-connection" title="Permalink to this headline">¶</a></h6>
 <p>The <code class="docutils literal notranslate"><span class="pre">probe_to_adapter_connection</span></code> field specifies how the <code class="docutils literal notranslate"><span class="pre">probe</span></code> elements
 map to the <code class="docutils literal notranslate"><span class="pre">adapter</span></code> channels.</p>
@@ -309,8 +318,8 @@ them is already defined, this field can be omitted — the arrus package will
 try to determine the probe-adapter mapping based on the dictionary file.
 When <code class="docutils literal notranslate"><span class="pre">probe_to_adapter_connection</span></code> is still given, it will overwrite
 the settings from the dictionary file.</p>
-</section>
-<section id="rx-settings">
+</div>
+<div class="section" id="rx-settings">
 <h6>Rx Settings<a class="headerlink" href="#rx-settings" title="Permalink to this headline">¶</a></h6>
 <p>The user can specify the default data reception settings to be set on all
 system modules. To do this, add an <cite>rx_settings</cite> with the following attributes:</p>
@@ -322,8 +331,8 @@ system modules. To do this, add an <cite>rx_settings</cite> with the following a
 <li><p><code class="docutils literal notranslate"><span class="pre">lpf_cutoff</span></code>: low-pass filter cut-off frequency, available values: 10000000, 15000000, 20000000, 30000000, 35000000, 50000000 [Hz]</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">active_termination</span></code> active termination to apply, available values: 50, 100, 200, 400. Optional, no value means turn off active termination.</p></li>
 </ul>
-</section>
-<section id="channel-masks">
+</div>
+<div class="section" id="channel-masks">
 <h6>Channel masks<a class="headerlink" href="#channel-masks" title="Permalink to this headline">¶</a></h6>
 <p>To turn off specific channels of the us4R system (i.e. the probe elements),
 add both of the following fields to the <cite>us4r</cite> settings:</p>
@@ -337,11 +346,11 @@ for example by changing adapter model by mistake
 it is necessary to specify the fields:
 <cite>channels_mask</cite> and <code class="docutils literal notranslate"><span class="pre">us4oem_channels_mask</span></code>. If these two mappings do not
 match, an error will be reported at the device configuration stage.</p>
-</section>
-</section>
-</section>
-</section>
-<section id="dictionary">
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dictionary">
 <h3>Dictionary<a class="headerlink" href="#dictionary" title="Permalink to this headline">¶</a></h3>
 <p>It is possible to specify a dictionary of probe models and adapters that are
 supported by the us4R system. To do this, add the <code class="docutils literal notranslate"><span class="pre">dictionary_file</span></code> field
@@ -350,9 +359,9 @@ to the configuration file:</p>
 </pre></div>
 </div>
 <p>Currently, the <code class="docutils literal notranslate"><span class="pre">dictionary.prototxt</span></code> file will be searched in the same
-directory where session settings is located.</p>
-<p>When no dictionary file is provided, the
-<span class="xref std std-ref">default_dictionary</span> is assumed.</p>
+directory where session settings file is located.</p>
+<p>When no dictionary file is provided, the <a class="reference internal" href="#arrus-default-dictionary"><span class="std std-ref">Default dictionary</span></a>
+is assumed.</p>
 <p>An example dictionary is available here:
 <a class="reference external" href="https://github.com/us4useu/arrus/blob/develop/arrus/core/io/test-data/dictionary.prototxt">https://github.com/us4useu/arrus/blob/develop/arrus/core/io/test-data/dictionary.prototxt</a></p>
 <p>The dictionary file contains a description of ultrasound probes and adapters
@@ -386,8 +395,8 @@ that are supported by the us4R device. The file consists of the  following field
 <span class="p">]</span>
 </pre></div>
 </div>
-<section id="default-dictionary">
-<span id="id2"></span><h4>Default dictionary<a class="headerlink" href="#default-dictionary" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="default-dictionary">
+<span id="arrus-default-dictionary"></span><h4>Default dictionary<a class="headerlink" href="#default-dictionary" title="Permalink to this headline">¶</a></h4>
 <p>Arrus package already contains a dictionary files of probes and adapters that
 were tested on us4r devices.
 To use the default dictionary, omit providing <code class="docutils literal notranslate"><span class="pre">dictionary_file</span></code> field in your
@@ -397,7 +406,7 @@ session configuration file.</p>
 <li><p>esaote:</p>
 <ul>
 <li><p>probes: <code class="docutils literal notranslate"><span class="pre">sl1543</span></code>, <code class="docutils literal notranslate"><span class="pre">al2442</span></code>, <code class="docutils literal notranslate"><span class="pre">sp2430</span></code></p></li>
-<li><p>adapters: <code class="docutils literal notranslate"><span class="pre">esoate</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote2</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote3</span></code></p></li>
+<li><p>adapters: <code class="docutils literal notranslate"><span class="pre">esoate</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote2</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote3</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote2-us4r6</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote3-us4r6</span></code></p></li>
 </ul>
 </li>
 <li><p>als:</p>
@@ -437,11 +446,11 @@ session configuration file.</p>
 </ul>
 </li>
 </ul>
-</section>
-</section>
-</section>
-<section id="running-example-scripts">
-<span id="running-example"></span><h2>Running example scripts<a class="headerlink" href="#running-example-scripts" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+</div>
+<div class="section" id="running-example-scripts">
+<span id="arrus-running-example"></span><h2>Running example scripts<a class="headerlink" href="#running-example-scripts" title="Permalink to this headline">¶</a></h2>
 <p>The general overview of data acquisition and processing is as follows:</p>
 <ol class="arabic simple">
 <li><p>prepare scheme to be executed on the devices,</p></li>
@@ -452,36 +461,37 @@ session configuration file.</p>
 </ol>
 <p>Let’s delve into the details of each stage; we will describe the whole process
 on the example of a <code class="docutils literal notranslate"><span class="pre">pwi_sequence_example.py</span></code> script.</p>
-<section id="creating-scheme">
-<h3>Creating Scheme<a class="headerlink" href="#creating-scheme" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="creating-scheme">
+<span id="arrus-creating-scheme"></span><h3>Creating Scheme<a class="headerlink" href="#creating-scheme" title="Permalink to this headline">¶</a></h3>
 <p>First we need to describe data acquisition process (and possibly data
 processing pipeline). In the arrus package that description is called <code class="docutils literal notranslate"><span class="pre">Scheme</span></code>.</p>
-<figure class="align-default" id="id3">
+<div class="figure align-default" id="id2">
 <span id="fig-scheme"></span><img alt="../_images/scheme.png" src="../_images/scheme.png" />
-<figcaption>
-<p><span class="caption-number">Fig. 2 </span><span class="caption-text">An example of scheme.</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-number">Fig. 2 </span><span class="caption-text">An example of scheme.</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">Scheme</span></code> describes:</p>
 <ul class="simple">
 <li><p>tx/rx sequence to perform on the ultrasound device (in loop),</p></li>
-<li><p>description of the output buffer to which the data should be written,</p></li>
-<li><p>ultrasound device work mode,</p></li>
-<li><p><cite>optional</cite>: data processing pipeline to run when new data arrives in the ultrasound device output buffer.</p></li>
+<li><p><cite>optional</cite>: data processing pipeline to run when new data arrives,</p></li>
+<li><p><cite>optional</cite>: description of the output buffer on host computer, to which the
+data should be written,</p></li>
+<li><p><cite>optional</cite>: ultrasound device work mode: “HOST” or “ASYNC” mode.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">scheme</span> <span class="o">=</span> <span class="n">Scheme</span><span class="p">(</span>
-    <span class="n">tx_rx_sequence</span><span class="o">=</span><span class="n">sequence</span>
+    <span class="n">tx_rx_sequence</span><span class="o">=</span><span class="n">sequence</span><span class="p">,</span>
+    <span class="n">processing</span><span class="o">=</span><span class="n">processing_pipeline</span><span class="p">,</span>
     <span class="n">rx_buffer_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
     <span class="n">output_buffer</span><span class="o">=</span><span class="n">DataBufferSpec</span><span class="p">(</span><span class="nb">type</span><span class="o">=</span><span class="s2">&quot;FIFO&quot;</span><span class="p">,</span> <span class="n">n_elements</span><span class="o">=</span><span class="mi">12</span><span class="p">),</span>
-    <span class="n">work_mode</span><span class="o">=</span><span class="s2">&quot;ASYNC&quot;</span><span class="p">,</span>
-    <span class="n">processing</span><span class="o">=</span><span class="n">processing_pipeline</span>
+    <span class="n">work_mode</span><span class="o">=</span><span class="s2">&quot;HOST&quot;</span>
 <span class="p">)</span>
 </pre></div>
 </div>
+<div class="section" id="tx-rx-sequence">
+<h4>TX/RX Sequence<a class="headerlink" href="#tx-rx-sequence" title="Permalink to this headline">¶</a></h4>
 <p>The tx/rx sequence can be described using one of the common sequences
-or by preparing a custom sequence of TxRx objects. For example, to transmit
-plane waves at three different angles, create the
-<code class="docutils literal notranslate"><span class="pre">arrus.ops.imaging.PwiSequence</span></code> object:</p>
+or by preparing a custom sequence of TxRx objects (see <cite>custom_tx_rx_sequence.py</cite>
+example). For example, to transmit plane waves at three different angles,
+create the <code class="docutils literal notranslate"><span class="pre">arrus.ops.imaging.PwiSequence</span></code> object:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sequence</span> <span class="o">=</span> <span class="n">arrus</span><span class="o">.</span><span class="n">ops</span><span class="o">.</span><span class="n">imaging</span><span class="o">.</span><span class="n">PwiSequence</span><span class="p">(</span>
     <span class="n">angles</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">([</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">180</span><span class="p">,</span>
     <span class="n">pulse</span><span class="o">=</span><span class="n">Pulse</span><span class="p">(</span><span class="n">center_frequency</span><span class="o">=</span><span class="mf">8e6</span><span class="p">,</span> <span class="n">n_periods</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">False</span><span class="p">),</span>
@@ -494,12 +504,13 @@ plane waves at three different angles, create the
     <span class="n">tgc_slope</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+<div class="section" id="processing">
+<h4>Processing<a class="headerlink" href="#processing" title="Permalink to this headline">¶</a></h4>
 <p>Optionally, it is also possible to provide a data processing that should be run
 when new data arrives. For example, b-mode reconstruction for plane wave imaging
 can be implemented using the following pipeline:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">display_input_queue</span> <span class="o">=</span> <span class="n">queue</span><span class="o">.</span><span class="n">Queue</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e-3</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">15</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e-3</span>
 <span class="n">z_grid</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">256</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1e-3</span>
 
 <span class="n">processing</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
@@ -509,18 +520,19 @@ can be implemented using the following pipeline:</p>
             <span class="n">BandpassFilter</span><span class="p">(),</span>
             <span class="n">QuadratureDemodulation</span><span class="p">(),</span>
             <span class="n">Decimation</span><span class="p">(</span><span class="n">decimation_factor</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">cic_order</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-            <span class="n">RxBeamformingImg</span><span class="p">(</span><span class="n">x_grid</span><span class="o">=</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">z_grid</span><span class="o">=</span><span class="n">z_grid</span><span class="p">),</span>
+            <span class="n">ReconstructLri</span><span class="p">(</span><span class="n">x_grid</span><span class="o">=</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">z_grid</span><span class="o">=</span><span class="n">z_grid</span><span class="p">),</span>
+            <span class="n">Mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">),</span>
             <span class="n">EnvelopeDetection</span><span class="p">(),</span>
             <span class="n">Transpose</span><span class="p">(),</span>
             <span class="n">LogCompression</span><span class="p">(),</span>
-            <span class="n">Enqueue</span><span class="p">(</span><span class="n">display_input_queue</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ignore_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="p">),</span>
         <span class="n">placement</span><span class="o">=</span><span class="s2">&quot;/GPU:0&quot;</span>
     <span class="p">)</span>
 </pre></div>
 </div>
 <p>The above code creates a pipeline, which will put the reconstructed b-mode
-images into the <code class="docutils literal notranslate"><span class="pre">display_input_queue</span></code>. That queue will contain</p>
+images into the output buffer. A handle to the output buffer will be returned
+on the scheme upload.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Currently python API allows for data processing implemented using
@@ -528,9 +540,90 @@ images into the <code class="docutils literal notranslate"><span class="pre">dis
 An optimized imaging pipeline for real-time b-mode reconstruction
 will be available soon.</p>
 </div>
-</section>
-<section id="running-the-scheme">
-<h3>Running the Scheme<a class="headerlink" href="#running-the-scheme" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="work-mode">
+<h4>Work mode<a class="headerlink" href="#work-mode" title="Permalink to this headline">¶</a></h4>
+<p>Here we will describe the whole structure of processing done by the host PC
+and us4R-Lite/us4oem systems.</p>
+<p>Generally, the following processes run after starting scheme:</p>
+<ol class="arabic simple">
+<li><p>Us4R executes TX/RX sequence (cyclically) and saves the acquired channel RF data to Us4R RX buffer,</p></li>
+<li><p>PCI DMA transfers the acquired data to Host PC buffer element, pointing to some host’s memory area,</p></li>
+<li><p>Host PC processes the data, and marks the buffer element as released, that is the memory area for that element can be filled with new data.</p></li>
+</ol>
+<p>In other words:</p>
+<ul class="simple">
+<li><p>Us4R produces channel data to Us4R RX buffer, which is consumed by DMA,</p></li>
+<li><p>DMA produces channels data to Host PC buffer, which is consumed by some data processor.</p></li>
+<li><p>“Us4R RX buffer” is an n-element circular buffer in “Us4R DDR” memory,</p></li>
+<li><p>“Host PC buffer” is an n-element circular buffer stored in the host PC RAM.</p></li>
+</ul>
+<p>In ARRUS package currently we have a couple of <strong>work modes</strong>, the choice of which
+affects how processes (1), (2) and (3) works with each other.</p>
+<div class="section" id="work-mode-host">
+<h5>Work mode HOST<a class="headerlink" href="#work-mode-host" title="Permalink to this headline">¶</a></h5>
+<p>Us4R executes a single TX/RX sequence (1), then DMA copies the data (2),
+then Host PC processes the data (3), then Us4R executes a single
+TX/RX sequence (1), DMA copies data, … and so on.</p>
+<p>Processes (1), (2), and (3) are executed sequentially, one after another, so
+the total time between consecutive TX/RX sequence executions is equal to
+<code class="docutils literal notranslate"><span class="pre">t(1)</span> <span class="pre">+</span> <span class="pre">t(2)</span> <span class="pre">+</span> <span class="pre">t(3)</span></code>, where t(i) is the time needed to execute i-th process.</p>
+<p>When using HOST work mode, PRI is guaranteed within a single TX/RX sequence,
+but is not guaranteed between executions of the TX/RX sequences,
+because (1) waits until (2) and (3) are finished, and the execution
+time of (3) can generally be arbitrary (if we assume that (3) does not meet
+the hard real-time constraints).</p>
+<p>This mode is useful when:</p>
+<ul class="simple">
+<li><p>(3) cannot meet the hard real-time constraints determined by the selected PRI
+or (2) cannot satisfy given frame rate,</p></li>
+<li><p>a strict PRI guarantee between sequences (or batches of sequences) is not
+needed,</p></li>
+<li><p>the size of data collected by one sequence (or batches of sequences) does not
+exceed the size of the available DDR memory on us4OEM modules (4 GiB per module),</p></li>
+<li><p>the length of a single TX/RX sequence does not exceed 1024
+(the number of raw TX/RXs in a single batch of sequences does not excceed 16384).</p></li>
+</ul>
+<p>Work mode “HOST” is the easiest one to use and should be preferred in the first experiments.</p>
+</div>
+<div class="section" id="work-mode-async">
+<h5>Work mode ASYNC<a class="headerlink" href="#work-mode-async" title="Permalink to this headline">¶</a></h5>
+<p>Processes (1), (2) and (3) run in parallel and communicates through Us4R RX
+buffer and Host PC buffer.</p>
+<ul class="simple">
+<li><p>process (1) runs cyclically, with guaranteed PRI, stops only after stop_scheme
+is called or error is detected,</p></li>
+<li><p>process (2) waits for new data in the Us4R RX buffer and then copies it to
+Host PC buffer when it’s ready,</p></li>
+<li><p>process (3) waits for new data, processes data and releases buffer element.</p></li>
+</ul>
+<p>As the buffers are of a finite size, and (1), (2) and (3) may have different
+execution times:</p>
+<ul class="simple">
+<li><p>when the process (1) detects that it is trying to overwrite data that has not
+yet been transferred, it will report the “RX Buffer overflow” error,</p></li>
+<li><p>when the process (2) detects that it is trying to overwrite data that has not
+yet been processed (i.e. buffer element’s release function is called),
+it will report the “Host buffer overflow” error.</p></li>
+</ul>
+<p>The first error is usually reported, when data transfer rate is to slow compared
+to the acquisition rate, the second error is usually reported when data
+processing is to slow compared to the transfer and acquisition rate.</p>
+<p>The effective frame rate in this case is <code class="docutils literal notranslate"><span class="pre">max{t(1),</span> <span class="pre">t(2),</span> <span class="pre">t(3)}</span></code>, which is
+basically t(1) as the processes (2) and (3) have to keep pace with (1).</p>
+<p>This mode of operations is useful when:</p>
+<ul class="simple">
+<li><p>a strict PRI guarantee between all sequences (batches of sequences) is required,</p></li>
+<li><p>PCIE transfer (2) is enough to transfer data with the appropriate frame rate,
+(3) keeps strict processing time regime.</p></li>
+</ul>
+<p>If (2) and (3) takes too long/cannot keep strict processing time regime,
+its necessary to increase PRI, or set SRI or use HOST work mode.</p>
+</div>
+</div>
+</div>
+<div class="section" id="running-the-scheme">
+<span id="arrus-running-scheme"></span><h3>Running the Scheme<a class="headerlink" href="#running-the-scheme" title="Permalink to this headline">¶</a></h3>
 <p>To run the scheme:</p>
 <ol class="arabic simple">
 <li><p>start new session,</p></li>
@@ -540,7 +633,7 @@ will be available soon.</p>
 </ol>
 <p>If you want to display reconstructed b-mode images,
 you can use <code class="docutils literal notranslate"><span class="pre">arrus.utils.gui.Display2D</span></code> class as show below, by providing
-the previously created <code class="docutils literal notranslate"><span class="pre">input_data_queue</span></code>. The <code class="docutils literal notranslate"><span class="pre">arrus.utils.gui.Display2D</span></code>
+buffer returned on scheme upload. The <code class="docutils literal notranslate"><span class="pre">arrus.utils.gui.Display2D</span></code>
 class requires <cite>matplotlib</cite> package installed.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">arrus</span><span class="o">.</span><span class="n">Session</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;C:\Users\Public\us4r.prototxt&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">sess</span><span class="p">:</span>
     <span class="n">us4r</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">get_device</span><span class="p">(</span><span class="s2">&quot;/Us4R:0&quot;</span><span class="p">)</span>
@@ -548,17 +641,22 @@ class requires <cite>matplotlib</cite> package installed.</p>
 
     <span class="c1"># Upload sequence on the us4r-lite device.</span>
     <span class="n">buffer</span><span class="p">,</span> <span class="n">const_metadata</span> <span class="o">=</span> <span class="n">sess</span><span class="o">.</span><span class="n">upload</span><span class="p">(</span><span class="n">scheme</span><span class="p">)</span>
-    <span class="n">display</span> <span class="o">=</span> <span class="n">Display2D</span><span class="p">(</span><span class="n">const_metadata</span><span class="p">,</span> <span class="n">value_range</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+    <span class="n">display</span> <span class="o">=</span> <span class="n">Display2D</span><span class="p">(</span><span class="n">const_metadata</span><span class="o">=</span><span class="n">const_metadata</span><span class="p">,</span> <span class="n">value_range</span><span class="o">=</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">80</span><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
     <span class="n">sess</span><span class="o">.</span><span class="n">start_scheme</span><span class="p">()</span>
-    <span class="n">display</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">display_input_queue</span><span class="p">)</span>
+    <span class="n">display</span><span class="o">.</span><span class="n">start</span><span class="p">(</span><span class="n">buffer</span><span class="p">)</span>
 </pre></div>
 </div>
+<p>The Session object can be treated as Python context manager.</p>
+<p>You can provide in it’s constructor a path to the session configuration file, or
+use the default search path which is stored in <code class="docutils literal notranslate"><span class="pre">ARRUS_PATH</span></code> environment variable.
+By default <code class="docutils literal notranslate"><span class="pre">us4r.prototxt</span></code> will be searched in <code class="docutils literal notranslate"><span class="pre">ARRUS_PATH</span></code> if you don’t
+provide a path in Session’s constructor.</p>
 <p>The function <code class="docutils literal notranslate"><span class="pre">display.start</span></code> starts displaying reconstructed images and blocks
 the current thread until the window is closed. When the program leaves the
 <code class="docutils literal notranslate"><span class="pre">arrus.Session</span></code> context manager scope, the scheme is stopped and
 the connection to all the running devices is closed.</p>
-</section>
-<section id="running-custom-callback-functions">
+</div>
+<div class="section" id="running-custom-callback-functions">
 <h3>Running custom callback functions<a class="headerlink" href="#running-custom-callback-functions" title="Permalink to this headline">¶</a></h3>
 <p>You can provide your own custom callback functions that should be run when
 raw RF channel data arrives in the ultrasound device output buffer.
@@ -576,27 +674,55 @@ In order to do that, use <code class="docutils literal notranslate"><span class=
     <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-<section id="implementing-custom-arrus-utils-imaging-operations">
+</div>
+<div class="section" id="implementing-custom-arrus-utils-imaging-operations">
 <h3>Implementing custom <code class="docutils literal notranslate"><span class="pre">arrus.utils.imaging</span></code> operations<a class="headerlink" href="#implementing-custom-arrus-utils-imaging-operations" title="Permalink to this headline">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The interface presented below is experimental and can be changed in the future.</p>
+</div>
 <p>It is possible to provide custom processing steps for the
 <code class="docutils literal notranslate"><span class="pre">arrus.utils.imaging</span></code> package. In order to do that, you have to implement
 the following interface:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCustomOperation</span><span class="p">:</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">MyCustomOperation</span><span class="p">(</span><span class="n">arrus</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">imaging</span><span class="o">.</span><span class="n">Operation</span><span class="p">):</span>
 
-    <span class="k">def</span> <span class="nf">_process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">const_metadata</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        OPTIONAL.</span>
+<span class="sd">        Function that will called when the processing pipeline is prepared.</span>
+
+<span class="sd">        :param const_metadata: const metadata describing output from the \</span>
+<span class="sd">          previous Operation.</span>
+<span class="sd">        :return: const metadata describing output of this Operation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">process</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Function that will be called when new data arrives.</span>
 
 <span class="sd">        :param data: input data</span>
 <span class="sd">        :return: output data</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1"># Here is your custom data processing implementation</span>
-        <span class="k">pass</span>
+        <span class="k">return</span> <span class="n">data</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">_process</span></code> function will be called when new data arrives, at the appropriate stage of the pipeline.</p>
-<p>Then, you can put your custom operation into the pipeline:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">process</span></code> function will be called when new data arrives, at the appropriate stage of the pipeline.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">prepare</span></code> function will be called on Pipeline initialization. You should implement this function if
+you want to do some initialization based on ConstMetadata object, which contains the complete trace
+of data acquisition and processing done made before the current step.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If your implementation of <code class="docutils literal notranslate"><span class="pre">process</span></code> function returns an array, that
+have a different shape or data other than the input array,
+you have to override the <code class="docutils literal notranslate"><span class="pre">prepare</span></code> function, You can signal appropriate
+changes using <code class="docutils literal notranslate"><span class="pre">const_metadata.copy()</span></code> function, for example
+<code class="docutils literal notranslate"><span class="pre">const_metadata.copy(dtype=&quot;complex64&quot;,</span> <span class="pre">input_shape=(128,</span> <span class="pre">1024))</span></code>.
+This requirement may be changed in the future versions of arrus package.</p>
+</div>
+<p>You can put your custom operation into the pipeline:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">processing</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">(</span>
         <span class="n">steps</span><span class="o">=</span><span class="p">(</span>
             <span class="n">RemapToLogicalOrder</span><span class="p">(),</span>
@@ -604,20 +730,18 @@ the following interface:</p>
             <span class="n">BandpassFilter</span><span class="p">(),</span>
             <span class="n">QuadratureDemodulation</span><span class="p">(),</span>
             <span class="n">Decimation</span><span class="p">(</span><span class="n">decimation_factor</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">cic_order</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
-            <span class="n">RxBeamformingImg</span><span class="p">(</span><span class="n">x_grid</span><span class="o">=</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">z_grid</span><span class="o">=</span><span class="n">z_grid</span><span class="p">),</span>
+            <span class="n">ReconstructLri</span><span class="p">(</span><span class="n">x_grid</span><span class="o">=</span><span class="n">x_grid</span><span class="p">,</span> <span class="n">z_grid</span><span class="o">=</span><span class="n">z_grid</span><span class="p">),</span>
             <span class="n">MyCustomOperation</span><span class="p">(),</span>
             <span class="n">EnvelopeDetection</span><span class="p">(),</span>
             <span class="n">Transpose</span><span class="p">(),</span>
             <span class="n">LogCompression</span><span class="p">(),</span>
-            <span class="n">Enqueue</span><span class="p">(</span><span class="n">display_input_queue</span><span class="p">,</span> <span class="n">block</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">ignore_full</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
         <span class="p">),</span>
-        <span class="n">placement</span><span class="o">=</span><span class="s2">&quot;/GPU:0&quot;</span>
-    <span class="p">)</span>
+        <span class="n">placement</span><span class="o">=</span><span class="s2">&quot;/GPU:0&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>
@@ -627,7 +751,7 @@ the following interface:</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="definitions.html" class="btn btn-neutral float-left" title="Glossary and assumptions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

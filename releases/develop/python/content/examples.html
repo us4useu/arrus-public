@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Introduction &mdash; ARRUS (matlab) 0.6.0-dev documentation</title>
+  <title>Examples &mdash; ARRUS (python) 0.6.0-dev documentation</title>
   
 
   
@@ -37,8 +37,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Installation" href="installation/index.html" />
-    <link rel="prev" title="Welcome to ARRUS documentation!" href="../index.html" /> 
+    <link rel="next" title="API Reference" href="api.html" />
+    <link rel="prev" title="User Guide" href="user_guide.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -52,7 +52,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> ARRUS (matlab)
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> ARRUS (python)
           
 
           
@@ -85,9 +85,14 @@
             
               <p class="caption"><span class="caption-text">User Documentation</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="definitions.html">Glossary and assumptions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide.html">User Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#plane-wave-imaging">Plane Wave Imaging</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">API Reference</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Miscellaneous</span></p>
@@ -109,7 +114,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../index.html">ARRUS (matlab)</a>
+          <a href="../index.html">ARRUS (python)</a>
         
       </nav>
 
@@ -140,7 +145,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Introduction</li>
+      <li>Examples</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -157,20 +162,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="introduction">
-<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to the ARRUS project documentation!</p>
-<p>The name <em>ARRUS</em> is an abbreviation for <em>API for Research/Remote Ultrasound</em>.</p>
-<p>The main objective of this project is to create a unified API that provides a
-high-level local/remote interface for scalable ultrasound platforms and e.g.
-simulation software. The common interface may help ease the process of
-experimenting with several different proprietary APIs, each specific to the hardware
-for which they were prepared.</p>
-<div class="admonition caution">
-<p class="admonition-title">Caution</p>
-<p>We will do our best to maintain backward compatibility but please note
-that ARRUS is currently under development and its API may be modified
-in the future.</p>
+  <div class="section" id="examples">
+<h1>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h1>
+<p>In the following parts of this chapter, we will show you how to run example
+scripts available in the ARRUS software. The source code of the ready-to-run
+examples can be found in python/examples directory.</p>
+<p>For more information on the parameters of individual functions please refer
+to section <a class="reference internal" href="api.html#arrus-api"><span class="std std-ref">API Reference</span></a>.</p>
+<p>For the user guide and all the assumptions (e.g. about the coordinate system)
+please visit sections <a class="reference internal" href="definitions.html#arrus-definitions"><span class="std std-ref">Glossary and assumptions</span></a> and <a class="reference internal" href="user_guide.html#arrus-user-guide"><span class="std std-ref">User Guide</span></a>.</p>
+<p>Before running any of the below examples:</p>
+<ul class="simple">
+<li><p>Make sure you are running the Python script using the appropriate Python distribution;
+please install python/examples/requirements.txt file first (if you haven’t already that done).</p></li>
+<li><p>Make sure you are using correct configuration file. See <a class="reference internal" href="user_guide.html#arrus-running-scheme"><span class="std std-ref">Running the Scheme</span></a> for more information how the path to configuration file is determined when creating session object.</p></li>
+<li><p>Make sure that the correct parameters are set, in particular the transmitting voltage.</p></li>
+</ul>
+<div class="section" id="plane-wave-imaging">
+<h2>Plane Wave Imaging<a class="headerlink" href="#plane-wave-imaging" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Go to python/examples directory.</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">plane_wave_imaging.py</span></code></p></li>
+</ol>
+<p>After starting the script, you should be able to see an output similar to the below one:</p>
+<div class="figure align-default" id="id1">
+<img alt="../_images/pwi-cysts.png" src="../_images/pwi-cysts.png" />
+<p class="caption"><span class="caption-number">Fig. 3 </span><span class="caption-text">Plane wave imaging python script output. Phantom: ATS549, cysts.</span><a class="headerlink" href="#id1" title="Permalink to this image">¶</a></p>
+</div>
 </div>
 </div>
 
@@ -182,10 +200,10 @@ in the future.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="installation/index.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="api.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral float-left" title="Welcome to ARRUS documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="user_guide.html" class="btn btn-neutral float-left" title="User Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8">
-  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <title>API Reference &mdash; ARRUS (matlab) 0.6.0-dev documentation</title>
@@ -39,7 +38,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Acknowledgments" href="misc/acknowledgments.html" />
-    <link rel="prev" title="B-mode Imaging" href="examples/bmode_imaging.html" /> 
+    <link rel="prev" title="Examples" href="examples.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,11 +83,11 @@
               
             
             
-              <p><span class="caption-text">User Documentation</span></p>
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="examples/bmode_imaging.html">B-mode Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#handle-to-the-us4r-system">Handle to the Us4R System</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#operations">Operations</a><ul>
@@ -100,7 +99,7 @@
 </ul>
 </li>
 </ul>
-<p><span class="caption-text">Miscellaneous</span></p>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="misc/acknowledgments.html">Acknowledgments</a></li>
 <li class="toctree-l1"><a class="reference internal" href="misc/release_notes.html">Release notes</a></li>
@@ -167,15 +166,15 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="api-reference">
-<span id="arrus-api-main"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="api-reference">
+<span id="arrus-api"></span><h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>We will do our best to maintain backward compatibility but please note
 that ARRUS is currently under development and its API may be modified
 in the future.</p>
 </div>
-<section id="handle-to-the-us4r-system">
+<div class="section" id="handle-to-the-us4r-system">
 <span id="arrus-us4r"></span><h2>Handle to the Us4R System<a class="headerlink" href="#handle-to-the-us4r-system" title="Permalink to this headline">¶</a></h2>
 <dl class="mat class">
 <dt id="arrus.Us4R">
@@ -273,8 +272,8 @@ and <code class="xref py py-class docutils literal notranslate"><span class="pre
 
 </dd></dl>
 
-</section>
-<section id="operations">
+</div>
+<div class="section" id="operations">
 <h2>Operations<a class="headerlink" href="#operations" title="Permalink to this headline">¶</a></h2>
 <p>Each operation derives from the Operation class.</p>
 <span class="target" id="arrus-operation"></span><dl class="mat class">
@@ -283,7 +282,7 @@ and <code class="xref py py-class docutils literal notranslate"><span class="pre
 <dd><p>An operation to perform.</p>
 </dd></dl>
 
-<section id="tx-rx-sequences">
+<div class="section" id="tx-rx-sequences">
 <span id="arrus-api-sequences"></span><h3>TX/RX sequences<a class="headerlink" href="#tx-rx-sequences" title="Permalink to this headline">¶</a></h3>
 <p>All TX/RX sequences derive parameters from the <code class="xref py py-class docutils literal notranslate"><span class="pre">SimpleTxRxSequence</span></code> class.</p>
 <span class="target" id="arrus-simpletxrxsequence"></span><dl class="mat class">
@@ -377,8 +376,8 @@ will be set to 54 dB (if &gt; 54 dB) or 14 dB (if &lt;14 dB)</p>
 </dl>
 </dd></dl>
 
-</section>
-<section id="b-mode-image-reconstruction">
+</div>
+<div class="section" id="b-mode-image-reconstruction">
 <span id="arrus-reconstruction"></span><h3>B-mode Image Reconstruction<a class="headerlink" href="#b-mode-image-reconstruction" title="Permalink to this headline">¶</a></h3>
 <dl class="mat class">
 <dt id="arrus.Reconstruction">
@@ -416,9 +415,9 @@ will be set to 54 dB (if &gt; 54 dB) or 14 dB (if &lt;14 dB)</p>
 </dl>
 </dd></dl>
 
-</section>
-</section>
-<section id="utilities">
+</div>
+</div>
+<div class="section" id="utilities">
 <h2>Utilities<a class="headerlink" href="#utilities" title="Permalink to this headline">¶</a></h2>
 <span class="target" id="arrus-bmodedisplay"></span><dl class="mat class">
 <dt id="arrus.BModeDisplay">
@@ -461,8 +460,8 @@ false otherwise</p>
 
 </dd></dl>
 
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
@@ -475,7 +474,7 @@ false otherwise</p>
         <a href="misc/acknowledgments.html" class="btn btn-neutral float-right" title="Acknowledgments" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="examples/bmode_imaging.html" class="btn btn-neutral float-left" title="B-mode Imaging" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-left" title="Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
