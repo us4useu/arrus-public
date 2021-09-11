@@ -1,15 +1,15 @@
 Welcome to ARRUS documentation!
 ===================================
 
-
 .. toctree::
     :maxdepth: 2
     :caption: User Documentation
 
     content/introduction
     content/installation/index
-    content/examples/bmode_imaging
-    content/examples/mock_session_example
+    content/definitions
+    content/user_guide
+    content/examples
     content/api
 
 .. toctree::
@@ -17,4 +17,5 @@ Welcome to ARRUS documentation!
     :caption: Miscellaneous
 
     content/misc/acknowledgments
+
     content/misc/release_notes

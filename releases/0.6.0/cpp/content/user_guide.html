@@ -1,0 +1,609 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>User Guide &mdash; ARRUS (cpp) 0.6.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="C++ API Reference" href="api.html" />
+    <link rel="prev" title="Installation" href="installation/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> ARRUS (cpp)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">User Documentation</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">User Guide</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-session">Configuring session</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#session-configuration-file">Session configuration file</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#us4r">us4R</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#dictionary">Dictionary</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#default-dictionary">Default dictionary</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">C++ API Reference</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Miscellaneous</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="misc/acknowledgments.html">Acknowledgments</a></li>
+<li class="toctree-l1"><a class="reference internal" href="misc/release_notes.html">Release notes</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ARRUS (cpp)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>User Guide</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="user-guide">
+<h1>User Guide<a class="headerlink" href="#user-guide" title="Permalink to this headline">¶</a></h1>
+<p>This section describes how users can acquire data using ultrasound hardware.
+Users can communicate with the device via a communication <cite>session</cite> object.
+During the session it is possible to upload and run <cite>operations</cite>.</p>
+<div class="section" id="configuring-session">
+<h2>Configuring session<a class="headerlink" href="#configuring-session" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The below sections contains details on how to configure the
+provided hardware. You can skip to <a class="reference internal" href="#running-example"><span class="std std-ref">Example</span></a>
+if you already have a session configuration file prepared by e.g.
+us4us developers, and you don’t need to change any device-related
+parameters.</p>
+</div>
+<div class="section" id="session-configuration-file">
+<h3>Session configuration file<a class="headerlink" href="#session-configuration-file" title="Permalink to this headline">¶</a></h3>
+<p>A session configuration file consists of device settings valid for a given
+session.
+Currently, the configuration file can be written in .prototxt file
+(a protobuf i/o format readable for humans).
+Sample configuration files are available <a class="reference external" href="https://github.com/us4useu/arrus/tree/develop/arrus/core/io/test-data">here</a>.</p>
+<p>Currently only us4R device can be configured using session configuration file.</p>
+<div class="section" id="us4r">
+<h4>us4R<a class="headerlink" href="#us4r" title="Permalink to this headline">¶</a></h4>
+<p>To use the us4R system in a particular session, create a field <code class="docutils literal notranslate"><span class="pre">us4r</span></code> in the
+session configuration file.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">us4r</span><span class="p">:</span> <span class="p">{</span>
+  <span class="c1"># here goes us4r configuration spec.</span>
+  <span class="n">hv</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+  <span class="p">}</span>
+  <span class="n">probe</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+  <span class="p">}</span>
+  <span class="n">adapter</span><span class="p">:</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The us4R device typically includes a high voltage supplier,
+which can be configured by providing the <code class="docutils literal notranslate"><span class="pre">hv</span></code> field. For now, the us4R device
+in the arrus package supports only one type of HV device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">hv</span><span class="p">:</span> <span class="p">{</span>
+  <span class="n">model_id</span> <span class="p">{</span>
+    <span class="n">manufacturer</span><span class="p">:</span> <span class="s2">&quot;us4us&quot;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;hv256&quot;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>To turn off the high voltage supplier, skip the <code class="docutils literal notranslate"><span class="pre">hv</span></code> field.</p>
+<p>To configure us4r’s signal transmission/data reception, it is essential to
+specify settings of the probe and probe adapter used in the system.</p>
+<div class="section" id="specify-the-settings-of-the-probe-and-probe-adapter">
+<h5>Specify the settings of the probe and probe adapter<a class="headerlink" href="#specify-the-settings-of-the-probe-and-probe-adapter" title="Permalink to this headline">¶</a></h5>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/us4useu/arrus/blob/develop/arrus/core/io/test-data/us4r.prototxt">use predefined probe and adapter</a></p></li>
+<li><p><a class="reference external" href="https://github.com/us4useu/arrus/blob/develop/arrus/core/io/test-data/custom_us4r.prototxt">create custom probe and adapter</a></p></li>
+</ul>
+<div class="section" id="probe-model">
+<h6>Probe Model<a class="headerlink" href="#probe-model" title="Permalink to this headline">¶</a></h6>
+<p>The user can specify which probe model they are currently using in one of the
+following ways:</p>
+<ol class="arabic simple">
+<li><p>describe probe model by the providing <code class="docutils literal notranslate"><span class="pre">probe</span></code> field, e.g.:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">probe</span><span class="p">:</span> <span class="p">{</span>
+  <span class="nb">id</span><span class="p">:</span> <span class="p">{</span>
+    <span class="n">manufacturer</span><span class="p">:</span> <span class="s2">&quot;acme&quot;</span>
+    <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;my_custom_probe&quot;</span>
+  <span class="p">}</span>
+  <span class="n">n_elements</span><span class="p">:</span> <span class="mi">64</span><span class="p">,</span>
+  <span class="n">curvature_radius</span><span class="p">:</span> <span class="mf">50e-3</span><span class="p">,</span>
+  <span class="n">pitch</span><span class="p">:</span> <span class="mf">0.21e-3</span><span class="p">,</span>
+  <span class="n">tx_frequency_range</span><span class="p">:</span> <span class="p">{</span>
+    <span class="n">begin</span><span class="p">:</span> <span class="mf">1e6</span><span class="p">,</span>
+    <span class="n">end</span><span class="p">:</span> <span class="mf">40e6</span>
+  <span class="p">},</span>
+  <span class="n">voltage_range</span><span class="p">:</span> <span class="p">{</span>
+    <span class="n">begin</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+    <span class="n">end</span><span class="p">:</span> <span class="mi">100</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The following <code class="docutils literal notranslate"><span class="pre">probe</span></code> attributes can be specified:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">id</span></code>: a unique probe model id — a pair: <code class="docutils literal notranslate"><span class="pre">(manufacturer,</span> <span class="pre">name)</span></code>,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">n_elements</span></code>: number of probe elements,</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pitch</span></code>: distance between two adjacent probe elements [m],</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">curvature_radius</span></code>: radius of probe’s curvature; when omitted and n_elements is a scalar, a linear probe type is assumed [m],</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tx_frequency_range</span></code>: acceptable range of center frequencies for this probe [min, max] (a closed interval) [Hz],</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">voltage_range</span></code>: range of acceptable voltage values, 0.5*Vpp.</p></li>
+</ul>
+<ol class="arabic simple" start="2">
+<li><p>specify probe model by providing <code class="docutils literal notranslate"><span class="pre">probe_id</span></code>:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">probe_id</span><span class="p">:</span> <span class="p">{</span>
+  <span class="n">manufacturer</span><span class="p">:</span> <span class="s2">&quot;esaote&quot;</span><span class="p">,</span>
+  <span class="n">name</span><span class="p">:</span> <span class="s2">&quot;sl1543&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If the latter method is used, the probe model description will be searched
+in the dictionary file.</p>
+<p>When no dictionary file is provided, the
+<a class="reference internal" href="#default-dictionary"><span class="std std-ref">Default dictionary</span></a> will be assumed.</p>
+</div>
+<div class="section" id="probe-to-adapter-connection">
+<h6>Probe-to-adapter connection<a class="headerlink" href="#probe-to-adapter-connection" title="Permalink to this headline">¶</a></h6>
+<p>The <code class="docutils literal notranslate"><span class="pre">probe_to_adapter_connection</span></code> field specifies how the <code class="docutils literal notranslate"><span class="pre">probe</span></code> elements
+map to the <code class="docutils literal notranslate"><span class="pre">adapter</span></code> channels.</p>
+<p>There are several ways to specify this mapping:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">channel_mapping</span></code> - a list of adapter channels to which the subsequent probe channels should be assigned, i.e. <code class="docutils literal notranslate"><span class="pre">channel_mapping[i]</span></code> is the adapter’s channel to be assigned to probe channel <code class="docutils literal notranslate"><span class="pre">i</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">channel_mapping_ranges</span></code> - a list of adapter channel regions to which the subsequent probe channels should be assigned.</p></li>
+</ul>
+<p>See <a class="reference external" href="https://github.com/us4useu/arrus/blob/develop/arrus/core/io/test-data/custom_us4r.prototxt">here</a>
+for an example usage of <code class="docutils literal notranslate"><span class="pre">probe_to_adapter_connection</span></code> field.</p>
+<p>Note:
+This field is required only when a custom probe and adapter are specified in
+the session configuration file (i.e. <code class="docutils literal notranslate"><span class="pre">probe</span></code> and <code class="docutils literal notranslate"><span class="pre">adapter</span></code> fields).
+When the <code class="docutils literal notranslate"><span class="pre">probe_id</span></code> or <code class="docutils literal notranslate"><span class="pre">adapter_id</span></code> are provided and the connection between
+them is already defined, this field can be omitted — the arrus package will
+try to determine the probe-adapter mapping based on the dictionary file.
+When <code class="docutils literal notranslate"><span class="pre">probe_to_adapter_connection</span></code> is still given, it will overwrite
+the settings from the dictionary file.</p>
+</div>
+<div class="section" id="rx-settings">
+<h6>Rx Settings<a class="headerlink" href="#rx-settings" title="Permalink to this headline">¶</a></h6>
+<p>The user can specify the default data reception settings to be set on all
+system modules. To do this, add an <cite>rx_settings</cite> with the following attributes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dtgc_attenuation</span></code>: digital time gain compensation to apply (given as attenuation value to apply). Available values: 0, 6, 12, 18, 24, 30, 36, 42 [dB]. Optional, no value means turn off DTGC.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pga_gain</span></code>: a gain to apply on a programmable gain amplifier. Available values: 24, 30 [dB]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lna_gain</span></code>: a gain to apply on a low-noise amplifier. Available values:  12, 18, 24 [dB]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tgc_samples</span></code>: a list of tgc curve samples to apply [dB]. Optional, no value/empty list means turn off TGC</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lpf_cutoff</span></code>: low-pass filter cut-off frequency, available values: 10000000, 15000000, 20000000, 30000000, 35000000, 50000000 [Hz]</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">active_termination</span></code> active termination to apply, available values: 50, 100, 200, 400. Optional, no value means turn off active termination.</p></li>
+</ul>
+</div>
+<div class="section" id="channel-masks">
+<h6>Channel masks<a class="headerlink" href="#channel-masks" title="Permalink to this headline">¶</a></h6>
+<p>To turn off specific channels of the us4R system (i.e. the probe elements),
+add both of the following fields to the <cite>us4r</cite> settings:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">channels_mask</span></code>: a list of system channels that should always be disabled</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">us4oem_channels_mask</span></code>: a list of channel masks to apply on each us4OEM module</p></li>
+</ul>
+<p>In order to minimize the risk of including channels that should be turned off,
+for example by changing adapter model by mistake
+(e.g. using esaote2 adapter mapping when actually esaote3 is installed),
+it is necessary to specify the fields:
+<cite>channels_mask</cite> and <code class="docutils literal notranslate"><span class="pre">us4oem_channels_mask</span></code>. If these two mappings do not
+match, an error will be reported at the device configuration stage.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="dictionary">
+<h3>Dictionary<a class="headerlink" href="#dictionary" title="Permalink to this headline">¶</a></h3>
+<p>It is possible to specify a dictionary of probe models and adapters that are
+supported by the us4R system. To do this, add the <code class="docutils literal notranslate"><span class="pre">dictionary_file</span></code> field
+to the configuration file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dictionary_file</span><span class="p">:</span> <span class="s2">&quot;dictionary.prototxt&quot;</span>
+</pre></div>
+</div>
+<p>Currently, the <code class="docutils literal notranslate"><span class="pre">dictionary.prototxt</span></code> file will be searched in the same
+directory where session settings is located.</p>
+<p>When no dictionary file is provided, the
+<span class="xref std std-ref">default_dictionary</span> is assumed.</p>
+<p>An example dictionary is available here:
+<a class="reference external" href="https://github.com/us4useu/arrus/blob/develop/arrus/core/io/test-data/dictionary.prototxt">https://github.com/us4useu/arrus/blob/develop/arrus/core/io/test-data/dictionary.prototxt</a></p>
+<p>The dictionary file contains a description of ultrasound probes and adapters
+that are supported by the us4R device. The file consists of the  following fields:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">probe_adapter_models</span><span class="p">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="c1"># probe adapter description, the same as described for us4r.adapter field</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="c1"># probe adapter description...</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">probe_models</span><span class="p">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="c1"># probe model description, the same as described for us4r.probe field</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="c1"># probe model description...</span>
+  <span class="p">}</span>
+<span class="p">]</span>
+
+<span class="n">probe_to_adapter_connections</span><span class="p">:</span> <span class="p">[</span>
+  <span class="p">{</span>
+    <span class="c1"># probe to adapter connection, the same as described for us4r.probe_to_adapter_connection field</span>
+  <span class="p">},</span>
+  <span class="p">{</span>
+    <span class="c1"># probe to adapter connection...</span>
+  <span class="p">}</span>
+
+<span class="p">]</span>
+</pre></div>
+</div>
+<div class="section" id="default-dictionary">
+<span id="id2"></span><h4>Default dictionary<a class="headerlink" href="#default-dictionary" title="Permalink to this headline">¶</a></h4>
+<p>Arrus package already contains a dictionary files of probes and adapters that
+were tested on us4r devices.
+To use the default dictionary, omit providing <code class="docutils literal notranslate"><span class="pre">dictionary_file</span></code> field in your
+session configuration file.</p>
+<p>Currently, the default dictionary contains definitions of the following probes:</p>
+<ul class="simple">
+<li><p>esaote:</p>
+<ul>
+<li><p>probes: <code class="docutils literal notranslate"><span class="pre">sl1543</span></code>, <code class="docutils literal notranslate"><span class="pre">al2442</span></code>, <code class="docutils literal notranslate"><span class="pre">sp2430</span></code></p></li>
+<li><p>adpaters: <code class="docutils literal notranslate"><span class="pre">esoate</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote2</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote3</span></code></p></li>
+</ul>
+</li>
+<li><p>als:</p>
+<ul>
+<li><p>probes: <code class="docutils literal notranslate"><span class="pre">l14-6a</span></code></p></li>
+<li><p>adapters: <code class="docutils literal notranslate"><span class="pre">esaote2</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote3</span></code></p></li>
+</ul>
+</li>
+<li><p>apex:</p>
+<ul>
+<li><p>probes: <code class="docutils literal notranslate"><span class="pre">tl094</span></code></p></li>
+<li><p>adapters: <code class="docutils literal notranslate"><span class="pre">esaote2</span></code>, <code class="docutils literal notranslate"><span class="pre">esaote3</span></code></p></li>
+</ul>
+</li>
+<li><p>ultrasonix:</p>
+<ul>
+<li><p>probes: <code class="docutils literal notranslate"><span class="pre">l14-5/38</span></code></p></li>
+<li><p>adapters: <code class="docutils literal notranslate"><span class="pre">ultrasonix</span></code></p></li>
+</ul>
+</li>
+<li><p>olympus:</p>
+<ul>
+<li><p>probes: <code class="docutils literal notranslate"><span class="pre">5L128</span></code></p></li>
+<li><p>adapters: <code class="docutils literal notranslate"><span class="pre">esaote3</span></code></p></li>
+</ul>
+</li>
+<li><p>ATL/Philips:</p>
+<ul>
+<li><p>probes: <code class="docutils literal notranslate"><span class="pre">l7-4</span></code></p></li>
+<li><p>adapters: <code class="docutils literal notranslate"><span class="pre">atl/philips</span></code></p></li>
+</ul>
+</li>
+<li><p>custom Vermon:</p>
+<ul>
+<li><p>probes: <code class="docutils literal notranslate"><span class="pre">la/20/128</span></code></p></li>
+<li><p>adapters: <code class="docutils literal notranslate"><span class="pre">atl/philips</span></code></p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="section" id="example">
+<span id="running-example"></span><h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span><span class="cp"></span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;condition_variable&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;arrus/core/api/arrus.h&gt;</span><span class="cp"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="k">noexcept</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="o">::</span><span class="nn">arrus</span><span class="o">::</span><span class="nn">session</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="o">::</span><span class="nn">arrus</span><span class="o">::</span><span class="nn">devices</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="o">::</span><span class="nn">arrus</span><span class="o">::</span><span class="nn">ops</span><span class="o">::</span><span class="nn">us4r</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="o">::</span><span class="nn">arrus</span><span class="o">::</span><span class="nn">framework</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Read session configuration from the file.</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">settings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">::</span><span class="n">arrus</span><span class="o">::</span><span class="n">io</span><span class="o">::</span><span class="n">readSessionSettings</span><span class="p">(</span><span class="w"></span>
+<span class="w">                </span><span class="sa">R</span><span class="s">&quot;</span><span class="dl">(</span><span class="s">C:\Users\Public\us4r.prototxt</span><span class="dl">)</span><span class="s">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Create new session.</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">session</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">::</span><span class="n">arrus</span><span class="o">::</span><span class="n">session</span><span class="o">::</span><span class="n">createSession</span><span class="p">(</span><span class="n">settings</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Get Us4R device handle.</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">us4r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">::</span><span class="n">arrus</span><span class="o">::</span><span class="n">devices</span><span class="o">::</span><span class="n">Us4R</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">session</span><span class="o">-&gt;</span><span class="n">getDevice</span><span class="p">(</span><span class="s">&quot;/Us4R:0&quot;</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Tx/Rx sequence:</span>
+<span class="w">        </span><span class="c1">// Common Tx parameters:</span>
+<span class="w">        </span><span class="o">::</span><span class="n">arrus</span><span class="o">::</span><span class="n">BitMask</span><span class="w"> </span><span class="n">rxAperture</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">Pulse</span><span class="w"> </span><span class="nf">pulse</span><span class="p">(</span><span class="mf">4e6</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nb">false</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Common Rx parameters:</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">delays</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0f</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">arrus</span><span class="o">::</span><span class="n">BitMask</span><span class="w"> </span><span class="nf">txAperture</span><span class="p">(</span><span class="mi">192</span><span class="p">,</span><span class="w"> </span><span class="nb">true</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="kt">float</span><span class="w"> </span><span class="n">pri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">200e-6f</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="o">::</span><span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="o">&lt;::</span><span class="n">arrus</span><span class="o">::</span><span class="n">uint32</span><span class="p">,</span><span class="w"> </span><span class="n">arrus</span><span class="o">::</span><span class="n">uint32</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sampleRange</span><span class="p">{</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">2048</span><span class="p">};</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">TxRx</span><span class="o">&gt;</span><span class="w"> </span><span class="n">txrxs</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">txrxs</span><span class="p">.</span><span class="n">emplace_back</span><span class="p">(</span><span class="n">Tx</span><span class="p">(</span><span class="n">txAperture</span><span class="p">,</span><span class="w"> </span><span class="n">delays</span><span class="p">,</span><span class="w"> </span><span class="n">pulse</span><span class="p">),</span><span class="w"></span>
+<span class="w">                               </span><span class="n">Rx</span><span class="p">(</span><span class="n">txAperture</span><span class="p">,</span><span class="w"> </span><span class="n">sampleRange</span><span class="p">),</span><span class="w"></span>
+<span class="w">                               </span><span class="mf">200e-6f</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="n">TxRxSequence</span><span class="w"> </span><span class="n">seq</span><span class="p">(</span><span class="n">txrxs</span><span class="p">,</span><span class="w"> </span><span class="p">{},</span><span class="w"> </span><span class="mf">500e-3f</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Define RF channel data output buffer.</span>
+<span class="w">        </span><span class="n">DataBufferSpec</span><span class="w"> </span><span class="n">outputBuffer</span><span class="p">{</span><span class="n">DataBufferSpec</span><span class="o">::</span><span class="n">Type</span><span class="o">::</span><span class="n">FIFO</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">};</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Define scheme to execute.</span>
+<span class="w">        </span><span class="n">Scheme</span><span class="w"> </span><span class="nf">scheme</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">outputBuffer</span><span class="p">,</span><span class="w"> </span><span class="n">Scheme</span><span class="o">::</span><span class="n">WorkMode</span><span class="o">::</span><span class="n">ASYNC</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Upload the scheme.</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">session</span><span class="o">-&gt;</span><span class="n">upload</span><span class="p">(</span><span class="n">scheme</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Set HV voltage.</span>
+<span class="w">        </span><span class="n">us4r</span><span class="o">-&gt;</span><span class="n">setVoltage</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Create &quot;on new data&quot; callback function.</span>
+<span class="w">        </span><span class="c1">// In this example, the callback function counts the number of frames</span>
+<span class="w">        </span><span class="c1">// that currently occurred and stops the session when a 10th frame is</span>
+<span class="w">        </span><span class="c1">// acquired.</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">condition_variable</span><span class="w"> </span><span class="n">cv</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">using</span><span class="w"> </span><span class="k">namespace</span><span class="w"> </span><span class="nn">std</span><span class="o">::</span><span class="nn">chrono_literals</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">OnNewDataCallback</span><span class="w"> </span><span class="n">callback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">](</span><span class="k">const</span><span class="w"> </span><span class="n">BufferElement</span><span class="o">::</span><span class="n">SharedHandle</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ptr</span><span class="p">)</span><span class="w"> </span><span class="k">mutable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Iteration: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, data: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;- memory ptr: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">hex</span><span class="w"></span>
+<span class="w">                                           </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ptr</span><span class="o">-&gt;</span><span class="n">getData</span><span class="p">().</span><span class="n">get</span><span class="o">&lt;</span><span class="kt">short</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">                                           </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">dec</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;- size: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ptr</span><span class="o">-&gt;</span><span class="n">getSize</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;- shape: (&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ptr</span><span class="o">-&gt;</span><span class="n">getData</span><span class="p">().</span><span class="n">getShape</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"></span>
+<span class="w">                                     </span><span class="s">&quot;, &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">ptr</span><span class="o">-&gt;</span><span class="n">getData</span><span class="p">().</span><span class="n">getShape</span><span class="p">()[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"></span>
+<span class="w">                                     </span><span class="s">&quot;)&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">                </span><span class="c1">// Stop the system after 10-th frame.</span>
+<span class="w">                </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                    </span><span class="n">cv</span><span class="p">.</span><span class="n">notify_one</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="p">}</span><span class="w"></span>
+<span class="w">                </span><span class="n">ptr</span><span class="o">-&gt;</span><span class="n">release</span><span class="p">();</span><span class="w"></span>
+<span class="w">                </span><span class="o">++</span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Exception: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">cv</span><span class="p">.</span><span class="n">notify_all</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="w"> </span><span class="p">(...)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">                </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Unrecognized exception&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">                </span><span class="n">cv</span><span class="p">.</span><span class="n">notify_all</span><span class="p">();</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">};</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Create callback to be called when overflow occurs.</span>
+<span class="w">        </span><span class="n">OnOverflowCallback</span><span class="w"> </span><span class="n">overflowCallback</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="o">&amp;</span><span class="p">]</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Data overflow occurred!&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="n">cv</span><span class="p">.</span><span class="n">notify_one</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="p">};</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Register callbacks in the data buffer.</span>
+<span class="w">        </span><span class="k">auto</span><span class="w"> </span><span class="n">buffer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">static_pointer_cast</span><span class="o">&lt;</span><span class="n">DataBuffer</span><span class="o">&gt;</span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">getBuffer</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="n">buffer</span><span class="o">-&gt;</span><span class="n">registerOnNewDataCallback</span><span class="p">(</span><span class="n">callback</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">buffer</span><span class="o">-&gt;</span><span class="n">registerOnOverflowCallback</span><span class="p">(</span><span class="n">overflowCallback</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Start the scheme.</span>
+<span class="w">        </span><span class="n">session</span><span class="o">-&gt;</span><span class="n">startScheme</span><span class="p">();</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// At this point, data acquisition is started</span>
+<span class="w">        </span><span class="c1">// (the occurrence of new data is signaled by the callback function).</span>
+
+<span class="w">        </span><span class="c1">// Wait for callback to signal that the we hit 10-th iteration.</span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">mutex</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lock</span><span class="p">(</span><span class="n">mutex</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="n">cv</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lock</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">        </span><span class="c1">// Stop the system.</span>
+<span class="w">        </span><span class="n">session</span><span class="o">-&gt;</span><span class="n">stopScheme</span><span class="p">();</span><span class="w"></span>
+
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">catch</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">exception</span><span class="w"> </span><span class="o">&amp;</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cerr</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">what</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="api.html" class="btn btn-neutral float-right" title="C++ API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation/index.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2021, us4us Ltd.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
