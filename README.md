@@ -2,8 +2,8 @@
 
 ## Documentation:
 
-- current stable: [matlab](https://us4useu.github.io/arrus-public/releases/current/matlab/index.html), [python](https://us4useu.github.io/arrus-public/releases/current/python/index.html)
-- current develop: [matlab](https://us4useu.github.io/arrus-public/releases/develop/matlab/index.html), [python](https://us4useu.github.io/arrus-public/releases/develop/python/index.html)
+- current stable: [matlab](https://us4useu.github.io/arrus-public/releases/current/matlab/index.html), [python](https://us4useu.github.io/arrus-public/releases/current/python/index.html), [C++](https://us4useu.github.io/arrus-public/releases/current/cpp/index.html)
+- current develop: [matlab](https://us4useu.github.io/arrus-public/releases/develop/matlab/index.html), [python](https://us4useu.github.io/arrus-public/releases/develop/python/index.html),  [C++](https://us4useu.github.io/arrus-public/releases/develop/cpp/index.html)
 
 ### Versions
 
